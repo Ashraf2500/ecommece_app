@@ -15,11 +15,9 @@ class EcommerceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme:
-          ThemeData.light().copyWith(scaffoldBackgroundColor: kBackGroundColor,
-          textTheme: GoogleFonts.poppinsTextTheme()
-          ),
-          
+      theme: ThemeData.light().copyWith(
+          scaffoldBackgroundColor: kBackGroundColor,
+          textTheme: GoogleFonts.poppinsTextTheme()),
       home: SplashView(),
     );
   }

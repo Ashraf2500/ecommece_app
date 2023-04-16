@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:ecommece_app/constans.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
-import 'package:ecommece_app/features/regis/presentation/views/regis_view.dart';
+import 'package:ecommece_app/features/login/presentation/view/login_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacement(context, MaterialPageRoute(
         builder: (context) {
-          return RegisView();
+          return LoginView();
         },
       ));
     });

@@ -1,6 +1,7 @@
-import 'package:ecommece_app/constans.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
-import 'package:ecommece_app/core/utils/style.dart';
+import 'package:ecommece_app/features/login/presentation/view/widgets/login_body.dart';
+import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
+import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Text_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_title_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class _RegisBodyState extends State<RegisBody> {
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   height: 150,
@@ -32,7 +34,10 @@ class _RegisBodyState extends State<RegisBody> {
                   Images.logo,
                   width: 72,
                 ),
-                CustomTitle(),
+                CustomTitle(
+                  textOne: "Let ’s Get Started",
+                  textTwo: "Create an new account",
+                ),
                 SizedBox(
                   height: 28,
                 ),
@@ -89,26 +94,23 @@ class _RegisBodyState extends State<RegisBody> {
                 SizedBox(
                   height: 16,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SizedBox(
-                    height: 57,
-                    width: MediaQuery.of(context).size.width,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: kPrimaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          )),
-                      onPressed: () {},
-                      child: Text(
-                        "Sign Up",
-                        style: Style.textStyle16.copyWith(
-                          color: kBackGroundColor,
-                        ),
-                      ),
-                    ),
-                  ),
+                CustomButton(
+                  text: "Sign Up",
+                  onPressed: () {},
+                ),
+                SizedBox(
+                  height: 24,
+                ),
+                CustomText(
+                  text: "have a account?",
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return LoginBody();
+                      },
+                    ));
+                  },
+                  textButton: "Sign In",
                 )
               ],
             ),
