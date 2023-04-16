@@ -6,6 +6,7 @@ const kTextkColor = Color(0xff223263);
 const kOfferColor= Color(0xffFB7181);
 const kRatingColor = Color(0xffFFC833);
 const kDescriptionText = Color(0xff9098B1);
+const kBorderColor = Color(0xffEBF0FF);
 
 
 

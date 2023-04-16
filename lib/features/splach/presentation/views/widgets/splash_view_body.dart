@@ -17,7 +17,11 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void initState() {
     super.initState();
 
-    Timer(Duration(seconds: 2), () {
+    navigateToRegis();
+  }
+
+  void navigateToRegis() {
+    Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacement(context, MaterialPageRoute(
         builder: (context) {
           return RegisView();
