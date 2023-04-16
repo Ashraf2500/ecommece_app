@@ -3,7 +3,9 @@ import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
 class CustomTitle extends StatelessWidget {
-  const CustomTitle({super.key});
+   CustomTitle({super.key,required this.textOne,required this.textTwo});
+String textOne;
+String textTwo;
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +15,14 @@ class CustomTitle extends StatelessWidget {
           height: 16,
         ),
         Text(
-          "Let ’s Get Started",
+          textOne,
           style: Style.textStyle16.copyWith(color: kTextkColor),
         ),
         SizedBox(
           height: 8,
         ),
         Text(
-          "Create an new account",
+          textTwo,
           style: Style.textStyle12.copyWith(),
         ),
       ],

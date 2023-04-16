@@ -15,4 +15,23 @@ abstract class Style {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
+
+  static const textStyle24 = TextStyle(
+      color: kBackGroundColor,
+      fontSize: 24,
+      fontWeight: FontWeight.w700
+  );
+
+  static const textStyle14_2 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: kTextkColor,
+  );
+
+  static const textStyle14_3 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: kPrimaryColor,
+  );
+
 }

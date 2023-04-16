@@ -10,5 +10,8 @@ const kBorderColor = Color(0xffEBF0FF);
 
 
 
+/*
+activeDotColor: Color(0xff33bbff),
+dotColor: Color(0xffccd9ff),
 
-
+*/
