@@ -1,3 +1,6 @@
+
+import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/features/home/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +14,9 @@ class EcommerceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-    home: SplashView(),
+      theme: ThemeData.light().copyWith(scaffoldBackgroundColor: kBackGroundColor),
+   
+      home: SplashView(),
     );
   }
 }
