@@ -1,4 +1,5 @@
-import 'package:ecommece_app/features/home/presentation/views/widgets/splash_view_body.dart';
+
+import 'package:ecommece_app/features/splach/presentation/views/widgets/splash_view_body.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 
