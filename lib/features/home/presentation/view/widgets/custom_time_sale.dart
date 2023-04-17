@@ -1,3 +1,4 @@
+import 'package:ecommece_app/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 class CustomTimeSale extends StatelessWidget {
@@ -18,7 +19,9 @@ class CustomTimeSale extends StatelessWidget {
         ),
         child: Center(child: Text(
           "$text",
-          style:Style.textStyle14_2,
+          style:Style.textStyle14.copyWith(
+            color: kTextkColor
+          ),
         )
         ),
       ),

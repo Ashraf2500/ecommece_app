@@ -8,8 +8,8 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     required this.text,
   });
-  VoidCallback onPressed;
-  String text;
+  final VoidCallback onPressed;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

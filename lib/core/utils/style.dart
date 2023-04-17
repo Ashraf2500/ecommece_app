@@ -17,21 +17,8 @@ abstract class Style {
   );
 
   static const textStyle24 = TextStyle(
-      color: kBackGroundColor,
-      fontSize: 24,
-      fontWeight: FontWeight.w700
-  );
-
-  static const textStyle14_2 = TextStyle(
-    fontSize: 14,
+    color: kBackGroundColor,
+    fontSize: 24,
     fontWeight: FontWeight.w700,
-    color: kTextkColor,
   );
-
-  static const textStyle14_3 = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w700,
-    color: kPrimaryColor,
-  );
-
 }

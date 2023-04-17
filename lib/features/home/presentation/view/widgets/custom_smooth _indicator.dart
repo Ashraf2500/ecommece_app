@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../../../constans.dart';
+import '../../../../../../../../constans.dart';
 
 class CustomSmoothIndicator extends StatelessWidget {
   const CustomSmoothIndicator({Key? key , required this.activeIndex}) : super(key: key);

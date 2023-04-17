@@ -13,7 +13,6 @@ class CustomSlider extends StatefulWidget {
 }
 
 class _CustomSliderState extends State<CustomSlider> {
-
   int activeIndex = 0;
 
   @override
@@ -49,7 +48,6 @@ class _CustomSliderState extends State<CustomSlider> {
             autoPlayCurve: Curves.fastOutSlowIn,
             enlargeCenterPage: true,
             scrollDirection: Axis.horizontal,
-
             onPageChanged: (index, reason) {
               setState(() {
                 activeIndex = index;
@@ -57,22 +55,32 @@ class _CustomSliderState extends State<CustomSlider> {
             },
           ),
         ),
-        SizedBox(height: 15 , ),
+        SizedBox(
+          height: 15,
+        ),
         CustomSmoothIndicator(activeIndex: activeIndex),
       ],
     );
   }
 
-   timeSaleSlider() {
+  timeSaleSlider() {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-                    //---title ----------
-          Text( "Super Flash Sale",style: Style.textStyle24,),
-          const SizedBox(height: 5,),
-          Text( "50% Off",style: Style.textStyle24,),
+          //---title ----------
+          Text(
+            "Super Flash Sale",
+            style: Style.textStyle24,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            "50% Off",
+            style: Style.textStyle24,
+          ),
           const SizedBox(height: 15),
           //---time ----------
           Row(
@@ -84,27 +92,21 @@ class _CustomSliderState extends State<CustomSlider> {
               CustomTimeSale(text: "52"),
             ],
           ),
-
         ],
       ),
     );
   }
 
-   imageSlider() {
+  imageSlider() {
     return SizedBox(
-       width:double.infinity,
-       child: ClipRRect(
-          borderRadius:  BorderRadius.all(Radius.circular(8)),
-           child: Image(
-             image: AssetImage("assets/images/shoe1.png"),
-             fit: BoxFit.fill,
-           ),
-       ),
-
+      width: double.infinity,
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        child: Image(
+          image: AssetImage("assets/images/shoe1.png"),
+          fit: BoxFit.fill,
+        ),
+      ),
     );
   }
-
-
-
-
 }

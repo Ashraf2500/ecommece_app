@@ -3,9 +3,9 @@ import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
 class CustomTitle extends StatelessWidget {
-   CustomTitle({super.key,required this.textOne,required this.textTwo});
-String textOne;
-String textTwo;
+  CustomTitle({super.key, required this.textOne, required this.textTwo});
+  final String textOne;
+  final String textTwo;
 
   @override
   Widget build(BuildContext context) {

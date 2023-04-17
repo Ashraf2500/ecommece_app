@@ -1,4 +1,5 @@
-import 'package:ecommece_app/features/main_Screens/home/presentation/view/widgets/home_body.dart';
+
+import 'package:ecommece_app/features/home/presentation/view/widgets/home_body.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {

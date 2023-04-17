@@ -43,7 +43,7 @@ class _RegisBodyState extends State<RegisBody> {
                 SizedBox(
                   height: 28,
                 ),
-                CustomTextFormField(
+                CustomTextFormFaild(
                     validator: (text) {},
                     obscureText: false,
                     hintText: "Full Name",
@@ -51,7 +51,7 @@ class _RegisBodyState extends State<RegisBody> {
                 SizedBox(
                   height: 8,
                 ),
-                CustomTextFormField(
+                CustomTextFormFaild(
                     validator: (text) {},
                     obscureText: false,
                     hintText: "Your Email",
@@ -59,7 +59,7 @@ class _RegisBodyState extends State<RegisBody> {
                 SizedBox(
                   height: 8,
                 ),
-                CustomTextFormField(
+                CustomTextFormFaild(
                     validator: (text) {},
                     obscureText: obscureTextOne,
                     suffixIcon: IconButton(
@@ -77,7 +77,7 @@ class _RegisBodyState extends State<RegisBody> {
                 SizedBox(
                   height: 8,
                 ),
-                CustomTextFormField(
+                CustomTextFormFaild(
                   validator: (text) {},
                   obscureText: obscureTextTwo,
                   suffixIcon: IconButton(
@@ -99,7 +99,7 @@ class _RegisBodyState extends State<RegisBody> {
                 CustomButton(
                   text: "Sign Up",
                   onPressed: () {
-                    Get.to( () => BottomBarScreens() );
+                    Get.to(() => BottomBarScreens());
                   },
                 ),
                 SizedBox(

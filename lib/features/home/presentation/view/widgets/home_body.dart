@@ -10,54 +10,46 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-
+    return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             SizedBox(height: 10),
             CustomSearchAppBar(
               key: key,
-              customTextFormField: CustomTextFormField(
-                  hintText: "Search Product",
-                  obscureText: false,
-                  prefixIcon:Icon (Icons.search),
-                  validator: (text){},
+              customTextFormField: CustomTextFormFaild(
+                hintText: "Search Product",
+                obscureText: false,
+                prefixIcon: Icon(Icons.search),
+                validator: (text) {},
               ),
-
               iconOne: IconButton(
-                icon:Icon (Icons.favorite_border_outlined),
+                icon: Icon(Icons.favorite_border_outlined),
                 color: kBorderColor,
-                onPressed: (){},
-
+                onPressed: () {},
               ),
-
               iconTwo: IconButton(
                 icon: Icon(Icons.notifications_none_outlined),
                 color: kBorderColor,
-                onPressed: (){},
+                onPressed: () {},
               ),
             ),
-
             SizedBox(height: 15),
-            Divider(thickness: 0.5,),
+            Divider(
+              thickness: 0.5,
+            ),
             SizedBox(height: 20),
-
             CustomSlider(),
-
             SizedBox(height: 20),
             CustomMainTitleRow(
               key: key,
               textOne: "Category",
               textTwo: "More Category",
-              onPressed: (){},
+              onPressed: () {},
             ),
-
           ],
 
-
           //CustomMainTitle();
-
         ),
       ),
     );

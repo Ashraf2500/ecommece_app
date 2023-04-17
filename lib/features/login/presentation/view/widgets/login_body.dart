@@ -1,15 +1,15 @@
 import 'package:ecommece_app/core/utils/assets.dart';
 import 'package:ecommece_app/features/login/presentation/view/widgets/custom_divider_widget.dart';
 import 'package:ecommece_app/features/login/presentation/view/widgets/custom_social_buttom.dart';
+import 'package:ecommece_app/features/main_Screens/bottom_bar_screens.dart';
 import 'package:ecommece_app/features/regis/presentation/views/regis_view.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Text_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_text_form_faild_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_title_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../../main_Screens/bottom_bar_screens.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -46,7 +46,7 @@ class _LoginBodyState extends State<LoginBody> {
                 SizedBox(
                   height: 28,
                 ),
-                CustomTextFormField(
+                CustomTextFormFaild(
                   hintText: "Your Email",
                   obscureText: false,
                   validator: (text) {},
@@ -55,7 +55,7 @@ class _LoginBodyState extends State<LoginBody> {
                 SizedBox(
                   height: 8,
                 ),
-                CustomTextFormField(
+                CustomTextFormFaild(
                   hintText: "Password",
                   obscureText: obscureText,
                   validator: (text) {},
@@ -76,7 +76,7 @@ class _LoginBodyState extends State<LoginBody> {
                 CustomButton(
                   text: "Sign In",
                   onPressed: () {
-                     Get.to( () => BottomBarScreens() );
+                     Get.to(() => BottomBarScreens());
                     },
                 ),
                 SizedBox(
@@ -107,14 +107,14 @@ class _LoginBodyState extends State<LoginBody> {
                   textButton: "Forgot Password?",
                   text: "",
                 ),
-                
                 CustomText(
                   text: "Don’t have a account?",
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      
-                      return RegisView();
-                    },));
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return RegisView();
+                      },
+                    ));
                   },
                   textButton: "Register",
                 ),

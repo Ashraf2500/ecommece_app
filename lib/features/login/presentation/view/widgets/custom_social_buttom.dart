@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class SocialButtom extends StatelessWidget {
   SocialButtom({
     super.key,
-   required  this.image,
+    required this.image,
     required this.text,
-     required this.onTap,
+    required this.onTap,
   });
   final String image;
   final String text;
-  VoidCallback onTap;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
