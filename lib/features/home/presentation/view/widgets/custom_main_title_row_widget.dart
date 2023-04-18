@@ -21,13 +21,15 @@ class CustomMainTitleRow extends StatelessWidget {
             "$textOne",
             style: Style.textStyle14.copyWith(color: kTextkColor),
           ),
-          TextButton(
+          (textTwo != null)?
+               TextButton(
             child: Text(
               "$textTwo",
               style: Style.textStyle14.copyWith(color: kPrimaryColor),
             ),
             onPressed: onPressed,
-          )
+          ):
+              SizedBox(),
         ],
       ),
     );

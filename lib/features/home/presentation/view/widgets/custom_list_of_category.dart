@@ -1,12 +1,9 @@
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_one_category.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constans.dart';
-import '../../../../../core/utils/style.dart';
 
-
-class CustomCategories extends StatelessWidget {
-  const CustomCategories({Key? key}) : super(key: key);
+class CustomListOfCategory extends StatelessWidget {
+  const CustomListOfCategory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +13,12 @@ class CustomCategories extends StatelessWidget {
       width: widthScreen,
       height: 120,
       padding: EdgeInsets.symmetric(horizontal: 10,),
-      child: Expanded(
-        child: ListView.builder(
-          scrollDirection:Axis.horizontal,
-          itemCount: 6 ,
-          itemBuilder: (context , index){
-            return CustomOneCategory();
-          },
-        ),
+      child: ListView.builder(
+        scrollDirection:Axis.horizontal,
+        itemCount: 6 ,
+        itemBuilder: (context , index){
+          return CustomOneCategory(image:"assets/images/shirt.png" ,title: "Man Shirt",);
+        },
       ),
     );
   }

@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../../../constans.dart';
 import '../../../../../core/utils/style.dart';
 
-class CustomInfoProduct extends StatelessWidget {
-  const CustomInfoProduct({Key? key}) : super(key: key);
+class CustomOneCategory extends StatelessWidget {
+   CustomOneCategory({
+    Key? key,
+    required this.image,
+    required this.title,
+  }) : super(key: key);
+
+  final String image ;
+  final String title ;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,7 @@ class CustomInfoProduct extends StatelessWidget {
             child:Container(
               height: 40,
               width: 40,
-              child: Image(image: AssetImage("assets/images/shirt.png")),
+              child: Image(image: AssetImage("$image")),
             ),
           ),
           decoration: BoxDecoration(
@@ -29,7 +36,7 @@ class CustomInfoProduct extends StatelessWidget {
           ),
         ),
         Text(
-          "Man Shirt",
+          "$title",
           style: Style.textStyle14.copyWith(
             color: kDescriptionText ,
           ),

@@ -1,7 +1,7 @@
 import 'package:ecommece_app/core/utils/assets.dart';
 import 'package:ecommece_app/features/login/presentation/view/widgets/custom_divider_widget.dart';
 import 'package:ecommece_app/features/login/presentation/view/widgets/custom_social_buttom.dart';
-import 'package:ecommece_app/features/main_Screens/bottom_bar_screens.dart';
+import 'package:ecommece_app/features/main_Screens/presentation/view/widgets/bottom_bar_body.dart';
 import 'package:ecommece_app/features/regis/presentation/views/regis_view.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Text_widget.dart';

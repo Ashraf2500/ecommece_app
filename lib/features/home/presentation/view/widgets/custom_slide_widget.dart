@@ -1,9 +1,10 @@
+import 'package:ecommece_app/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 
-import 'custom_smooth _indicator.dart';
-import 'custom_time_sale.dart';
+import 'custom_smooth _indicator_widget.dart';
+import 'custom_time_sale_widget.dart';
 
 class CustomSlider extends StatefulWidget {
   const CustomSlider({Key? key}) : super(key: key);
@@ -72,14 +73,14 @@ class _CustomSliderState extends State<CustomSlider> {
           //---title ----------
           Text(
             "Super Flash Sale",
-            style: Style.textStyle24,
+            style: Style.textStyle24.copyWith(color: kBackGroundColor),
           ),
           const SizedBox(
             height: 5,
           ),
           Text(
             "50% Off",
-            style: Style.textStyle24,
+            style: Style.textStyle24.copyWith(color: kBackGroundColor),
           ),
           const SizedBox(height: 15),
           //---time ----------
