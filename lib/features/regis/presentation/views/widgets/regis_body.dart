@@ -6,7 +6,7 @@ import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_ti
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../main_Screens/bottom_bar_screens.dart';
+import '../../../../main_Screens/presentation/view/widgets/bottom_bar_body.dart';
 import 'custom_text_form_faild_widget.dart';
 
 class RegisBody extends StatefulWidget {

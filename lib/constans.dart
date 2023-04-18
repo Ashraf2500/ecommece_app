@@ -7,10 +7,14 @@ const kOfferColor= Color(0xffFB7181);
 const kRatingColor = Color(0xffFFC833);
 const kDescriptionText = Color(0xff9098B1);
 const kBorderColor = Color(0xffEBF0FF);
+const kRedColor = Color(0xffFB7181);
+const kGreenColor = Color(0xff53D1B6);
+const kBurpleColor = Color(0xff5C61F4);
 
 
 
 /*
+
 activeDotColor: Color(0xff33bbff),
 dotColor: Color(0xffccd9ff),
 

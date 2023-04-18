@@ -1,11 +1,16 @@
-import 'package:ecommece_app/constans.dart';
+
 import 'package:flutter/material.dart';
 
 abstract class Style {
+  static const textStyle10 = TextStyle(
+ 
+    fontSize: 10,
+    fontWeight: FontWeight.w700,
+  );
   static const textStyle12 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
-    color: kDescriptionText,
+    
   );
   static const textStyle14 = TextStyle(
     fontSize: 14,
@@ -15,9 +20,13 @@ abstract class Style {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
-
+  static const textStyle20 = TextStyle(
+   
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
   static const textStyle24 = TextStyle(
-    color: kBackGroundColor,
+ 
     fontSize: 24,
     fontWeight: FontWeight.w700,
   );
