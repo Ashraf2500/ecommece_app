@@ -12,26 +12,23 @@ class CustomMainTitleRow extends StatelessWidget {
   final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "$textOne",
-            style: Style.textStyle14.copyWith(color: kTextkColor),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "$textOne",
+          style: Style.textStyle14.copyWith(color: kTextkColor),
+        ),
+        (textTwo != null)?
+             TextButton(
+          child: Text(
+            "$textTwo",
+            style: Style.textStyle14.copyWith(color: kPrimaryColor),
           ),
-          (textTwo != null)?
-               TextButton(
-            child: Text(
-              "$textTwo",
-              style: Style.textStyle14.copyWith(color: kPrimaryColor),
-            ),
-            onPressed: onPressed,
-          ):
-              SizedBox(),
-        ],
-      ),
+          onPressed: onPressed,
+        ):
+            SizedBox(),
+      ],
     );
   }
 }

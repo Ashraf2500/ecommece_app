@@ -46,17 +46,17 @@ class HomeBody extends StatelessWidget {
                   onPressed: () {},
                 ),
               ),
-
+          
               //---------Divider -----------------------------------------------
               SizedBox(height: 15),
               Divider(
                 thickness: 0.5,
               ),
-
+          
               //---------Slider ------------------------------------------------
               SizedBox(height: 15),
               CustomSlider(),
-
+          
               //---------Category ----------------------------------------------
               SizedBox(height: 10),
               CustomMainTitleRow(
@@ -66,7 +66,7 @@ class HomeBody extends StatelessWidget {
                 onPressed: () {},
               ),
               CustomListOfCategory(),
-
+          
               //---------Flash Sale --------------------------------------------
               SizedBox(height: 10),
               CustomMainTitleRow(
@@ -84,7 +84,7 @@ class HomeBody extends StatelessWidget {
                 oldPrice: 534.33,
                 sale: 24,
               ),
-
+          
               //---------Mega  Sale --------------------------------------------
               SizedBox(height: 10),
               CustomMainTitleRow(
@@ -100,18 +100,18 @@ class HomeBody extends StatelessWidget {
                 oldPrice: 534.33,
                 sale: 24,
               ),
-
+          
               //---------Recommended Product -----------------------------------
               SizedBox(height: 30),
               CustomRecommendedProducts(),
-
+          
               //---------Recommended Product Grid View--------------------------
               SizedBox(height: 30,),
               CustomGridViewProducts(),
-
-
+          SizedBox(height: 14,)
+          
             ],
-
+          
             //CustomMainTitle();
           ),
         ),

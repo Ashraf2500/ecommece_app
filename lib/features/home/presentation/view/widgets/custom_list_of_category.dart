@@ -12,7 +12,7 @@ class CustomListOfCategory extends StatelessWidget {
     return  Container(
       width: widthScreen,
       height: 120,
-      padding: EdgeInsets.symmetric(horizontal: 10,),
+    
       child: ListView.builder(
         scrollDirection:Axis.horizontal,
         itemCount: 6 ,

@@ -29,7 +29,9 @@ class ProductBody extends StatelessWidget {
               children: [
                 ProductAppBar(
                   icon: Icon(Icons.arrow_back_ios_new_rounded),
-                  onPressed: () {Navigator.pop(context);},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   text: "Nike Air Max 270 Rea...",
                   iconOne: Icon(Icons.search_rounded),
                   onPressedOne: () {},
@@ -46,9 +48,7 @@ class ProductBody extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-
                 CustomSlider(),
-
                 SizedBox(
                   height: 16,
                 ),
@@ -129,10 +129,11 @@ class ProductBody extends StatelessWidget {
                         textOne: "Review Product",
                         textTwo: "See More",
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: 
-                          (context) {
-                            return ReviewProductBody();
-                          },));
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return ReviewProductBody();
+                            },
+                          ));
                         },
                       ),
                       SizedBox(
@@ -143,20 +144,15 @@ class ProductBody extends StatelessWidget {
                         height: 16,
                       ),
                       ReviewSection(),
-
                       SizedBox(
                         height: 10,
                       ),
-
                       CustomMainTitleRow(
                         textOne: "You Might Also Like",
-
                       ),
-
                       SizedBox(
                         height: 20,
                       ),
-
                       CustomListOfInfoProduct(
                         image: "assets/images/product.png",
                         title: "FS - Nike Air React...",
@@ -164,20 +160,16 @@ class ProductBody extends StatelessWidget {
                         oldPrice: 534.33,
                         sale: 24,
                       ),
-
                       SizedBox(
                         height: 40,
                       ),
-
                       CustomButton(
                         text: "Add To Cart",
                         onPressed: () {},
                       ),
-
                       SizedBox(
                         height: 25,
                       ),
-
                     ],
                   ),
                 ),
@@ -189,4 +181,3 @@ class ProductBody extends StatelessWidget {
     );
   }
 }
-

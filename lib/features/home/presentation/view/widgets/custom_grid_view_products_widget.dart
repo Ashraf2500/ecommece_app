@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_info_one_product.dart';
 import 'package:flutter/material.dart';
 
@@ -14,19 +14,20 @@ class CustomGridViewProducts extends StatelessWidget {
     return Container(
       width: widthScreen,
       height: heightScreen*.8,
-      padding: const EdgeInsets.symmetric(horizontal: 20,vertical:20 ),
-      margin: EdgeInsets.symmetric(horizontal: 20,),
+     padding: EdgeInsets.symmetric(horizontal: 16),
+    
       decoration: BoxDecoration(
         color: Colors.grey[50],
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
 
       child: GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 20,
-            mainAxisExtent: 210,
-            mainAxisSpacing: 20,
+            crossAxisSpacing: 16,
+            childAspectRatio: 1/1.25,
+            mainAxisSpacing: 16,
 
           ),
           itemCount:10,

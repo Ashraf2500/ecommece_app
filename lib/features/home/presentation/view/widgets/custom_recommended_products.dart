@@ -7,31 +7,28 @@ class CustomRecommendedProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Stack(
-        children: [
-          Image(
-            image: AssetImage("assets/images/recommended.png"), fit: BoxFit.fill,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 50,),
-                Text("Recommended", style: Style.textStyle24.copyWith(color:kBackGroundColor),),
+    return  Stack(
+      children: [
+        Image(
+          image: AssetImage("assets/images/recommended.png"), fit: BoxFit.fill,),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50,),
+              Text("Recommended", style: Style.textStyle24.copyWith(color:kBackGroundColor),),
 
-                const SizedBox(height: 10,),
-                Text("Products", style: Style.textStyle24.copyWith(color:kBackGroundColor),),
+              const SizedBox(height: 10,),
+              Text("Products", style: Style.textStyle24.copyWith(color:kBackGroundColor),),
 
-                const SizedBox(height: 50,),
-                Text("We recommend the best for you", style: Style.textStyle12.copyWith(color:kBackGroundColor),
-                ),
-              ],
-            ),
+              const SizedBox(height: 50,),
+              Text("We recommend the best for you", style: Style.textStyle12.copyWith(color:kBackGroundColor),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -14,34 +14,31 @@ class SocialButtom extends StatelessWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        height: 57,
-        decoration: BoxDecoration(
-            border: Border.all(color: kBorderColor),
-            borderRadius: BorderRadius.circular(10)),
-        child: InkWell(
-          onTap: onTap,
-          child: Row(
-            children: [
-              SizedBox(
-                width: 10,
-              ),
-              Image.asset(
-                image,
-                width: 40,
-                height: 40,
-              ),
-              SizedBox(
-                width: 65,
-              ),
-              Text(
-                text,
-                style: Style.textStyle16.copyWith(color: kDescriptionText),
-              ),
-            ],
-          ),
+    return Container(
+      height: 57,
+      decoration: BoxDecoration(
+          border: Border.all(color: kBorderColor),
+          borderRadius: BorderRadius.circular(10)),
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 10,
+            ),
+            Image.asset(
+              image,
+              width: 40,
+              height: 40,
+            ),
+            SizedBox(
+              width: 65,
+            ),
+            Text(
+              text,
+              style: Style.textStyle16.copyWith(color: kDescriptionText),
+            ),
+          ],
         ),
       ),
     );

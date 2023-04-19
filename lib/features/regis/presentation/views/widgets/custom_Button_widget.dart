@@ -15,20 +15,17 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       height: 57,
       width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: TextButton(
-          style: TextButton.styleFrom(
-              backgroundColor: kPrimaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-              )),
-          onPressed: onPressed,
-          child: Text(
-            text,
-            style: Style.textStyle16.copyWith(
-              color: kBackGroundColor,
-            ),
+      child: TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: kPrimaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            )),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: Style.textStyle16.copyWith(
+            color: kBackGroundColor,
           ),
         ),
       ),

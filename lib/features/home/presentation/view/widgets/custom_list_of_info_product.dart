@@ -29,20 +29,24 @@ class CustomListOfInfoProduct extends StatelessWidget {
     double widthScreen = MediaQuery.of(context).size.width;
     return Container(
       width: widthScreen,
-      height: 210,
-      padding: EdgeInsets.only(left: 10),
+      height: 220,
+    
       child: ListView.builder(
+        physics: BouncingScrollPhysics(),
         scrollDirection:Axis.horizontal,
         itemCount: 6 ,
         itemBuilder: (context , index){
-          return CustomInfoOneProduct(
-            image: "$image",
-            title: "$title",
-            newPrice: newPrice,
-            oldPrice: oldPrice,
-            sale: sale,
-            icon: icon,
-            onPressed: onPressed,
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: CustomInfoOneProduct(
+              image: "$image",
+              title: "$title",
+              newPrice: newPrice,
+              oldPrice: oldPrice,
+              sale: sale,
+              icon: icon,
+              onPressed: onPressed,
+            ),
           );
         },
       ),
