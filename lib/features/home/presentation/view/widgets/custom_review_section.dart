@@ -37,7 +37,7 @@ class ReviewSection extends StatelessWidget {
         ),
         DescriptionText(
           text:
-              "air max are always very comfortable fit, clean and\njust perfect in every way. just the box was too small\nand scrunched the sneakers up a little bit, not sure if\nthe box was always this small but the 90s are and\nwill always be one of my favorites.",
+              "air max are always very comfortable fit, clean and just perfect in every way. just the box was too small and scrunched the sneakers up a little bit, not sure if the box was always this small but the 90s are and will always be one of my favorites. dsffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
         ),
         SizedBox(
           height: 16,

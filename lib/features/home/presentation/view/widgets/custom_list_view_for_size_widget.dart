@@ -1,6 +1,6 @@
 import 'package:ecommece_app/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
-import 'package:ecommece_app/features/home/model/size_model.dart';
+import 'package:ecommece_app/features/home/data/model/size_model.dart';
 import 'package:flutter/material.dart';
 
 class ListViewSize extends StatelessWidget {

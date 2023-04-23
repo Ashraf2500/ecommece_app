@@ -1,5 +1,5 @@
 import 'package:ecommece_app/constans.dart';
-import 'package:ecommece_app/features/home/model/color_model.dart';
+import 'package:ecommece_app/features/home/data/model/color_model.dart';
 import 'package:flutter/material.dart';
 
 class ListViewColor extends StatelessWidget {

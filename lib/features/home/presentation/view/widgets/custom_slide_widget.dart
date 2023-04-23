@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/shimmar/cusyom_loading_Banners.dart';
+import 'package:ecommece_app/features/home/presentation/manager/cubit/banners_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommece_app/core/utils/style.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'custom_smooth _indicator_widget.dart';
 import 'custom_time_sale_widget.dart';
 
@@ -20,48 +23,59 @@ class _CustomSliderState extends State<CustomSlider> {
   Widget build(BuildContext context) {
     double heightScreen = MediaQuery.of(context).size.height;
 
-    return Column(
-      children: [
-        CarouselSlider.builder(
-          itemCount: 5,
-          itemBuilder: (context, index, realIndex) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Stack(
-                  children: [
-                    imageSlider(),
-                    timeSaleSlider(),
-                  ],
+    return BlocBuilder<BannersCubit, BannersState>(builder: (context, state) {
+      if (state is BannersFailure) {
+        return Text(state.errorMessage);
+      }
+      if (state is BannersSuccess) {
+        return Column(
+          children: [
+            CarouselSlider.builder(
+              itemCount: state.banners.length,
+              itemBuilder: (context, index, realIndex) {
+                var data = state.banners[index].image;
+                var dataLenght =state.banners.length;
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Stack(
+                      children: [
+                        imageSlider(data,dataLenght),
+                        timeSaleSlider(),
+                      ],
+                    );
+                  },
                 );
               },
-            );
-          },
-          options: CarouselOptions(
-            height: heightScreen * (25 / 100),
-            aspectRatio: 16 / 9,
-            viewportFraction: 0.91,
-            initialPage: 0,
-            enableInfiniteScroll: true,
-            reverse: true,
-            autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 5),
-            autoPlayAnimationDuration: const Duration(milliseconds: 1700),
-            autoPlayCurve: Curves.fastOutSlowIn,
-            enlargeCenterPage: true,
-            scrollDirection: Axis.horizontal,
-            onPageChanged: (index, reason) {
-              setState(() {
-                activeIndex = index;
-              });
-            },
-          ),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        CustomSmoothIndicator(activeIndex: activeIndex),
-      ],
-    );
+              options: CarouselOptions(
+                height: heightScreen * (25 / 100),
+                aspectRatio: 16 / 9,
+                viewportFraction: 0.91,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: true,
+                autoPlay: false,
+                autoPlayInterval: const Duration(seconds: 5),
+                autoPlayAnimationDuration: const Duration(milliseconds: 1700),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    activeIndex = index;
+                  });
+                },
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            CustomSmoothIndicator(activeIndex: activeIndex),
+          ],
+        );
+      } else {
+        return CircularProgressIndicator();
+      }
+    });
   }
 
   timeSaleSlider() {
@@ -98,15 +112,16 @@ class _CustomSliderState extends State<CustomSlider> {
     );
   }
 
-  imageSlider() {
+  imageSlider(String data,int dataLength) {
     return SizedBox(
       width: double.infinity,
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(8)),
-        child: Image(
-          image: AssetImage("assets/images/shoe1.png"),
-          fit: BoxFit.fill,
-        ),
+        child: CachedNetworkImage(
+            fit: BoxFit.fill,
+            imageUrl: data,
+            errorWidget: (context, url, error) => const Icon(Icons.abc),
+            placeholder: (context, url) =>  CustomLoadingForBanners(dataLength: dataLength,)),
       ),
     );
   }

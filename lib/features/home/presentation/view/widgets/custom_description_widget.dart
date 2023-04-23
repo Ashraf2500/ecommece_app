@@ -2,40 +2,73 @@ import 'package:ecommece_app/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
-class DescriptionText extends StatelessWidget {
-   DescriptionText({super.key,required this.text,this.textOne,this.textThere,this.textTwo});
-String text;
-String? textOne;
-String? textTwo;
-String? textThere;
+class DescriptionText extends StatefulWidget {
+  DescriptionText({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  _DescriptionTextState createState() => _DescriptionTextState();
+}
+
+class _DescriptionTextState extends State<DescriptionText> {
+  late String fistHalf;
+  late String secondHalf;
+  bool hiddenText = true;
+
+  @override
+  void initState() {
+    super.initState();
+    
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      double textHeight = MediaQuery.of(context).size.height / 5.36;
+
+      if (widget.text.length > textHeight) {
+        setState(() {
+          fistHalf = widget.text.substring(0, textHeight.toInt());
+          secondHalf =
+              widget.text.substring(textHeight.toInt() + 1, widget.text.length);
+        });
+      } else {
+        setState(() {
+          fistHalf = widget.text;
+          secondHalf = "";
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-         text,
-          style: Style.textStyle12.copyWith(color: kDescriptionText,),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-           textOne != null? Text(
-              textOne!,
-              style: Style.textStyle12.copyWith(color: kDescriptionText),
-            ):SizedBox(),
-          textTwo != null ?  Text(
-              textTwo!,
-              style: Style.textStyle12.copyWith(color: kDescriptionText),
-            ):SizedBox(),
-            textThere != null ? Text(
-              textThere!,
-              style: Style.textStyle12.copyWith(color: kDescriptionText),
-            ): SizedBox()
-          ],
-        )
-      ],
+    return Container(
+      child: secondHalf.isEmpty
+          ? Text(widget.text)
+          : Column(
+              children: [
+                Text(hiddenText ? (fistHalf + "...") : (fistHalf + secondHalf)),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      hiddenText = !hiddenText;
+                    });
+                  },
+                  child: Row(children: [
+                    Text(
+                      "see more",
+                      style: Style.textStyle11.copyWith(color: kPrimaryColor),
+                    ),
+                    Icon(
+                      Icons.arrow_drop_down,
+                      color: kPrimaryColor,
+                    )
+                  ]),
+                )
+              ],
+            ),
     );
   }
 }
+

@@ -9,28 +9,28 @@ class CustomTextFormFaild extends StatelessWidget {
       this.prefixIcon,
       required this.obscureText,
       this.suffixIcon,
+      this.textEditingController,
       required this.validator});
   final Widget? prefixIcon;
   final String hintText;
   final Widget? suffixIcon;
   final bool obscureText;
-
+final TextEditingController? textEditingController;
   var validator;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: TextFormField(
-        validator: validator,
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          hintText: hintText,
-          hintStyle: Style.textStyle12,
-          focusedBorder: border(),
-          border: border(),
-        ),
+    return TextFormField(
+      controller: textEditingController,
+      validator: validator,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        hintText: hintText,
+        hintStyle: Style.textStyle12,
+        focusedBorder: border(),
+        border: border(),
+       enabledBorder: border()
       ),
     );
   }
