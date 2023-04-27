@@ -1,5 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
+import 'package:ecommece_app/core/utils/shared/cache_helber.dart';
+import 'package:ecommece_app/features/home/presentation/view/home_view.dart';
 import 'package:ecommece_app/features/login/presentation/view/widgets/login_body.dart';
 import 'package:ecommece_app/features/regis/presentation/manager/cubit/register_cubit.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
@@ -25,6 +27,19 @@ class _RegisBodyState extends State<RegisBody> {
   TextEditingController textTwo = TextEditingController();
   TextEditingController textThere = TextEditingController();
   TextEditingController textFour = TextEditingController();
+
+  void submit() {
+    CacheHelber.saveData(key: "regis", value: true).then((value) {
+      if (value) {
+        navigator!.pushReplacement(MaterialPageRoute(
+          builder: (context) {
+            return HomeView();
+          },
+        ));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -146,6 +161,7 @@ class _RegisBodyState extends State<RegisBody> {
                                       textTwo: textTwo.text,
                                       textThere: textThere.text,
                                       textFour: textFour.text);
+                                      submit() ;
                             },
                           ),
                           fallback: (context) => Center(
