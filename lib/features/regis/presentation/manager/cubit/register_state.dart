@@ -13,6 +13,6 @@ class RegisterSuccess extends RegisterState {
 
 }
 class RegisterFailure extends RegisterState {
- final String error;
-  RegisterFailure({required this.error});
+ final String errorMessage;
+  RegisterFailure({required this.errorMessage});
 }

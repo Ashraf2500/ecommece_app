@@ -16,7 +16,9 @@ class RegisterCubit extends Cubit<RegisterState> {
       required String textFour}) async {
     emit(RegisterLoading());
     try {
-      final response = await Dio().post(
+      final response = await Dio(BaseOptions(headers: {
+        "lang":"en"
+      })).post(
         "https://student.valuxapps.com/api/register",
         data: {
           "name": textOne,
@@ -24,11 +26,12 @@ class RegisterCubit extends Cubit<RegisterState> {
           "email": textThere,
           "password": textFour,
         },
+        
       );
       regisModel = RegisModel.fromJson(response.data);
       emit(RegisterSuccess(regisModel: regisModel));
     } on Exception catch (e) {
-      emit(RegisterFailure(error: e.toString()));
+      emit(RegisterFailure(errorMessage: e.toString()));
     }
   }
 }

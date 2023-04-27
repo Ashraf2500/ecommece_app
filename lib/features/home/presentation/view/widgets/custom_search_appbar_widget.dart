@@ -21,8 +21,8 @@ class CustomSearchAppBar extends StatelessWidget {
           width: 300,
           child: customTextFormField,
         ),
-        iconOne!,
-        iconTwo!
+        iconOne != null ? IconButton(onPressed: (){}, icon: iconOne!):SizedBox() ,
+        iconTwo !=null ? IconButton(onPressed: (){}, icon: iconTwo!): SizedBox(),
       ],
     );
   }

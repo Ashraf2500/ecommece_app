@@ -15,8 +15,8 @@ class DescriptionText extends StatefulWidget {
 }
 
 class _DescriptionTextState extends State<DescriptionText> {
-  late String fistHalf;
-  late String secondHalf;
+   late String fistHalf;
+   late String secondHalf = "";
   bool hiddenText = true;
 
   @override

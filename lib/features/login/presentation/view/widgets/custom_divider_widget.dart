@@ -19,13 +19,17 @@ class CustomDivider extends StatelessWidget {
               thickness: 1.4,
             ),
           ),
-          SizedBox(width:20,),
+          SizedBox(
+            width: 20,
+          ),
           Text(
             "OR",
             style: Style.textStyle14.copyWith(color: kDescriptionText),
           ),
-            SizedBox(width: 20,),
-         Expanded(
+          SizedBox(
+            width: 20,
+          ),
+          Expanded(
             child: Divider(
               color: kBorderColor,
               thickness: 1.4,

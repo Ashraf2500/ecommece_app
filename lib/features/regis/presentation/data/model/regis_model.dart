@@ -1,27 +1,21 @@
-
-
-
-
 class RegisModel {
-  final bool status ;
+  final bool status;
   final String message;
-final UserData? data;
+  final UserData? data;
   RegisModel({required this.status, required this.message, this.data});
 
-
- factory RegisModel.fromJson(json){
+  factory RegisModel.fromJson(json) {
     return RegisModel(
       message: json["message"],
       status: json["status"],
       data: json["data"] != null ? UserData.fromJson(json["data"]) : null,
     );
-}
-
+  }
 }
 
 class UserData {
   final String name;
-  final String phone; 
+  final String phone;
   final String email;
   final int id;
   final String image;
@@ -47,4 +41,3 @@ class UserData {
     );
   }
 }
-

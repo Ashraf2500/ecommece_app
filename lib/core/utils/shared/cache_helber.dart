@@ -15,12 +15,12 @@ class CacheHelber {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
 
-    return sharedPreferences.get(key);
+    return await sharedPreferences.get(key);
   }
 
-  static Future<bool> cleardata() async {
+  static Future<bool> removeData({@required key}) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    return await sharedPreferences.clear();
+    return await sharedPreferences.remove(key);
   }
 }
