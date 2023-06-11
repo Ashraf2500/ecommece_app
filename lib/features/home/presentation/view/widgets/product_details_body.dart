@@ -73,7 +73,7 @@ final ScrollController _scrollController =ScrollController();
                         SizedBox(
                           height: 8,
                         ),
-                        SmoothRating(),
+                        SmoothRating(itemSize: 20),
                         SizedBox(
                           height: 16,
                         ),
@@ -145,7 +145,7 @@ final ScrollController _scrollController =ScrollController();
                         SizedBox(
                           height: 8,
                         ),
-                        SmoothRating(textOne: "4.5", textTwo: "(5 Review)"),
+                        SmoothRating(textOne: "4.5", textTwo: "(5 Review)", itemSize: 20),
                         SizedBox(
                           height: 16,
                         ),
@@ -160,11 +160,7 @@ final ScrollController _scrollController =ScrollController();
                           height: 20,
                         ),
                         CustomListOfInfoProduct(
-                          image: "assets/images/product.png",
-                          title: "FS - Nike Air React...",
-                          newPrice: 299.43,
-                          oldPrice: 534.33,
-                          sale: 24,
+                         
                         ),
                         SizedBox(
                           height: 40,

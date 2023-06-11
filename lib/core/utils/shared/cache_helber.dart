@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelber {
+
   static Future<bool> saveData({@required key, @required value}) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
@@ -22,5 +23,6 @@ class CacheHelber {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     return await sharedPreferences.remove(key);
+  
   }
 }

@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommece_app/constans.dart';
-import 'package:ecommece_app/core/utils/shimmar/custom_loading_Banners.dart';
 import 'package:ecommece_app/features/home/presentation/manager/bannersandgridview/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/utils/shimmar/custom_carosil_loading.dart';
 import 'custom_smooth _indicator_widget.dart';
 import 'custom_time_sale_widget.dart';
 
@@ -31,13 +31,13 @@ class _CustomSliderState extends State<CustomSlider> {
           return Center(child: Text(state.errorMessage),);
         }
         if (state is HomeSuccess) {
-           var dataLenght = state.homeModel.data.banners.length;
+           var dataLenght = state.homeModel!.data.banners.length;
           return Column(
             children: [
               CarouselSlider.builder(
                 itemCount: dataLenght,
                 itemBuilder: (context, index, realIndex) {
-                  var data = state.homeModel.data.banners[index].image;
+                  var data = state.homeModel!.data.banners[index].image;
                  
                   return Builder(
                     builder: (BuildContext context) {
@@ -56,8 +56,8 @@ class _CustomSliderState extends State<CustomSlider> {
                   viewportFraction: 0.91,
                   initialPage: 0,
                   enableInfiniteScroll: true,
-                  reverse: true,
-                  autoPlay: false,
+                  reverse: false,
+                  autoPlay: true,
                   autoPlayInterval: const Duration(seconds: 5),
                   autoPlayAnimationDuration: const Duration(milliseconds: 1700),
                   autoPlayCurve: Curves.fastOutSlowIn,
@@ -76,9 +76,7 @@ class _CustomSliderState extends State<CustomSlider> {
               CustomSmoothIndicator(activeIndex: activeIndex),
             ],
           );
-        }return CustomLoadingForBanners(
-                dataLength: 10,
-              );
+        }return CustomCarosilLoading();
       },
     );
   }
@@ -125,11 +123,10 @@ imageSlider(String data, int dataLength) {
       borderRadius: BorderRadius.all(Radius.circular(8)),
       child: CachedNetworkImage(
           fit: BoxFit.fill,
-          imageUrl: data,
+          imageUrl: data
+          ,
           errorWidget: (context, url, error) => const Icon(Icons.abc),
-          placeholder: (context, url) => CustomLoadingForBanners(
-                dataLength: dataLength,
-              ),
+          placeholder: (context, url) => CustomCarosilLoading(),
               ),
     ),
   );

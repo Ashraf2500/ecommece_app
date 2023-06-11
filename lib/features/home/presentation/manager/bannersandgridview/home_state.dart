@@ -9,12 +9,13 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeSuccess extends HomeState {
+  final HomeModel? homeModel;
 
-  final HomeModel homeModel;
   HomeSuccess({
-    required this.homeModel,
+    this.homeModel,
   });
 }
+
 
 class HomeFailure extends HomeState {
 
@@ -25,3 +26,5 @@ HomeFailure({
 
   
 }
+
+

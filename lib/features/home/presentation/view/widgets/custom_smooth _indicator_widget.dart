@@ -10,7 +10,7 @@ class CustomSmoothIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return  AnimatedSmoothIndicator(
       activeIndex: activeIndex,
-      count: 5,
+      count:9,
       effect: const WormEffect(
         dotWidth: 9,
         dotHeight: 9,

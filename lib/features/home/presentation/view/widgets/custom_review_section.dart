@@ -27,7 +27,7 @@ class ReviewSection extends StatelessWidget {
                   "James Lawson",
                   style: Style.textStyle14.copyWith(color: kTextkColor),
                 ),
-                SmoothRating()
+                SmoothRating(itemSize: 20,)
               ],
             ),
           ],

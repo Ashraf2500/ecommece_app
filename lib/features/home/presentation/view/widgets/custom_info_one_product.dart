@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constans.dart';
+import '../../../../../core/utils/shimmar/custom_grid_view_loading.dart';
 import '../../../../../core/utils/style.dart';
+import '../../manager/bannersandgridview/home_cubit.dart';
 
 class CustomInfoOneProduct extends StatelessWidget {
   const CustomInfoOneProduct({
@@ -9,95 +12,118 @@ class CustomInfoOneProduct extends StatelessWidget {
     required this.image,
     required this.title,
     required this.newPrice,
-    required this.oldPrice,
-    required this.sale,
+    this.oldPrice,
+    this.sale,
     this.icon,
     this.onPressed,
+    required this.id,
   }) : super(key: key);
 
   final String image;
   final String title;
   final double newPrice;
-  final double oldPrice;
-  final int sale;
+  final double? oldPrice;
+  final int? sale;
   final Icon? icon;
   final VoidCallback? onPressed;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 141,
-      decoration: BoxDecoration(
-          color: kBackGroundColor,
-          border: Border.all(color: kBorderColor),
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GestureDetector(
-              child: Container(
-                height: 200,
-                child: Image.network(image),
-              ),
-              onTap: () {
-                // Get.to(() => ProductBody());
-              },
+    return CachedNetworkImage(
+      imageUrl: image,
+      placeholder: (context, url) {
+        return CustomGridViewLoading();
+      },
+      errorWidget: (context, url, error) {
+        return Container(
+          // Fallback widget when image fails to load
+          width: 141,
+          height: 200,
+          decoration: BoxDecoration(
+            color: kBackGroundColor,
+            border: Border.all(color: kBorderColor),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Center(
+            child: Icon(
+              Icons.error,
+              color: Colors.red,
             ),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              "$title",
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              //
-              style: Style.textStyle11,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "$newPrice",
-              style: Style.textStyle12
-                  .copyWith(color: kPrimaryColor, fontWeight: FontWeight.w700),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+        );
+      },
+      imageBuilder: (context, imageProvider) {
+        // Your existing image builder code
+        return Container(
+          width: 141,
+          decoration: BoxDecoration(
+            color: kBackGroundColor,
+            border: Border.all(color: kBorderColor),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "$oldPrice",
-                  style: Style.textStyle11.copyWith(
-                      color: kDescriptionText,
-                      fontWeight: FontWeight.w500,
-                      decoration: TextDecoration.lineThrough),
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                if (sale != 0)
-                  Text(
-                    "${sale.round()} %Off",
-                    style: Style.textStyle11.copyWith(color: kOfferColor),
+                Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: imageProvider),
                   ),
-                (icon != null)
-                    ? IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: onPressed,
-                        icon: icon!,
-                        color: kDescriptionText,
-                      )
-                    : SizedBox(),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "$title",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Style.textStyle11,
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "$newPrice",
+                  style: Style.textStyle12.copyWith(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    if (oldPrice != null && oldPrice != 0) // تحقق من القيمة قبل استخدامها كشرط
+                      Text(
+                        "$oldPrice",
+                        style: Style.textStyle11.copyWith(
+                          color: kDescriptionText,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                    SizedBox(width: 8),
+                    if (sale != null && sale != 0) // تحقق من القيمة قبل استخدامها كشرط
+                      Text(
+                        "$sale %Off",
+                        style: Style.textStyle11.copyWith(color: kOfferColor),
+                      ),
+                    if (icon != null)
+                    
+                 IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: onPressed,
+                          icon: icon!,
+                          color:   HomeCubit.get(context).favorite[id]! ? kRedColor : kDescriptionText,
+                        ),
+                      
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

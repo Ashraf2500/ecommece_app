@@ -1,7 +1,13 @@
+import 'package:ecommece_app/core/utils/shimmar/custom_category_loading.dart';
 import 'package:ecommece_app/features/home/presentation/manager/category/category_cubit.dart';
+import 'package:ecommece_app/features/home/presentation/manager/more_category/more_category_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_one_category.dart';
+import 'package:ecommece_app/features/home/presentation/view/widgets/more_category_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+
 
 class CustomListOfCategory extends StatelessWidget {
   const CustomListOfCategory({Key? key}) : super(key: key);
@@ -16,7 +22,7 @@ class CustomListOfCategory extends StatelessWidget {
           return Center(child: Text(state.errorMessage));
         }
         if (state is CategorySuccess) {
-          var dataLenght = state.categoryModel.data.data.length;
+          var dataLenght = state.categoryModel.length;
           return Container(
             width: widthScreen,
             height: 120,
@@ -24,25 +30,27 @@ class CustomListOfCategory extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: dataLenght,
               itemBuilder: (context, index) {
-                var dataImage = state.categoryModel.data.data[index].image;
-                var dataName = state.categoryModel.data.data[index].name;
-                return    
-                   CustomOneCategory(
-                    title: dataName,
-                    image: dataImage,
-                    length: dataLenght,
-
-                  );
-                
-                
-                
-                
-              
+                var dataImage = state.categoryModel[index].image;
+                var dataName = state.categoryModel[index].name;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: InkWell(
+                    onTap: (){
+                      MoreCategoryCubit.get(context).getData(category: dataName);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MoreCategotyBody(),));
+                    },
+                    child: CustomOneCategory(
+                      title: dataName,
+                      image: dataImage,
+                      length: dataLenght,
+                    ),
+                  ),
+                );
               },
             ),
           );
         }
-        return CircularProgressIndicator();
+        return CustomCategoryLoading();
       },
     );
   }

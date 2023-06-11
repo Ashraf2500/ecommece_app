@@ -1,55 +1,59 @@
+import 'package:ecommece_app/features/home/presentation/manager/sale/sale_cubit.dart';
+import 'package:ecommece_app/features/home/presentation/view/widgets/custom_one_product_for_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'custom_info_one_product.dart';
+import '../../../../../core/utils/shimmar/custom_flash_loading.dart';
+
 
 class CustomListOfInfoProduct extends StatelessWidget {
   const CustomListOfInfoProduct({
     Key? key,
-    required this.image,
-    required this.title,
-    required this.newPrice,
-    required this.oldPrice,
-    required this.sale,
-    this.icon,
-    this.onPressed,
-
-
   }) : super(key: key);
-
-  final String image ;
-  final String title ;
-  final double newPrice ;
-  final double oldPrice ;
-  final int sale ;
-  final Icon? icon;
-  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
-    return Container(
-      width: widthScreen,
-      height: 220,
-    
-      child: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        scrollDirection:Axis.horizontal,
-        itemCount: 6 ,
-        itemBuilder: (context , index){
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomInfoOneProduct(
-              image: "$image",
-              title: "$title",
-              newPrice: newPrice,
-              oldPrice: oldPrice,
-              sale: sale,
-              icon: icon,
-              onPressed: onPressed,
+    return BlocConsumer<SaleCubit, SaleState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is SaleFailure) {
+          return Center(
+            child: Text(state.errorMessage),
+          );
+        }
+        if (state is SaleSuccess) {
+          var dataLenght = state.saleModel.length;
+          return Container(
+            width: widthScreen,
+            height: 220,
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: dataLenght,
+              itemBuilder: (context, index) {
+                var dataImage = state.saleModel[index].image;
+                var dataName = state.saleModel[index].title;
+                var dataPrice = state.saleModel[index].price;
+                var dataOldPrice = state.saleModel[index].rating.count;
+                var dataSale = state.saleModel[index].rating.rate;
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: OneProductForListView(
+                    image: dataImage,
+                    title: dataName,
+                    dataOldPrice: dataOldPrice,
+                    dataPrice: dataPrice,
+                    dataSale: dataSale,
+                  ),
+                );
+              },
             ),
           );
-        },
-      ),
+        }
+        return Customflashloading();
+      },
     );
   }
 }

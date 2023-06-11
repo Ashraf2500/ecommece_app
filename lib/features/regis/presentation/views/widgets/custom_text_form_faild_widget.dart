@@ -15,24 +15,22 @@ class CustomTextFormFaild extends StatelessWidget {
   final String hintText;
   final Widget? suffixIcon;
   final bool obscureText;
-final TextEditingController? textEditingController;
+  final TextEditingController? textEditingController;
   var validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
       controller: textEditingController,
       validator: validator,
       obscureText: obscureText,
       decoration: InputDecoration(
-        prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
-        hintText: hintText,
-        hintStyle: Style.textStyle12,
-        focusedBorder: border(),
-        border: border(),
-       enabledBorder: border()
-      ),
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+          hintText: hintText,
+          hintStyle: Style.textStyle12,
+          focusedBorder: border(),
+          border: border(),
+          enabledBorder: border()),
     );
   }
 

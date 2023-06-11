@@ -1,5 +1,5 @@
 import 'package:ecommece_app/constans.dart';
-import 'package:ecommece_app/features/home/presentation/manager/category/category_cubit.dart';
+import 'package:ecommece_app/features/home/presentation/manager/more_category/more_category_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/home_view.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_product_appbar_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,52 +15,57 @@ class MoreCategotyBody extends StatelessWidget {
     return Scaffold(
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: BlocConsumer<CategoryCubit, CategoryState>(
+        child: BlocConsumer<MoreCategoryCubit, MoreCategoryState>(
           listener: (context, state) {},
           builder: (context, state) {
-            if (state is CategoryFailure) {
+            if (state is MoreCategoryFailure) {
               return Center(child: Text(state.errorMessage));
             }
-            if (state is CategorySuccess) {
-              var dataLength = state.categoryModel.data.data.length;
+            if (state is MoreCategorySuccess) {
+              var dataLength = state.moreCategoryModel.length;
               return SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    children: [
-                      ProductAppBar(
-                        icon: Icon(Icons.arrow_back_ios_new_rounded),
-                        onPressed: () {
-                          Get.to(() => HomeView());
-                        },
-                        text: "More Category",
-                        iconTwo: Icon(
-                          Icons.search,
-                          color: kDescriptionText,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ProductAppBar(
+                          icon: Icon(Icons.arrow_back_ios_new_rounded),
+                          onPressed: () {
+                            Get.to(() => HomeView());
+                          },
+                          text: "More Category",
+                          iconTwo: Icon(
+                            Icons.search,
+                            color: kDescriptionText,
+                          ),
                         ),
-                      ),
-                      ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: dataLength,
-                        itemBuilder: (context, index) {
-                          String dataImage =
-                              state.categoryModel.data.data[index].image;
-                          String dataName =
-                              state.categoryModel.data.data[index].name;
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 25),
-                            child: categoryListView(dataImage, dataName),
-                          );
-                        },
-                      )
-                    ],
+                        SizedBox(
+                          height:MediaQuery.of(context).size.height,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: dataLength,
+                            itemBuilder: (context, index) {
+                              String dataImage =
+                                  state.moreCategoryModel[index].images[index];
+                              String dataName =
+                                  state.moreCategoryModel[index].title;
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 25),
+                                child: categoryListView(dataImage, dataName),
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );
             }
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           },
         ),
       ),
@@ -83,7 +88,10 @@ class MoreCategotyBody extends StatelessWidget {
             SizedBox(
               width: 20,
             ),
-            Text(dataName),
+            Text(dataName,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            ),
             Spacer(),
             IconButton(
                 onPressed: () {},

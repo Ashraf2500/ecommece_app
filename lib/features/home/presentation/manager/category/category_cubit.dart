@@ -12,6 +12,8 @@ class CategoryCubit extends Cubit<CategoryState> {
   HomeRepoImpl homeRepoImpl;
 
 static CategoryCubit get(context)=> BlocProvider.of(context);
+
+
   Future<void> getCategory() async {
     emit(CategoryLoading());
     final categoryData = await homeRepoImpl.category();

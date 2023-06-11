@@ -18,7 +18,7 @@ class CustomSearchAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: 300,
+          width: 290,
           child: customTextFormField,
         ),
         iconOne != null ? IconButton(onPressed: (){}, icon: iconOne!):SizedBox() ,

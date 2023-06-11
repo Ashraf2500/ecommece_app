@@ -1,8 +1,9 @@
 import 'package:ecommece_app/constans.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_list_of_category.dart';
+import 'package:ecommece_app/features/home/presentation/view/widgets/custom_list_of_info_product.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_recommended_products.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/favourite_datails_body.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/more_category_body.dart';
+import 'package:ecommece_app/features/home/presentation/view/widgets/fav_body.dart';
+import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_body.dart';
 import 'package:ecommece_app/features/offer/presentation/view/offer_view.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_text_form_faild_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,19 +15,19 @@ import 'custom_slide_widget.dart';
 
 class HomeBody extends StatelessWidget {
   HomeBody({Key? key}) : super(key: key);
+
   final ScrollController _ScrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-        
             children: [
               //---------Search AppBar -----------------------------------------
               SizedBox(height: 10),
               CustomSearchAppBar(
-                key: key,
                 customTextFormField: CustomTextFormFaild(
                   hintText: "Search Product",
                   obscureText: false,
@@ -36,12 +37,14 @@ class HomeBody extends StatelessWidget {
                 iconOne: IconButton(
                   icon: Icon(Icons.favorite_border_outlined),
                   color: kDescriptionText,
+                  iconSize: 25,
                   onPressed: () {
-                    Get.to(() => FavouriteBody());
+                    Get.to(() => FavBody());
                   },
                 ),
                 iconTwo: IconButton(
                   icon: Icon(Icons.notifications_none_outlined),
+                  iconSize: 25,
                   color: kDescriptionText,
                   onPressed: () {},
                 ),
@@ -59,17 +62,18 @@ class HomeBody extends StatelessWidget {
 
               //---------Category ----------------------------------------------
               SizedBox(height: 10),
-              
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: CustomMainTitleRow(
-                  key: key,
                   textOne: "Category",
                   textTwo: "More Category",
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return MoreCategotyBody();
-                    },));
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return ProductBody();
+                      },
+                    ));
                   },
                 ),
               ),
@@ -80,7 +84,6 @@ class HomeBody extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: CustomMainTitleRow(
-                  key: key,
                   textOne: "Flash Sale",
                   textTwo: "See More",
                   onPressed: () {
@@ -88,20 +91,13 @@ class HomeBody extends StatelessWidget {
                   },
                 ),
               ),
-              // CustomListOfInfoProduct(
-              //   image: "assets/images/product.png",
-              //   title: "FS - Nike Air React...",
-              //   newPrice: 299.43,
-              //   oldPrice: 534.33,
-              //   sale: 24,
-              // ),
+              CustomListOfInfoProduct(),
 
               //---------Mega  Sale --------------------------------------------
               SizedBox(height: 10),
               Padding(
-                 padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: CustomMainTitleRow(
-                  key: key,
                   textOne: "Mega Sale",
                   textTwo: "See More",
                   onPressed: () {},

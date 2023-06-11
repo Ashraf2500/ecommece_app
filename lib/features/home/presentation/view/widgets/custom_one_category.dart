@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommece_app/core/utils/shimmar/custom_loading_category.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../constans.dart';
+import '../../../../../core/utils/shimmar/custom_category_loading.dart';
 import '../../../../../core/utils/style.dart';
-
 class CustomOneCategory extends StatelessWidget {
   CustomOneCategory({
     Key? key,
@@ -20,21 +18,25 @@ class CustomOneCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 80,
-          padding: EdgeInsets.all(10),
-          margin: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        Expanded(
           child: CachedNetworkImage(
               imageUrl: image,
+              imageBuilder: (context, imageProvider) {
+                return Container(
+                  width: 80,
+                  decoration: BoxDecoration(
+                    color: kBackGroundColor,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: kBorderColor),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
               errorWidget: (context, url, error) => Icon(Icons.abc),
-              placeholder: (context, url) => CustomLoadingCategory(
-                    dataLength: length,
-                  )),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Color(0xffe6ecff)),
-            shape: BoxShape.circle,
-          ),
+              placeholder: (context, url) => CustomCategoryLoading()),
         ),
         Text(
           "$title",
