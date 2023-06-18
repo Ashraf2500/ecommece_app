@@ -3,15 +3,17 @@ import 'package:ecommece_app/features/cart/data/model/fav_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../data/repo/fav_repo_impl.dart';
+import '../../../data/repo/home_repo_impl.dart';
+
+
 
 part 'fav_state.dart';
 
 class FavCubit extends Cubit<FavState> {
-  FavCubit(this.favRepoImpl) : super(FavInitial());
+  FavCubit(this.homeRepoImpl) : super(FavInitial());
 
   
-    FavRepoImpl favRepoImpl;
+    HomeRepoImpl homeRepoImpl;
 
 static FavCubit get(context)=> BlocProvider.of(context);
 
@@ -19,12 +21,12 @@ static FavCubit get(context)=> BlocProvider.of(context);
   Future<void> getFavCategory() async {
   
     emit(FavLoading());
-    final favData = await favRepoImpl.getMyFavCategory();
+    final favData = await homeRepoImpl.getMyFavCategory();
 
     favData.fold((failure) {
-      emit(favFailure(errorMessage: failure.errMessages));
+      emit(FavFailure(errorMessage: failure.errMessages));
     }, (data) {
-      emit(favSuccess(favModel: data));
+      emit(FavSuccess(favModel: data));
     
     });
   }

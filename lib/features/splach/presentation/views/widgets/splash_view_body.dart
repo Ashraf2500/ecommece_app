@@ -47,7 +47,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Image.asset(Images.splachLogo)),
+          Center(child: Image.asset(Images.logo)),
         ],
       ),
     );

@@ -24,7 +24,7 @@ class _DescriptionTextState extends State<DescriptionText> {
     super.initState();
     
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      double textHeight = MediaQuery.of(context).size.height / 5.36;
+      double textHeight = MediaQuery.of(context).size.height / 3;
 
       if (widget.text.length > textHeight) {
         setState(() {

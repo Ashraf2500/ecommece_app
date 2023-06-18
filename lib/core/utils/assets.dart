@@ -6,5 +6,6 @@ class Images {
   static const google = "assets/images/google.png";
   static const faceBook = "assets/images/facebook.png";
   static const profile = "assets/images/Profile Picture.png";
+  static const rubbish ="assets/images/rubbish.png";
 
 }

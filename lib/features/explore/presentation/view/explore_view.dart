@@ -1,3 +1,4 @@
+import 'package:ecommece_app/features/explore/presentation/view/widgets/explore_body.dart';
 import 'package:flutter/material.dart';
 
 class ExploreView extends StatelessWidget {
@@ -5,6 +6,6 @@ class ExploreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ExploreBody();
   }
 }

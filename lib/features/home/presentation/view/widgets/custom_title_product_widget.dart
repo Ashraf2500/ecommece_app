@@ -14,19 +14,26 @@ class CustomTitleProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Text(
-        "$text",
-        style: Style.textStyle20.copyWith(color: kTextkColor,),
-      ),
-      icon != null? IconButton(
-        onPressed: onPressedOne,
-        icon: icon!,
-        color: kDescriptionText,
-      ):SizedBox(
-        
-      )
-    ]);
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
+              "$text",
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Style.textStyle20.copyWith(
+                color: kTextkColor,
+              ),
+            ),
+          ),
+          icon != null
+              ? IconButton(
+                  onPressed: onPressedOne,
+                  icon: icon!,
+                  color: kDescriptionText,
+                )
+              : SizedBox()
+        ]);
   }
 }

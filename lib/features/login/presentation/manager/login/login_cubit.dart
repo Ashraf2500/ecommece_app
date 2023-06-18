@@ -30,10 +30,10 @@ class LoginCubit extends Cubit<LoginState> {
       );
 
       loginModel = LoginModel.fromJson(response.data);
-      print(loginModel);
+      
       emit(LoginSuccess(loginModel: loginModel));
     } on DioError catch (e) {
-      print(e);
+      print(e.response);
       emit(LoginFailure(errorMessage: e.toString()));
     }
   }

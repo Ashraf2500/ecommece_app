@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:ecommece_app/features/cart/manager/cubit/fav_cubit.dart';
+
 import 'package:ecommece_app/features/home/data/model/home_model.dart';
 import 'package:ecommece_app/features/home/data/model/select_favorit_model.dart';
 import 'package:ecommece_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import '../../../../../core/utils/shared/cache_helber.dart';
+import '../fav/fav_cubit.dart';
 part 'home_state.dart';
 
 
@@ -33,6 +34,7 @@ class HomeCubit extends Cubit<HomeState> {
       );
 
       emit(HomeSuccess(homeModel: data));
+      print(favorite.length);
     },
   );
 }
@@ -65,6 +67,7 @@ class HomeCubit extends Cubit<HomeState> {
         emit(HomeSuccess(homeModel: homeModel));
         
       }).catchError((error) {
+        print(error.toString());
         favorite[product_id] = !favorite[product_id]!;
 
         emit(HomeSuccess(homeModel: homeModel));

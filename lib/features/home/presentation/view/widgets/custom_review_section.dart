@@ -37,7 +37,7 @@ class ReviewSection extends StatelessWidget {
         ),
         DescriptionText(
           text:
-              "air max are always very comfortable fit, clean and just perfect in every way. just the box was too small and scrunched the sneakers up a little bit, not sure if the box was always this small but the 90s are and will always be one of my favorites. dsffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+              "Enhanced Protective Materials: To prevent the sneakers from being affected by the smaller box size, Nike could include additional protective materials, such as foam inserts or shoe trees, to maintain the original shape and structure during transit. This would guarantee that customers receive their Air Max 90s in optimal condition. ",
         ),
         SizedBox(
           height: 16,

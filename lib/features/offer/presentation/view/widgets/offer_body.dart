@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../../../constans.dart';
 import '../../../../home/presentation/view/widgets/custom_grid_view_products_widget.dart';
 import '../../../../home/presentation/view/widgets/custom_product_appbar_widget.dart';
-import '../../../../home/presentation/view/widgets/custom_slide_widget.dart';
 
 class OfferBody extends StatelessWidget {
   const OfferBody({Key? key}) : super(key: key);
@@ -41,7 +40,7 @@ class OfferBody extends StatelessWidget {
 
               //---------Slider ------------------------------------------------
               SizedBox(height: 15),
-              CustomSlider(),
+              // CustomSlider(),
 
               //---------Recommended Product Grid View--------------------------
               SizedBox(height: 20,),

@@ -5,6 +5,9 @@ class SelectFavoritModel {
   SelectFavoritModel({required this.status, required this.message});
 
   factory SelectFavoritModel.fromJson(Map<String, dynamic> json) {
-    return SelectFavoritModel(status: json["status"], message: json["message"]);
+    return SelectFavoritModel(
+      status: json["status"],
+      message: json["message"],
+    );
   }
 }

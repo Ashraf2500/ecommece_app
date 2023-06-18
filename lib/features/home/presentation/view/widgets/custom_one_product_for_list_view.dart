@@ -7,23 +7,25 @@ import '../../../../../core/utils/shimmar/custom_flash_loading.dart';
 
 class OneProductForListView extends StatelessWidget {
   const OneProductForListView({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.dataPrice,
-    required this.dataOldPrice,
-    required this.dataSale,
-  });
-  final String image;
-  final String title;
-  final double dataPrice;
-  final int dataOldPrice;
-  final double dataSale;
+  Key? key,
+  required this.image,
+  required this.title,
+  required this.dataPrice,
+  required this.dataOldPrice,
+  required this.dataSale,
+}) : super(key: key);
+
+final String? image;
+final String? title;
+final double dataPrice;
+final int dataOldPrice;
+final double dataSale;
+
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: image,
+      imageUrl: image!,
       placeholder: (context, url) {
         return Customflashloading();
       },

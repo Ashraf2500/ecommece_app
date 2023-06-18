@@ -12,7 +12,7 @@ static MoreCategoryCubit get(context)=> BlocProvider.of(context);
   getData({category}) async {
     emit(MoreCategoryLoading());
 
-    final data = await homeRepoImpl.MoreCategory(category);
+    final data = await homeRepoImpl.moreCategory(category);
 
     data.fold((errorMessage) {
 

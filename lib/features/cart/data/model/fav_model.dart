@@ -20,7 +20,7 @@ class Data {
   int currentPage;
   List<Datum> data;
   String firstPageUrl;
-  int from;
+  var from;
   int lastPage;
   String lastPageUrl;
   dynamic nextPageUrl;

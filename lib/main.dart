@@ -1,18 +1,18 @@
 import 'package:ecommece_app/constans.dart';
-import 'package:ecommece_app/features/cart/data/repo/fav_repo_impl.dart';
 import 'package:ecommece_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:ecommece_app/features/home/presentation/manager/bannersandgridview/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/category/category_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/more_category/more_category_cubit.dart';
+import 'package:ecommece_app/features/home/presentation/manager/product_details/product_details_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/sale/sale_cubit.dart';
+import 'package:ecommece_app/features/home/presentation/manager/search/search_cubit.dart';
 import 'package:ecommece_app/features/main_Screens/presentation/manager/cubit/bottom_bar_cubit.dart';
 import 'package:ecommece_app/features/splach/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'features/cart/manager/cubit/fav_cubit.dart';
+import 'features/home/presentation/manager/fav/fav_cubit.dart';
 
 void main() {
   runApp(const EcommerceApp());
@@ -33,12 +33,16 @@ class EcommerceApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CategoryCubit(HomeRepoImpl())..getCategory(),
         ),
+        BlocProvider(create: (context) => SaleCubit(HomeRepoImpl())..getData()),
         BlocProvider(
-            create: (context) => SaleCubit(HomeRepoImpl())..getData()),
-            BlocProvider(
             create: (context) => MoreCategoryCubit(HomeRepoImpl())..getData()),
-             BlocProvider(
-            create: (context) => FavCubit(FavRepoImpl())..getFavCategory()),
+        BlocProvider(create: (context) => FavCubit(HomeRepoImpl())),
+        BlocProvider(
+          create: (context) => SearchCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ProductDetailsCubit(HomeRepoImpl()),
+        )
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,4 +1,5 @@
-import 'package:ecommece_app/features/home/presentation/view/widgets/fav_body.dart';
+import 'package:ecommece_app/features/cart/presentation/view/widgets/cart_body.dart';
+
 import 'package:flutter/material.dart';
 
 class CartView extends StatelessWidget {
@@ -6,6 +7,6 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return CartBody();
   }
 }
