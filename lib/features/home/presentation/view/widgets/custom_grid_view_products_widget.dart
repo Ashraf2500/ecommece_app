@@ -1,20 +1,16 @@
 import 'package:ecommece_app/features/home/presentation/manager/bannersandgridview/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_info_one_product.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/fav_body.dart';
+import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import '../../../../../core/utils/shimmar/custom_grid_view_loading.dart';
+import '../../manager/product_details/product_details_cubit.dart';
 
-class CustomGridViewProducts extends StatefulWidget {
+class CustomGridViewProducts extends StatelessWidget {
   const CustomGridViewProducts({Key? key}) : super(key: key);
 
-  @override
-  State<CustomGridViewProducts> createState() => _CustomGridViewProductsState();
-}
-
-class _CustomGridViewProductsState extends State<CustomGridViewProducts> {
   @override
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
@@ -57,7 +53,8 @@ class _CustomGridViewProductsState extends State<CustomGridViewProducts> {
                 int dataId = state.homeModel!.data.products[index].id;
                 return InkWell(
                   onTap: (){
-                    Get.to(FavBody());
+                     ProductDetailsCubit.get(context).getproductDetailsForFav(id: dataId);
+                 Get.to(ProductBody(id: dataId,));
                   },
                   child: CustomInfoOneProduct(
                     id: dataId,

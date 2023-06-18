@@ -32,6 +32,7 @@ class CustomListOfCategory extends StatelessWidget {
               itemBuilder: (context, index) {
                 var dataImage = state.categoryModel[index].image;
                 var dataName = state.categoryModel[index].name;
+                var dataId = state.categoryModel[index].id;
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: InkWell(
@@ -40,6 +41,7 @@ class CustomListOfCategory extends StatelessWidget {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => MoreCategotyBody(),));
                     },
                     child: CustomOneCategory(
+                      id: dataId,
                       title: dataName,
                       image: dataImage,
                       length: dataLenght,
