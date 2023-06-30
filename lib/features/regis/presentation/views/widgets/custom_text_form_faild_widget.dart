@@ -1,6 +1,7 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
+
 
 class CustomTextFormFaild extends StatelessWidget {
   CustomTextFormFaild({
@@ -18,8 +19,8 @@ class CustomTextFormFaild extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final TextEditingController? textEditingController;
-  void Function(String)? onFieldSubmitted;
-  String? Function(String?)? validator;
+  final void Function(String)? onFieldSubmitted;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(

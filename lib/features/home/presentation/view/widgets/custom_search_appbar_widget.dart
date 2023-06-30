@@ -2,7 +2,7 @@ import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_te
 import 'package:flutter/material.dart';
 
 class CustomSearchAppBar extends StatelessWidget {
-  CustomSearchAppBar({
+  const CustomSearchAppBar({
     Key? key,
     required this.customTextFormField,
     this.iconOne,
@@ -17,12 +17,12 @@ class CustomSearchAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
+        SizedBox(
           width: 290,
           child: customTextFormField,
         ),
-        iconOne != null ? IconButton(onPressed: (){}, icon: iconOne!):SizedBox() ,
-        iconTwo !=null ? IconButton(onPressed: (){}, icon: iconTwo!): SizedBox(),
+        iconOne != null ? IconButton(onPressed: (){}, icon: iconOne!):const SizedBox() ,
+        iconTwo !=null ? IconButton(onPressed: (){}, icon: iconTwo!): const SizedBox(),
       ],
     );
   }

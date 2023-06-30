@@ -1,10 +1,10 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/features/home/data/model/color_model.dart';
 import 'package:flutter/material.dart';
 
 class ListViewColor extends StatelessWidget {
    ListViewColor({super.key});
- List<ColorModel> selectColor = [
+ final List<ColorModel> selectColor = [
     ColorModel(
       color: kRatingColor,
     ),
@@ -31,7 +31,7 @@ class ListViewColor extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: selectColor.length,
         itemBuilder: (context, index) {
           return Padding(

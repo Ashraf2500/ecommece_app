@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/home/presentation/manager/search/search_cubit.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +70,6 @@ class ExploreBody extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         itemCount: state.searchModel.data.data.length,
                         itemBuilder: (context, index) {
-                          final id = state.searchModel.data.data[index].id;
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),

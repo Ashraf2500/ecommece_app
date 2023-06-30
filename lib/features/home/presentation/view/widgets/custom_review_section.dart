@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_description_widget.dart';
@@ -18,7 +18,7 @@ class ReviewSection extends StatelessWidget {
               radius: 24,
               child: Image.asset(Images.profile),
             ),
-            SizedBox(
+            const SizedBox(
               width: 16,
             ),
             Column(
@@ -27,19 +27,19 @@ class ReviewSection extends StatelessWidget {
                   "James Lawson",
                   style: Style.textStyle14.copyWith(color: kTextkColor),
                 ),
-                SmoothRating(itemSize: 20,)
+                const SmoothRating(itemSize: 20,)
               ],
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         DescriptionText(
           text:
               "Enhanced Protective Materials: To prevent the sneakers from being affected by the smaller box size, Nike could include additional protective materials, such as foam inserts or shoe trees, to maintain the original shape and structure during transit. This would guarantee that customers receive their Air Max 90s in optimal condition. ",
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
       ],

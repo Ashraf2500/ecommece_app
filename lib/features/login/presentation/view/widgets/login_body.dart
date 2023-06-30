@@ -47,19 +47,19 @@ class _LoginBodyState extends State<LoginBody> {
                           "",
                           backgroundColor: Colors.grey,
                           messageText: Text(
-                            "${state.loginModel.message}",
-                            style: TextStyle(color: Colors.white),
+                            state.loginModel.message,
+                            style: const TextStyle(color: Colors.white),
                           ),
                         );
-                        Get.to(BottomBarView());
+                        Get.to(const BottomBarView());
                       } else {
                         Get.snackbar(
                           "Message",
                           "",
                           backgroundColor: Colors.grey,
                           messageText: Text(
-                            "${state.loginModel.message}",
-                            style: TextStyle(color: Colors.white),
+                            state.loginModel.message,
+                            style: const TextStyle(color: Colors.white),
                           ),
                         );
                       }
@@ -68,48 +68,52 @@ class _LoginBodyState extends State<LoginBody> {
                   builder: (context, state) {
                     return Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 68,
                         ),
                         Image.asset(
                           Images.logo,
                           width: 72,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
-                        CustomTitle(
+                        const CustomTitle(
                           textOne: "Welcome to Lafyuu",
                           textTwo: "Sign in to continue",
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 28,
                         ),
                         CustomTextFormFaild(
                           textEditingController: emailController,
                           hintText: "Your Email",
                           obscureText: false,
-                          validator: (text) {},
-                          prefixIcon: Icon(Icons.email_outlined),
+                          validator: (text) {
+                            return null;
+                          },
+                          prefixIcon: const Icon(Icons.email_outlined),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         CustomTextFormFaild(
                           textEditingController: PasswordController,
                           hintText: "Password",
                           obscureText: LoginCubit.get(context).obscureText,
-                          validator: (text) {},
-                          prefixIcon: Icon(Icons.lock_outline),
+                          validator: (text) {
+                            return null;
+                          },
+                          prefixIcon: const Icon(Icons.lock_outline),
                           suffixIcon: IconButton(
                               onPressed: () {
                                 LoginCubit.get(context).obsucureText();
                               },
                               icon: LoginCubit.get(context).obscureText
-                                  ? Icon(Icons.visibility_off_outlined)
-                                  : Icon(Icons.visibility_outlined)),
+                                  ? const Icon(Icons.visibility_off_outlined)
+                                  : const Icon(Icons.visibility_outlined)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         ConditionalBuilder(
@@ -123,15 +127,15 @@ class _LoginBodyState extends State<LoginBody> {
                               );
                             },
                           ),
-                          fallback: (context) => Center(
+                          fallback: (context) => const Center(
                             child: CircularProgressIndicator(),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 21,
                         ),
-                        CustomDivider(),
-                        SizedBox(
+                        const CustomDivider(),
+                        const SizedBox(
                           height: 16,
                         ),
                         SocialButtom(
@@ -139,7 +143,7 @@ class _LoginBodyState extends State<LoginBody> {
                           text: "Login with Google",
                           onTap: () {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         SocialButtom(
@@ -147,7 +151,7 @@ class _LoginBodyState extends State<LoginBody> {
                           text: "Login with FaceBook",
                           onTap: () {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         CustomText(
@@ -160,7 +164,7 @@ class _LoginBodyState extends State<LoginBody> {
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return RegisView();
+                                return const RegisView();
                               },
                             ));
                           },

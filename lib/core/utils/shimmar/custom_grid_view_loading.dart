@@ -19,7 +19,7 @@ class CustomGridViewLoading extends StatelessWidget {
           color: Theme.of(context).brightness == Brightness.dark
               ? Colors.white
               : Colors.grey.shade300,
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),
         ),

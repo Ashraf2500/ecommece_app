@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/home/data/model/size_model.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class ListViewSize extends StatelessWidget {
    ListViewSize({super.key});
 
- List<SizeModel> sizeNumber = [
+final List<SizeModel> sizeNumber = [
       SizeModel(numder: "6"),
        SizeModel(numder: "6.5"),
        SizeModel(numder: "7"),
@@ -21,7 +21,7 @@ class ListViewSize extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount:sizeNumber.length,
         itemBuilder: (context, index) {
           return Padding(
@@ -33,7 +33,7 @@ class ListViewSize extends StatelessWidget {
                 radius: 25,
                 backgroundColor: kBackGroundColor,
                 child: Text(
-                  "${sizeNumber[index].numder}",
+                  sizeNumber[index].numder,
                   style: Style.textStyle14.copyWith(color: kTextkColor),
                 ),
               ),

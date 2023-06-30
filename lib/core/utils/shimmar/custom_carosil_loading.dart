@@ -24,7 +24,7 @@ class CustomCarosilLoading extends StatelessWidget {
             color: Theme.of(context).brightness == Brightness.dark
                 ? Colors.white
                 : Colors.grey.shade300,
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
         ),
       ),

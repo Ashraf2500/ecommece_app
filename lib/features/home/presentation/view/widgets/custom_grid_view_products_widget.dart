@@ -1,4 +1,5 @@
-import 'package:ecommece_app/features/home/presentation/manager/bannersandgridview/home_cubit.dart';
+import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid_view/home_cubit.dart';
+import 'package:ecommece_app/features/home/presentation/manager/product_details_two/product_details_two_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_info_one_product.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_body.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class CustomGridViewProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
-    double heightScreen = MediaQuery.of(context).size.height;
+
 
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
@@ -29,14 +30,14 @@ class CustomGridViewProducts extends StatelessWidget {
 
           return Container(
             width: widthScreen,
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
             child: GridView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 13,
@@ -54,7 +55,8 @@ class CustomGridViewProducts extends StatelessWidget {
                 return InkWell(
                   onTap: (){
                      ProductDetailsCubit.get(context).getproductDetailsForFav(id: dataId);
-                 Get.to(ProductBody(id: dataId,));
+                     ProductDetailsTwoCubit.get(context).dataishers(false);
+                 Get.to(ProductBody(name: dataName,));
                   },
                   child: CustomInfoOneProduct(
                     id: dataId,
@@ -63,9 +65,11 @@ class CustomGridViewProducts extends StatelessWidget {
                     newPrice: dataPrice,
                     oldPrice: dataOldPrice,
                     sale: dataOffer,
-                    icon: Icon(Icons.favorite_rounded, size: 20),
+                    icon: const Icon(Icons.favorite_rounded, size: 20),
                     onPressed: () {
                       context.read<HomeCubit>().sendFavorite(dataId,context);
+                                    
+
                     },
                   ),
                 );
@@ -73,7 +77,7 @@ class CustomGridViewProducts extends StatelessWidget {
             ),
           );
         }
-        return CustomGridViewLoading();
+        return const CustomGridViewLoading();
       },
     );
   }

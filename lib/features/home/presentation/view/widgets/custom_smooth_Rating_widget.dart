@@ -1,10 +1,10 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class SmoothRating extends StatefulWidget {
-  SmoothRating({super.key, this.textOne, this.textTwo, required this.itemSize});
+  const SmoothRating({super.key, this.textOne, this.textTwo, required this.itemSize});
   final String? textOne;
   final String? textTwo;
  final double itemSize;
@@ -26,7 +26,7 @@ class _SmoothRatingState extends State<SmoothRating> {
           itemCount: 5,
           itemSize: widget.itemSize,
           glow: false,
-          itemBuilder: (context, index) => Icon(
+          itemBuilder: (context, index) => const Icon(
             Icons.star_rounded,
             color: kRatingColor,
           ),
@@ -36,7 +36,7 @@ class _SmoothRatingState extends State<SmoothRating> {
             },
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 3,
         ),
         widget.textOne != null
@@ -44,8 +44,8 @@ class _SmoothRatingState extends State<SmoothRating> {
                 widget.textOne!,
                 style: Style.textStyle10.copyWith(color: kDescriptionText),
               )
-            : SizedBox(),
-        SizedBox(
+            : const SizedBox(),
+        const SizedBox(
           width: 3,
         ),
         widget.textTwo != null
@@ -53,7 +53,7 @@ class _SmoothRatingState extends State<SmoothRating> {
                 widget.textTwo!,
                 style: Style.textStyle10.copyWith(color: kDescriptionText),
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

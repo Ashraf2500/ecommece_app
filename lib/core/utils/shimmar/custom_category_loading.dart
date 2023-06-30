@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 

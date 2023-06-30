@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../manager/cubit/bottom_bar_cubit.dart';
 
 class BottomBarScreens extends StatelessWidget {
-  const BottomBarScreens({Key? key}) : super(key: key);
-
+  const BottomBarScreens({Key? key, this.index}) : super(key: key);
+  final int? index;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BottomBarCubit, BottomBarState>(
@@ -18,7 +18,7 @@ class BottomBarScreens extends StatelessWidget {
             backgroundColor: kBackGroundColor,
             type: BottomNavigationBarType.fixed,
             iconSize: 27,
-            currentIndex: BottomBarCubit.get(context).currentIndex,
+            currentIndex:  BottomBarCubit.get(context).currentIndex,
             onTap: (int index) {
               BottomBarCubit.get(context).navScreen(index);
             },
@@ -43,8 +43,9 @@ class BottomBarScreens extends StatelessWidget {
                   tooltip: "Account"),
             ],
           ),
-          body: BottomBarCubit.get(context).screensOfNavigatorButton[
-              BottomBarCubit.get(context).currentIndex],
+          body:
+              BottomBarCubit.get(context).screensOfNavigatorButton[
+                  BottomBarCubit.get(context).currentIndex],
         );
       },
     );

@@ -13,7 +13,7 @@ final ScrollController _scroolController =ScrollController();
       body: SafeArea(
         child: Scrollbar(
             controller: _scroolController,
-          radius: Radius.circular(8),
+          radius: const Radius.circular(8),
           scrollbarOrientation: ScrollbarOrientation.right,
           interactive: false,
           thickness: 5,
@@ -23,9 +23,9 @@ final ScrollController _scroolController =ScrollController();
               children: [
         
                 //---------ProductAppBar ----------------------------------------
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 ProductAppBar(
-                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -34,14 +34,14 @@ final ScrollController _scroolController =ScrollController();
                 ),
         
                 //---------Divider -----------------------------------------------
-                SizedBox(height: 5),
-                Divider(
+                const SizedBox(height: 5),
+                const Divider(
                   thickness: 0.4,
                 ),
         
                 //----------Grid View---------------------------------------------
-                SizedBox(height: 15),
-                CustomGridViewProducts(),
+                const SizedBox(height: 15),
+                const CustomGridViewProducts(),
               ],
             ),
           ),

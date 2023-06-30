@@ -2,15 +2,16 @@ import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:ecommece_app/core/utils/shared/cache_helber.dart';
 import 'package:ecommece_app/features/home/data/model/category_model.dart';
+import 'package:ecommece_app/features/home/data/model/fav_model.dart';
 import 'package:ecommece_app/features/home/data/model/home_model.dart';
 import 'package:ecommece_app/core/utils/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommece_app/features/home/data/model/list_of_category_model.dart';
 import 'package:ecommece_app/features/home/data/model/more_category_model.dart';
+import 'package:ecommece_app/features/home/data/model/product_details_two.dart';
 import 'package:ecommece_app/features/home/data/model/sale_model.dart';
 import 'package:ecommece_app/features/home/data/repo/home_repo.dart';
 
-import '../../../cart/data/model/fav_model.dart';
 import '../model/product_details_for_favorite.dart';
 
 class HomeRepoImpl implements HomeRepo {
@@ -28,7 +29,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
       Options myOptions =
-          buildCacheOptions(Duration(days: 7), forceRefresh: true);
+          buildCacheOptions(const Duration(days: 7), forceRefresh: true);
       dio.interceptors.add(dioCacheManager.interceptor);
 
       final response = await dio.get("https://student.valuxapps.com/api/home",
@@ -47,7 +48,7 @@ class HomeRepoImpl implements HomeRepo {
     Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
     DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
     Options myOptions =
-        buildCacheOptions(Duration(days: 7), forceRefresh: true);
+        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
     dio.interceptors.add(dioCacheManager.interceptor);
     try {
       final response = await dio.get(
@@ -69,7 +70,7 @@ class HomeRepoImpl implements HomeRepo {
     Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
     DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
     Options myOptions =
-        buildCacheOptions(Duration(days: 7), forceRefresh: true);
+        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
     dio.interceptors.add(dioCacheManager.interceptor);
     try {
       final respone = await dio.get("https://fakestoreapi.com/products",
@@ -91,7 +92,7 @@ class HomeRepoImpl implements HomeRepo {
     Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
     DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
     Options myOptions =
-        buildCacheOptions(Duration(days: 7), forceRefresh: true);
+        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
     dio.interceptors.add(dioCacheManager.interceptor);
     try {
       final response = await dio.get(
@@ -106,6 +107,7 @@ class HomeRepoImpl implements HomeRepo {
     }
   }
 
+  @override
   Future<Either<ServerFailure, ProductDetailsForFavoritesModel>>
       productDetailsForFavorite(int id) async {
     String token = await CacheHelber.getData(key: "token");
@@ -116,7 +118,7 @@ class HomeRepoImpl implements HomeRepo {
     }));
     DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
     Options myOptions =
-        buildCacheOptions(Duration(days: 7), forceRefresh: true);
+        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
     dio.interceptors.add(dioCacheManager.interceptor);
 
     try {
@@ -133,6 +135,7 @@ class HomeRepoImpl implements HomeRepo {
     }
   }
 
+  @override
   Future<Either<ServerFailure, FavModel>> getMyFavCategory() async {
     String token = await CacheHelber.getData(key: "token");
 
@@ -146,7 +149,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
       Options myOptions =
-          buildCacheOptions(Duration(days: 7), forceRefresh: true);
+          buildCacheOptions(const Duration(days: 7), forceRefresh: true);
       dio.interceptors.add(dioCacheManager.interceptor);
 
       final response = await dio.get(
@@ -161,24 +164,51 @@ class HomeRepoImpl implements HomeRepo {
     }
   }
 
+  @override
   Future<Either<ServerFailure, ListOfCategoryModel>> getListOfCategory(
       int id) async {
     ListOfCategoryModel listOfCategoryModel;
-    Dio dio = Dio(BaseOptions(
-      receiveDataWhenStatusError: true,
-    ));
+    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
+
+    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
+
+    Options myOptions =
+        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
+    dio.interceptors.add(dioCacheManager.interceptor);
 
     try {
-      DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-      Options myOptions =
-          buildCacheOptions(Duration(days: 7), forceRefresh: true);
-      dio.interceptors.add(dioCacheManager.interceptor);
-
       final response = await dio.get(
           "https://student.valuxapps.com/api/favorites",
           options: myOptions);
       listOfCategoryModel = ListOfCategoryModel.fromJson(response.data);
       return right(listOfCategoryModel);
+    } on DioError catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    }
+  }
+
+  @override
+  Future<Either<ServerFailure, ProductDetailsTwoModel>> getMyProductDetailsTwo(
+      int id) async {
+        
+    ProductDetailsTwoModel productDetailsTwoModel;
+
+    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
+
+    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
+
+    Options myOptions =
+        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
+    dio.interceptors.add(dioCacheManager.interceptor);
+
+    try {
+      final response = await dio.get("https://dummyjson.com/products/$id",
+          options: myOptions);
+
+      productDetailsTwoModel = ProductDetailsTwoModel.fromJson(response.data);
+      
+      return right(productDetailsTwoModel);
+      
     } on DioError catch (e) {
       return left(ServerFailure.fromDioError(e));
     }

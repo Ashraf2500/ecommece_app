@@ -13,9 +13,4 @@ const kBurpleColor = Color(0xff5C61F4);
 
 
 
-/*
 
-activeDotColor: Color(0xff33bbff),
-dotColor: Color(0xffccd9ff),
-
-*/

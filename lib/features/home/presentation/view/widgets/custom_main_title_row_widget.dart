@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../core/utils/style.dart';
@@ -16,18 +16,18 @@ class CustomMainTitleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "$textOne",
+          textOne,
           style: Style.textStyle14.copyWith(color: kTextkColor),
         ),
         (textTwo != null)?
              TextButton(
+          onPressed: onPressed,
           child: Text(
             "$textTwo",
             style: Style.textStyle14.copyWith(color: kPrimaryColor),
           ),
-          onPressed: onPressed,
         ):
-            SizedBox(),
+            const SizedBox(),
       ],
     );
   }

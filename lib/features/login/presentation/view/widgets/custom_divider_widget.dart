@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
@@ -13,23 +13,23 @@ class CustomDivider extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: Divider(
               color: kBorderColor,
               thickness: 1.4,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Text(
             "OR",
             style: Style.textStyle14.copyWith(color: kDescriptionText),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
-          Expanded(
+          const Expanded(
             child: Divider(
               color: kBorderColor,
               thickness: 1.4,

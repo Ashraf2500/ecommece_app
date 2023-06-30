@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ final double dataSale;
           width: 141,
           decoration: BoxDecoration(
               border: Border.all(color: kBorderColor),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Column(
@@ -53,7 +53,7 @@ final double dataSale;
                   ),
                   onTap: () {},
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Column(
@@ -65,28 +65,28 @@ final double dataSale;
                       overflow: TextOverflow.ellipsis,
                       style: Style.textStyle11,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Text(
-                      "${dataPrice}",
+                      "$dataPrice",
                       style: Style.textStyle12.copyWith(color: kPrimaryColor),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
                       children: [
                         Text(
-                          "${dataOldPrice}",
+                          "$dataOldPrice",
                           style: Style.textStyle10
                               .copyWith(color: kDescriptionText),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
                         Text(
-                          "${dataSale} 24%off",
+                          "$dataSale 24%off",
                           style: Style.textStyle10.copyWith(color: kRedColor),
                         ),
                       ],

@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,7 @@ class CustomRecommendedProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Stack(
       children: [
-        Image(
+        const Image(
           image: AssetImage("assets/images/recommended.png"), fit: BoxFit.fill,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

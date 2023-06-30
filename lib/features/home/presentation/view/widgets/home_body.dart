@@ -1,7 +1,7 @@
 import 'package:ecommece_app/core/utils/shimmar/custom_carosil_loading.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/explore/presentation/view/explore_view.dart';
-import 'package:ecommece_app/features/home/presentation/manager/bannersandgridview/home_cubit.dart';
+import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid_view/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_list_of_category.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_list_of_info_product.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_recommended_products.dart';
@@ -10,7 +10,7 @@ import 'package:ecommece_app/features/offer/presentation/view/offer_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import '../../../../../constans.dart';
+import '../../../../../core/utils/constans.dart';
 import 'custom_grid_view_products_widget.dart';
 import 'custom_main_title_row_widget.dart';
 import 'custom_slide_widget.dart';
@@ -26,7 +26,7 @@ class HomeBody extends StatelessWidget {
       body: SafeArea(
         child: Scrollbar(
             controller: _scrollController,
-            radius: Radius.circular(8),
+            radius: const Radius.circular(8),
             scrollbarOrientation: ScrollbarOrientation.right,
             interactive: false,
             thickness: 5,
@@ -35,23 +35,23 @@ class HomeBody extends StatelessWidget {
             child: Column(
               children: [
                 //---------Search AppBar -----------------------------------------
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     GestureDetector(
                       onTap: (){
-                        Get.to(ExploreView());
+                        Get.to(const ExploreView());
                       },
                       child: Container(
                         height: 50,
                         width: 250,
-                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
                           color: kBackGroundColor,
                           border: Border.all(color: kBorderColor),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius: const BorderRadius.all(Radius.circular(10)),
                         ),
-                        child: Row(
+                        child: const Row(
                           children: [
                             Icon(
                               Icons.search,
@@ -69,15 +69,15 @@ class HomeBody extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.favorite_border_outlined),
+                      icon: const Icon(Icons.favorite_border_outlined),
                       color: kDescriptionText,
                       iconSize: 25,
                       onPressed: () {
-                        Get.to(FavBody());
+                        Get.to(const FavBody());
                       },
                     ),
                     IconButton(
-                      icon: Icon(Icons.notifications_none_outlined),
+                      icon: const Icon(Icons.notifications_none_outlined),
                       iconSize: 25,
                       color: kDescriptionText,
                       onPressed: () {},
@@ -86,13 +86,13 @@ class HomeBody extends StatelessWidget {
                 ),
         
                 //---------Divider -----------------------------------------------
-                SizedBox(height: 15),
-                Divider(
+                const SizedBox(height: 15),
+                const Divider(
                   thickness: 0.5,
                 ),
         
                 //---------Slider ------------------------------------------------
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 BlocConsumer<HomeCubit, HomeState>(
                     listener: (context, state) {},
                     builder: (context, state) {
@@ -112,11 +112,11 @@ class HomeBody extends StatelessWidget {
                           dataLenght: dataLenght,
                         );
                       }
-                      return CustomCarosilLoading();
+                      return const CustomCarosilLoading();
                     }),
         
                 //---------Category ----------------------------------------------
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
         
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -128,24 +128,24 @@ class HomeBody extends StatelessWidget {
                     },
                   ),
                 ),
-                CustomListOfCategory(),
+                const CustomListOfCategory(),
         
                 //---------Flash Sale --------------------------------------------
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: CustomMainTitleRow(
                     textOne: "Flash Sale",
                     textTwo: "See More",
                     onPressed: () {
-                      Get.to(() => OfferView());
+                      Get.to(() => const OfferView());
                     },
                   ),
                 ),
                 CustomListOfInfoProduct(),
         
                 //---------Mega  Sale --------------------------------------------
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: CustomMainTitleRow(
@@ -163,15 +163,15 @@ class HomeBody extends StatelessWidget {
                 // ),
         
                 //---------Recommended Product -----------------------------------
-                SizedBox(height: 30),
-                CustomRecommendedProducts(),
+                const SizedBox(height: 30),
+                const CustomRecommendedProducts(),
         
                 //---------Recommended Product Grid View--------------------------
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                CustomGridViewProducts(),
-                SizedBox(
+                const CustomGridViewProducts(),
+                const SizedBox(
                   height: 14,
                 )
               ],

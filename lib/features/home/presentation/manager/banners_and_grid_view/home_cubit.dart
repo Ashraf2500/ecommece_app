@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-
 import 'package:ecommece_app/features/home/data/model/home_model.dart';
 import 'package:ecommece_app/features/home/data/model/select_favorit_model.dart';
 import 'package:ecommece_app/features/home/data/repo/home_repo_impl.dart';
@@ -27,21 +26,19 @@ class HomeCubit extends Cubit<HomeState> {
   result.fold(
     (error) => emit(HomeFailure(errorMessage: error.errMessages)),
     (data) {
-      data.data.products.forEach(
-        (element) {
+      for (var element in data.data.products) {
           favorite.addAll({element.id: element.inFavorites});
-        },
-      );
+        }
 
       emit(HomeSuccess(homeModel: data));
-      print(favorite.length);
+      
     },
   );
 }
 
-  void sendFavorite(int product_id,context) async {
+  void sendFavorite(int productId,context) async {
   
-  favorite[product_id] = !favorite[product_id]!;
+  favorite[productId] = !favorite[productId]!;
 
       HomeModel? homeModel = (state as HomeSuccess).homeModel;
 
@@ -51,24 +48,25 @@ class HomeCubit extends Cubit<HomeState> {
 
       String token = await CacheHelber.getData(key: "token");
 
+      // ignore: unused_local_variable
       final response = await Dio(BaseOptions(headers: {
         "lang": "en",
         "Content-Type": "application/json",
         "Authorization": token
       })).post("https://student.valuxapps.com/api/favorites",
-          data: {"product_id": product_id}).then((value) {
+          data: {"product_id": productId}).then((value) {
         selectFavoritModel = SelectFavoritModel.fromJson(value.data);
 
         if (!selectFavoritModel.status) {
-          favorite[product_id] = !favorite[product_id]!;
+          favorite[productId] = !favorite[productId]!;
         }else{
           FavCubit.get(context).getFavCategory();
         }
         emit(HomeSuccess(homeModel: homeModel));
         
       }).catchError((error) {
-        print(error.toString());
-        favorite[product_id] = !favorite[product_id]!;
+       
+        favorite[productId] = !favorite[productId]!;
 
         emit(HomeSuccess(homeModel: homeModel));
       });

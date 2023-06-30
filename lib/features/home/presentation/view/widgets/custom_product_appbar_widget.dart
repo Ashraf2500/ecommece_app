@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
@@ -29,14 +29,19 @@ class ProductAppBar extends StatelessWidget {
         Row(
           children: [
             IconButton(onPressed: onPressed, icon: icon,color: kDescriptionText,),
-            Text(text,style: Style.textStyle16.copyWith(color: kTextkColor),),
+            SizedBox(
+              width: 190,
+              child: Text(text,style: Style.textStyle16.copyWith(color: kTextkColor),
+              maxLines: 2,
+                overflow: TextOverflow.ellipsis,),
+            ),
           ],
         ),
 
        Row(
          children: [
-           iconOne != null? IconButton(onPressed: onPressedOne, icon: iconOne!,color: kDescriptionText):SizedBox(),
-           iconTwo != null? IconButton(onPressed: onPressedTwo, icon: iconTwo!,color: kDescriptionText):SizedBox(),
+           iconOne != null? IconButton(onPressed: onPressedOne, icon: iconOne!,color: kDescriptionText):const SizedBox(),
+           iconTwo != null? IconButton(onPressed: onPressedTwo, icon: iconTwo!,color: kDescriptionText):const SizedBox(),
          ],
        )
 

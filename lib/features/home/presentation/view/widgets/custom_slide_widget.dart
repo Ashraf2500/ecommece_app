@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommece_app/core/utils/style.dart';
@@ -65,7 +65,7 @@ class _CustomSliderState extends State<CustomSlider> {
             },
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         CustomSmoothIndicator(
@@ -95,7 +95,7 @@ timeSaleSlider() {
         ),
         const SizedBox(height: 15),
         //---time ----------
-        Row(
+        const Row(
           children: [
             CustomTimeSale(text: "08"),
             //const SizedBox(width: 8),
@@ -115,12 +115,12 @@ imageSlider(
   return SizedBox(
     width: double.infinity,
     child: ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: CachedNetworkImage(
         fit: BoxFit.cover,
         imageUrl: data,
         errorWidget: (context, url, error) => const Icon(Icons.abc),
-        placeholder: (context, url) => CustomCarosilLoading(),
+        placeholder: (context, url) => const CustomCarosilLoading(),
         imageBuilder: (context, imageProvider) {
           return Image(image: imageProvider);
         },

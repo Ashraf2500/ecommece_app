@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +6,7 @@ class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
     required this.onPressed,
-    required this.text,
+    required this.text, 
   });
   final VoidCallback onPressed;
   final String text;

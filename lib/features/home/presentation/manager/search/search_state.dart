@@ -21,4 +21,4 @@ class SearchFailure extends SearchState {
   SearchFailure({required this.errorMessage});
 
 }
-// class SearchView extends SearchState{}
+

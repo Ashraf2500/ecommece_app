@@ -1,4 +1,4 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../core/utils/style.dart';
@@ -19,7 +19,7 @@ class CustomTitleProduct extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              "$text",
+              text,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Style.textStyle20.copyWith(
@@ -33,7 +33,7 @@ class CustomTitleProduct extends StatelessWidget {
                   icon: icon!,
                   color: kDescriptionText,
                 )
-              : SizedBox()
+              : const SizedBox()
         ]);
   }
 }

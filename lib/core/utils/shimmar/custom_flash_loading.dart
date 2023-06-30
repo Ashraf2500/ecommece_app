@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Customflashloading extends StatelessWidget {
+  const Customflashloading({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
@@ -17,7 +19,7 @@ class Customflashloading extends StatelessWidget {
             color: Theme.of(context).brightness == Brightness.dark
                 ? Colors.white
                 : Colors.grey.shade300,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
       ),
     );

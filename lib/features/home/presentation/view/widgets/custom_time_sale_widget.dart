@@ -1,9 +1,9 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 class CustomTimeSale extends StatelessWidget {
   const CustomTimeSale({Key? key, required this.text}) : super(key: key);
-  final text ;
+  final String text ;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CustomTimeSale extends StatelessWidget {
               Radius.circular(8)),
         ),
         child: Center(child: Text(
-          "$text",
+          text,
           style:Style.textStyle14.copyWith(
             color: kTextkColor
           ),

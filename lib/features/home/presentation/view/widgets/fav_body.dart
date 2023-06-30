@@ -1,13 +1,13 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
+import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid_view/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_fav_product.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_product_appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../../core/utils/shimmar/custom_grid_view_loading.dart';
-import '../../manager/bannersandgridview/home_cubit.dart';
 import '../../manager/fav/fav_cubit.dart';
 
 class FavBody extends StatefulWidget {
@@ -32,16 +32,16 @@ class _FavBodyState extends State<FavBody> {
           child: Column(
             children: [
               ProductAppBar(
-                icon: Icon(Icons.arrow_back_ios_new_rounded),
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 text: "Super Flash Sale",
               ),
-              SizedBox(
-                height: 10,
+              const SizedBox(
+                height: 5,
               ),
-              Divider(
+              const Divider(
                 thickness: 0.7,
                 color: kDescriptionText,
               ),
@@ -53,7 +53,7 @@ class _FavBodyState extends State<FavBody> {
                     children: [
                       Lottie.asset("assets/animations/favorite.json"),
 
-                      Text("There are no products on your favorites",
+                      const Text("There are no products on your favorites",
                       style: Style.textStyle16,
                       )
                     ],
@@ -75,14 +75,14 @@ class _FavBodyState extends State<FavBody> {
                           children: [
                             Container(
                               width: widthScreen,
-                              padding: EdgeInsets.symmetric(horizontal: 16),
-                              decoration: BoxDecoration(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15)),
                               ),
                               child: GridView.builder(
                                 scrollDirection: Axis.vertical,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
@@ -107,7 +107,7 @@ class _FavBodyState extends State<FavBody> {
                                       .favModel.data.data[index].product.id;
                                   return ConditionalBuilder(
                                     fallback: (context) {
-                                      return CustomGridViewLoading();
+                                      return const CustomGridViewLoading();
                                     },
                                     condition: state is! FavLoading,
                                     builder: (context) {
@@ -127,7 +127,7 @@ class _FavBodyState extends State<FavBody> {
                           ],
                         );
                       }
-                      return CustomGridViewLoading();
+                      return const CustomGridViewLoading();
                     },
                   );
                 },

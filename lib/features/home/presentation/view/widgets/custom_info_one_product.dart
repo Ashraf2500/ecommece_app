@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constans.dart';
+import '../../../../../core/utils/constans.dart';
 import '../../../../../core/utils/shimmar/custom_grid_view_loading.dart';
 import '../../../../../core/utils/style.dart';
-import '../../manager/bannersandgridview/home_cubit.dart';
+import '../../manager/banners_and_grid_view/home_cubit.dart';
 
 class CustomInfoOneProduct extends StatelessWidget {
   const CustomInfoOneProduct({
@@ -33,7 +33,7 @@ class CustomInfoOneProduct extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: image,
       placeholder: (context, url) {
-        return CustomGridViewLoading();
+        return const CustomGridViewLoading();
       },
       errorWidget: (context, url, error) {
         return Container(
@@ -43,9 +43,9 @@ class CustomInfoOneProduct extends StatelessWidget {
           decoration: BoxDecoration(
             color: kBackGroundColor,
             border: Border.all(color: kBorderColor),
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
-          child: Center(
+          child: const Center(
             child: Icon(
               Icons.error,
               color: Colors.red,
@@ -60,7 +60,7 @@ class CustomInfoOneProduct extends StatelessWidget {
           decoration: BoxDecoration(
             color: kBackGroundColor,
             border: Border.all(color: kBorderColor),
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -74,14 +74,14 @@ class CustomInfoOneProduct extends StatelessWidget {
                     image: DecorationImage(image: imageProvider),
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  "$title",
+                  title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Style.textStyle11,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   "$newPrice",
                   style: Style.textStyle12.copyWith(
@@ -89,7 +89,7 @@ class CustomInfoOneProduct extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -102,7 +102,7 @@ class CustomInfoOneProduct extends StatelessWidget {
                           decoration: TextDecoration.lineThrough,
                         ),
                       ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     if (sale != null && sale != 0) // تحقق من القيمة قبل استخدامها كشرط
                       Text(
                         "$sale %Off",

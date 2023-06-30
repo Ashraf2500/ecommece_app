@@ -1,5 +1,5 @@
 
-import 'package:ecommece_app/features/cart/data/model/fav_model.dart';
+import 'package:ecommece_app/features/home/data/model/fav_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 

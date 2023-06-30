@@ -22,29 +22,30 @@ class CustomListOfCategory extends StatelessWidget {
           return Center(child: Text(state.errorMessage));
         }
         if (state is CategorySuccess) {
-          var dataLenght = state.categoryModel.length;
-          return Container(
+          var dataLenght = state.categoryModel;
+          return SizedBox(
             width: widthScreen,
             height: 120,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: dataLenght,
+              itemCount: dataLenght.length,
               itemBuilder: (context, index) {
-                var dataImage = state.categoryModel[index].image;
-                var dataName = state.categoryModel[index].name;
-                var dataId = state.categoryModel[index].id;
+                var dataImage = dataLenght[index].image;
+                var dataName = dataLenght[index].name;
+         
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: InkWell(
                     onTap: (){
+                      
                       MoreCategoryCubit.get(context).getData(category: dataName);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => MoreCategotyBody(),));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MoreCategotyBody(),));
                     },
                     child: CustomOneCategory(
-                      id: dataId,
+                     
                       title: dataName,
                       image: dataImage,
-                      length: dataLenght,
+                      length: dataLenght.length,
                     ),
                   ),
                 );
@@ -52,7 +53,7 @@ class CustomListOfCategory extends StatelessWidget {
             ),
           );
         }
-        return CustomCategoryLoading();
+        return const CustomCategoryLoading();
       },
     );
   }

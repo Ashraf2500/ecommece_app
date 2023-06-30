@@ -40,17 +40,17 @@ class _RegisBodyState extends State<RegisBody> {
                 "",
                 backgroundColor: Colors.black,
                 messageText: Text(
-                  "${state.regisModel.message}",
-                  style: TextStyle(color: Colors.black),
+                  state.regisModel.message,
+                  style: const TextStyle(color: Colors.black),
                 ),
               );
-              Get.to(LoginView());
+              Get.to(const LoginView());
             } else {
               Get.snackbar("Message", "",
-                  backgroundColor: Color(0xff808080),
+                  backgroundColor: const Color(0xff808080),
                   messageText: Text(
-                    "${state.regisModel.message}",
-                    style: TextStyle(color: Colors.black),
+                    state.regisModel.message,
+                    style: const TextStyle(color: Colors.black),
                   ),
                   isDismissible: true);
             }
@@ -67,41 +67,47 @@ class _RegisBodyState extends State<RegisBody> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 150,
                         ),
                         Image.asset(
                           Images.logo,
                           width: 72,
                         ),
-                        CustomTitle(
+                        const CustomTitle(
                           textOne: "Let ’s Get Started",
                           textTwo: "Create an new account",
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 28,
                         ),
                         CustomTextFormFaild(
                             textEditingController: textOne,
-                            validator: (text) {},
+                            validator: (text) {
+                              return null;
+                            },
                             obscureText: false,
                             hintText: "Full Name",
-                            prefixIcon: Icon(Icons.person_2_outlined)),
-                        SizedBox(
+                            prefixIcon: const Icon(Icons.person_2_outlined)),
+                        const SizedBox(
                           height: 8,
                         ),
                         CustomTextFormFaild(
                             textEditingController: textTwo,
-                            validator: (text) {},
+                            validator: (text) {
+                              return null;
+                            },
                             obscureText: false,
                             hintText: "Your Email",
-                            prefixIcon: Icon(Icons.email_outlined)),
-                        SizedBox(
+                            prefixIcon: const Icon(Icons.email_outlined)),
+                        const SizedBox(
                           height: 8,
                         ),
                         CustomTextFormFaild(
                             textEditingController: textThere,
-                            validator: (text) {},
+                            validator: (text) {
+                              return null;
+                            },
                             obscureText: obscureTextOne,
                             suffixIcon: IconButton(
                               onPressed: () {
@@ -110,17 +116,21 @@ class _RegisBodyState extends State<RegisBody> {
                                 });
                               },
                               icon: obscureTextOne
-                                  ? Icon(Icons.visibility_off_outlined)
-                                  : Icon(Icons.visibility_outlined),
+                                  ? const Icon(Icons.visibility_off_outlined)
+                                  : const Icon(Icons.visibility_outlined),
                             ),
                             hintText: "Password",
-                            prefixIcon: Icon(Icons.lock_outlined)),
-                        SizedBox(
+                            prefixIcon: const Icon(Icons.lock_outlined)),
+                        const SizedBox(
                           height: 8,
                         ),
                         CustomTextFormFaild(
                           textEditingController: textFour,
-                          validator: (text) {},
+                          validator: (text) {
+                            return null;
+                          
+                            
+                          },
                           obscureText: obscureTextTwo,
                           suffixIcon: IconButton(
                             onPressed: () {
@@ -129,13 +139,13 @@ class _RegisBodyState extends State<RegisBody> {
                               });
                             },
                             icon: obscureTextTwo
-                                ? Icon(Icons.visibility_off_outlined)
-                                : Icon(Icons.visibility_outlined),
+                                ? const Icon(Icons.visibility_off_outlined)
+                                : const Icon(Icons.visibility_outlined),
                           ),
                           hintText: "Password Again",
-                          prefixIcon: Icon(Icons.lock_outlined),
+                          prefixIcon: const Icon(Icons.lock_outlined),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         ConditionalBuilder(
@@ -152,11 +162,11 @@ class _RegisBodyState extends State<RegisBody> {
                                       
                             },
                           ),
-                          fallback: (context) => Center(
+                          fallback: (context) => const Center(
                             child: CircularProgressIndicator(),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 24,
                         ),
                         CustomText(
@@ -164,7 +174,7 @@ class _RegisBodyState extends State<RegisBody> {
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return LoginBody();
+                                return const LoginBody();
                               },
                             ));
                           },

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
 import 'package:ecommece_app/core/utils/shared/cache_helber.dart';
 import 'package:ecommece_app/features/main_Screens/presentation/view/bottom_bar_view.dart';
@@ -22,18 +22,20 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void navigateToRegis() {
-    Future.delayed(Duration(seconds: 2), ()async {
+    Future.delayed(const Duration(seconds: 2), ()async {
       final token = await CacheHelber.getData(key: "token");
       if (token != null) {
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(context, MaterialPageRoute(
           builder: (context) {
-            return BottomBarView();
+            return const BottomBarView();
           },
         ));
       } else {
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(context, MaterialPageRoute(
           builder: (context) {
-            return RegisView();
+            return const RegisView();
           },
         ));
       }

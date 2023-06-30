@@ -1,9 +1,9 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionText extends StatefulWidget {
-  DescriptionText({
+  const DescriptionText({
     Key? key,
     required this.text,
   }) : super(key: key);
@@ -48,7 +48,7 @@ class _DescriptionTextState extends State<DescriptionText> {
           ? Text(widget.text)
           : Column(
               children: [
-                Text(hiddenText ? (fistHalf + "...") : (fistHalf + secondHalf)),
+                Text(hiddenText ? ("$fistHalf...") : (fistHalf + secondHalf)),
                 InkWell(
                   onTap: () {
                     setState(() {
@@ -60,7 +60,7 @@ class _DescriptionTextState extends State<DescriptionText> {
                       "see more",
                       style: Style.textStyle11.copyWith(color: kPrimaryColor),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_drop_down,
                       color: kPrimaryColor,
                     )

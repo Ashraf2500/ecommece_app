@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/shimmar/custom_flash_loading.dart';
 
 class CustomListOfInfoProduct extends StatelessWidget {
-   CustomListOfInfoProduct({
+   const CustomListOfInfoProduct({
     Key? key,
   }) : super(key: key);
   
@@ -25,11 +25,11 @@ Widget build(BuildContext context) {
       }
       if (state is SaleSuccess) {
         final length = state.saleModel.length; // Get the length of the saleModel list
-        return Container(
+        return SizedBox(
           width: widthScreen,
           height: 220,
           child: ListView.builder(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: length,
             itemBuilder: (context, index) {

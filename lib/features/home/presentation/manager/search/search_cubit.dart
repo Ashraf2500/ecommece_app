@@ -22,7 +22,7 @@ class SearchCubit extends Cubit<SearchState> {
     try {
         DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
       Options myOptions =
-          buildCacheOptions(Duration(days: 7), forceRefresh: true);
+          buildCacheOptions(const Duration(days: 7), forceRefresh: true);
       dio.interceptors.add(dioCacheManager.interceptor);
 
       emit(SearchLoading());

@@ -1,15 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
 import 'package:ecommece_app/core/utils/shimmar/custom_grid_view_loading.dart';
 import 'package:ecommece_app/core/utils/style.dart';
+import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid_view/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/product_details/product_details_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_smooth_Rating_widget.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../manager/bannersandgridview/home_cubit.dart';
+
 
 class CustomFavProduct extends StatelessWidget {
   const CustomFavProduct({
@@ -34,7 +35,7 @@ class CustomFavProduct extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: image,
       placeholder: (context, url) {
-        return CustomGridViewLoading();
+        return const CustomGridViewLoading();
       },
       errorWidget: (context, url, error) {
         return Container(
@@ -44,9 +45,9 @@ class CustomFavProduct extends StatelessWidget {
           decoration: BoxDecoration(
             color: kBackGroundColor,
             border: Border.all(color: kBorderColor),
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
-          child: Center(
+          child: const Center(
             child: Icon(
               Icons.error,
               color: Colors.red,
@@ -60,7 +61,7 @@ class CustomFavProduct extends StatelessWidget {
             ProductDetailsCubit.get(context).getproductDetailsForFav(id: id);
             Navigator.push(context, MaterialPageRoute(
               builder: (context) {
-                return ProductBody();
+                return const ProductBody();
               },
             ));
           },
@@ -69,7 +70,7 @@ class CustomFavProduct extends StatelessWidget {
               decoration: BoxDecoration(
                 color: kBackGroundColor,
                 border: Border.all(color: kBorderColor),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -77,22 +78,22 @@ class CustomFavProduct extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       height: 200,
                   
                       child: Image(image: imageProvider),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
-                      "$title",
+                      title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Style.textStyle11,
                     ),
-                    SizedBox(height: 8),
-                    SmoothRating(
+                    const SizedBox(height: 8),
+                    const SmoothRating(
                         textOne: "4.5", textTwo: "(5 Review)", itemSize: 15),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       "$newPrice",
                       style: Style.textStyle12.copyWith(
@@ -100,7 +101,7 @@ class CustomFavProduct extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -114,7 +115,7 @@ class CustomFavProduct extends StatelessWidget {
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         if (sale != null &&
                             sale != 0) // تحقق من القيمة قبل استخدامها كشرط
                           Text(

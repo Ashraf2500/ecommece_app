@@ -1,9 +1,9 @@
-import 'package:ecommece_app/constans.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
 class SocialButtom extends StatelessWidget {
-  SocialButtom({
+  const SocialButtom({
     super.key,
     required this.image,
     required this.text,
@@ -23,7 +23,7 @@ class SocialButtom extends StatelessWidget {
         onTap: onTap,
         child: Row(
           children: [
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Image.asset(
@@ -31,7 +31,7 @@ class SocialButtom extends StatelessWidget {
               width: 40,
               height: 40,
             ),
-            SizedBox(
+            const SizedBox(
               width: 65,
             ),
             Text(

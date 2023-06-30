@@ -19,7 +19,7 @@ class HomeSuccess extends HomeState {
 
 class HomeFailure extends HomeState {
 
-  String errorMessage ;
+ final String errorMessage ;
 HomeFailure({
     required this.errorMessage,
   });

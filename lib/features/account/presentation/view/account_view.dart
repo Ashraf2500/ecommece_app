@@ -1,3 +1,4 @@
+import 'package:ecommece_app/features/account/presentation/view/widgets/account_body.dart';
 import 'package:flutter/material.dart';
 
 class AccountView extends StatelessWidget {
@@ -5,6 +6,6 @@ class AccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const AccountBody();
   }
 }

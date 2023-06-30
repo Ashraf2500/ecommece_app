@@ -1,4 +1,4 @@
-import 'package:ecommece_app/features/account/presentation/view/acount_view.dart';
+import 'package:ecommece_app/features/account/presentation/view/account_view.dart';
 import 'package:ecommece_app/features/cart/presentation/view/cart_view.dart';
 import 'package:ecommece_app/features/explore/presentation/view/explore_view.dart';
 import 'package:ecommece_app/features/home/presentation/view/home_view.dart';
@@ -13,11 +13,11 @@ class BottomBarCubit extends Cubit<BottomBarState> {
   static BottomBarCubit get(context) => BlocProvider.of(context);
 
   List<Widget> screensOfNavigatorButton = [
-    HomeView(),
-    ExploreView(),
-    CartView(),
-    OfferView(),
-    AccountView(),
+    const HomeView(),
+    const ExploreView(),
+    const CartView(),
+    const OfferView(),
+    const AccountView(),
   ];
   int currentIndex = 0;
 
