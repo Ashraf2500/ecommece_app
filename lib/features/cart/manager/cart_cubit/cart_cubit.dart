@@ -29,7 +29,7 @@ class CartCubit extends Cubit<CartState> {
       final response = await dio.post("https://student.valuxapps.com/api/carts",
           options: myOptions, data: {"product_id": id});
          
-      print(response.data);
+   
       final data = PostCartModel.fromJson(response.data);
       emit(CartCubitSuccess());
       if (data.message == "Deleted Successfully") {
@@ -40,7 +40,7 @@ class CartCubit extends Cubit<CartState> {
       }
       emit(CartCubitSuccess());
     } on DioError catch (e) {
-      print(e.error);
+     
       ServerFailure.fromResponse(e.response!.statusCode, e.response);
     }
   }

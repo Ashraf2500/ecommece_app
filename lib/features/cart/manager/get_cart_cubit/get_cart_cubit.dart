@@ -10,10 +10,14 @@ class GetCartCubit extends Cubit<GetCartState> {
     CartRepoImpl cartRepoImpl;
     static GetCartCubit get(context)=>BlocProvider.of(context);
 
+    
+
     Future<void> getDataForCart() async {
     emit(CartCubitLoadingforGetData());
   
     final cartdata = await cartRepoImpl.getcartData();
+
+    
 
     cartdata.fold((failure) {
       emit(CartCubitFailureforGetData(errMessages: failure.errMessages));

@@ -79,8 +79,8 @@ class Datum {
 class Product {
   int id;
   double price;
-  double oldPrice;
-  int discount;
+  late double oldPrice;
+  late int discount;
   String image;
   String name;
   String description;
@@ -95,14 +95,14 @@ class Product {
     required this.description,
   });
 
- factory Product.fromJson(Map<String, dynamic> json) => Product(
-      id: json["id"],
-      price: (json["price"] as num).toDouble(),
-      oldPrice: (json["old_price"] as num).toDouble(),
-      discount: json["discount"],
-      image: json["image"],
-      name: json["name"],
-      description: json["description"],
-    );
-
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
+        id: json["id"],
+        price: (json["price"] as num).toDouble(),
+        oldPrice: (json["old_price"] as num?)?.toDouble() ?? 0.0,
+        discount: (json["discount"] as int?) ?? 0,
+        image: json["image"],
+        name: json["name"],
+        description: json["description"],
+      );
 }
+

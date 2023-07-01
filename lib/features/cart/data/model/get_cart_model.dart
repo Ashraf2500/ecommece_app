@@ -29,13 +29,16 @@ class Data {
     required this.total,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-      cartItems: List<CartItem>.from(json["cart_items"].map((x) => CartItem.fromJson(x))),
-      subTotal: json["sub_total"]?.toInt() ?? 0,
-      total: json["total"]?.toInt() ?? 0,
-    );
-  }
+factory Data.fromJson(Map<String, dynamic> json) {
+  return Data(
+    cartItems: json["cart_items"] != null
+        ? List<CartItem>.from(json["cart_items"].map((x) => CartItem.fromJson(x)))
+        : [],
+    subTotal: json["sub_total"]?.toInt() ?? 0,
+    total: json["total"]?.toInt() ?? 0,
+  );
+}
+
 }
 
 class CartItem {

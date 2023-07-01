@@ -1,8 +1,7 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+
 import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/cart/manager/cart_cubit/cart_cubit.dart';
-import 'package:ecommece_app/features/cart/manager/cart_cubit/cart_state.dart';
 import 'package:ecommece_app/features/cart/presentation/view/widgets/cart_body.dart';
 import 'package:ecommece_app/features/home/presentation/manager/product_details/product_details_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_description_widget.dart';
@@ -21,29 +20,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-class ProductDetailsOne extends StatefulWidget {
+class ProductDetailsOne extends StatelessWidget {
   const ProductDetailsOne({super.key});
-
-  @override
-  State<ProductDetailsOne> createState() => _ProductDetailsOneState();
-}
-
-class _ProductDetailsOneState extends State<ProductDetailsOne> {
-  bool dataLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    CartCubit.get(context).stream.listen((event) {
-      if (event is CartCubitLoading) {
-        dataLoading == false;
-      }
-    });
-  }
-
+  
   @override
   Widget build(BuildContext context) {
-    print(dataLoading);
+   
     double heightScreen = MediaQuery.of(context).size.height;
     final double heightSlider = heightScreen * (40 / 100);
     return BlocConsumer<ProductDetailsCubit, ProductDetailsState>(
@@ -67,6 +49,7 @@ class _ProductDetailsOneState extends State<ProductDetailsOne> {
               state.productDetailsForFavoritesModel.data.description;
           var discount = state.productDetailsForFavoritesModel.data.discount;
           var dataId = state.productDetailsForFavoritesModel.data.id;
+          
           return Column(
             children: [
               CustomSlider(
@@ -84,13 +67,16 @@ class _ProductDetailsOneState extends State<ProductDetailsOne> {
                   children: [
                     CustomTitleProduct(
                       text: productName,
-                      onPressedOne: () {},
-                      icon: const Icon(Icons.favorite_border_outlined),
+                      onPressedOne: () {
+                        
+                      
+                      },
+                      
                     ),
                     const SizedBox(
                       height: 8,
                     ),
-                    SmoothRating(itemSize: 20),
+                    const SmoothRating(itemSize: 20),
                     const SizedBox(
                       height: 16,
                     ),
@@ -149,13 +135,13 @@ class _ProductDetailsOneState extends State<ProductDetailsOne> {
                     const SizedBox(
                       height: 12,
                     ),
-                    DescriptionText(
+                    const DescriptionText(
                       text: "Shown:",
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    DescriptionText(
+                    const DescriptionText(
                       text: "Style:",
                     ),
                     const SizedBox(
@@ -181,7 +167,7 @@ class _ProductDetailsOneState extends State<ProductDetailsOne> {
                     const SizedBox(
                       height: 8,
                     ),
-                    SmoothRating(
+                    const SmoothRating(
                         textOne: "4.5", textTwo: "(5 Review)", itemSize: 20),
                     const SizedBox(
                       height: 16,
@@ -196,28 +182,18 @@ class _ProductDetailsOneState extends State<ProductDetailsOne> {
                     const SizedBox(
                       height: 20,
                     ),
-                    CustomListOfInfoProduct(),
+                    const CustomListOfInfoProduct(),
                     const SizedBox(
                       height: 40,
                     ),
-                    ConditionalBuilder(
-                      condition: dataLoading,
-                      builder: (context) {
-                        return CustomButton(
+                    CustomButton(
                           text: "Add To Cart",
                           onPressed: () {
                             context.read<CartCubit>().postCart(dataId,context);
-                            Get.to(CartBody());
+                            Get.to(const CartBody());
                           },
-                        );
-                      },
-                      fallback: (context) {
-                        return const Center(
-                          child: CircularProgressIndicator(
-                              color: kBackGroundColor),
-                        );
-                      },
-                    ),
+                        ),
+                      
                     const SizedBox(
                       height: 25,
                     ),
@@ -236,4 +212,9 @@ class _ProductDetailsOneState extends State<ProductDetailsOne> {
       },
     );
   }
+
+
+
 }
+
+

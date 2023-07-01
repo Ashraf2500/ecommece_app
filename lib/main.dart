@@ -2,6 +2,7 @@ import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/features/cart/data/repo/cart_repo_impl.dart';
 import 'package:ecommece_app/features/cart/manager/cart_cubit/cart_cubit.dart';
 import 'package:ecommece_app/features/cart/manager/get_cart_cubit/get_cart_cubit.dart';
+import 'package:ecommece_app/features/cart/manager/update_cart/update_cart_cubit.dart';
 import 'package:ecommece_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid_view/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/category/category_cubit.dart';
@@ -19,6 +20,7 @@ import 'features/home/presentation/manager/fav/fav_cubit.dart';
 import 'features/home/presentation/manager/product_details_two/product_details_two_cubit.dart';
 
 void main() {
+
   runApp(const EcommerceApp());
 }
 
@@ -56,6 +58,8 @@ class EcommerceApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetCartCubit(CartRepoImpl()),
+        ), BlocProvider(
+          create: (context) => UpdateCartCubit(),
         ),
       ],
       child: GetMaterialApp(

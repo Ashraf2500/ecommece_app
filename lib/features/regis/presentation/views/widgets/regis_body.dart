@@ -20,7 +20,7 @@ class RegisBody extends StatefulWidget {
 }
 
 class _RegisBodyState extends State<RegisBody> {
-  bool obscureTextOne = true;
+  bool obscureTextOne = false;
   bool obscureTextTwo = true;
   TextEditingController textOne = TextEditingController();
   TextEditingController textTwo = TextEditingController();
@@ -98,8 +98,10 @@ class _RegisBodyState extends State<RegisBody> {
                               return null;
                             },
                             obscureText: false,
-                            hintText: "Your Email",
-                            prefixIcon: const Icon(Icons.email_outlined)),
+                            hintText: "Phone Number",
+                            prefixIcon: const Icon(Icons.local_phone_outlined),
+                            keyboardType: TextInputType.number,
+                            ),
                         const SizedBox(
                           height: 8,
                         ),
@@ -108,19 +110,10 @@ class _RegisBodyState extends State<RegisBody> {
                             validator: (text) {
                               return null;
                             },
-                            obscureText: obscureTextOne,
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  obscureTextOne = !obscureTextOne;
-                                });
-                              },
-                              icon: obscureTextOne
-                                  ? const Icon(Icons.visibility_off_outlined)
-                                  : const Icon(Icons.visibility_outlined),
-                            ),
-                            hintText: "Password",
-                            prefixIcon: const Icon(Icons.lock_outlined)),
+                            obscureText: false,
+                            
+                            hintText: "Your Email",
+                            prefixIcon: const Icon(Icons.email_outlined)),
                         const SizedBox(
                           height: 8,
                         ),

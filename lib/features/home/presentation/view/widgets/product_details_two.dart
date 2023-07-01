@@ -61,12 +61,11 @@ class ProductDetailsTwo extends StatelessWidget {
                     CustomTitleProduct(
                       text: productName,
                       onPressedOne: () {},
-                      icon: const Icon(Icons.favorite_border_outlined),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
-                    SmoothRating(itemSize: 20),
+                    const SmoothRating(itemSize: 20),
                     const SizedBox(
                       height: 16,
                     ),
@@ -125,13 +124,13 @@ class ProductDetailsTwo extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
-                    DescriptionText(
+                    const DescriptionText(
                       text: "Shown:",
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    DescriptionText(
+                    const DescriptionText(
                       text: "Style:",
                     ),
                     const SizedBox(
@@ -157,7 +156,7 @@ class ProductDetailsTwo extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    SmoothRating(
+                    const SmoothRating(
                         textOne: "4.5", textTwo: "(5 Review)", itemSize: 20),
                     const SizedBox(
                       height: 16,
@@ -172,7 +171,7 @@ class ProductDetailsTwo extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    CustomListOfInfoProduct(),
+                    const CustomListOfInfoProduct(),
                     const SizedBox(
                       height: 40,
                     ),
