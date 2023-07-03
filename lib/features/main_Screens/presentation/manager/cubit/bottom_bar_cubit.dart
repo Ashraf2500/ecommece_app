@@ -15,7 +15,7 @@ class BottomBarCubit extends Cubit<BottomBarState> {
   List<Widget> screensOfNavigatorButton = [
     const HomeView(),
     const ExploreView(),
-    const CartView(),
+    const CartView(chech: false),
     const OfferView(),
     const AccountView(),
   ];

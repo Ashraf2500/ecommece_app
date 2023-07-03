@@ -1,13 +1,11 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/shimmar/custom_category_loading.dart';
 import 'package:ecommece_app/features/home/presentation/manager/category/category_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/more_category/more_category_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_one_category.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/more_category_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-
-
+import 'package:go_router/go_router.dart';
 
 class CustomListOfCategory extends StatelessWidget {
   const CustomListOfCategory({Key? key}) : super(key: key);
@@ -32,17 +30,16 @@ class CustomListOfCategory extends StatelessWidget {
               itemBuilder: (context, index) {
                 var dataImage = dataLenght[index].image;
                 var dataName = dataLenght[index].name;
-         
+
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: InkWell(
-                    onTap: (){
-                      
-                      MoreCategoryCubit.get(context).getData(category: dataName);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MoreCategotyBody(),));
+                    onTap: () {
+                      MoreCategoryCubit.get(context)
+                          .getData(category: dataName);
+                      GoRouter.of(context).push(AppRouer.KMoreCategotyBody);
                     },
                     child: CustomOneCategory(
-                     
                       title: dataName,
                       image: dataImage,
                       length: dataLenght.length,

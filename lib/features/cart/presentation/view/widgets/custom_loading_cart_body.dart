@@ -1,3 +1,4 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/shimmar/custom_cart_loading.dart';
 import 'package:ecommece_app/features/cart/manager/update_cart/update_cart_cubit.dart';
@@ -7,6 +8,7 @@ import 'package:ecommece_app/features/home/presentation/view/widgets/custom_prod
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_text_form_faild_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomLoadingBody extends StatelessWidget {
   const CustomLoadingBody({super.key});
@@ -18,7 +20,7 @@ class CustomLoadingBody extends StatelessWidget {
                     ProductAppBar(
                       icon: const Icon(Icons.arrow_back_ios_new_rounded),
                       onPressed: () {
-                        Navigator.pop(context);
+                       GoRouter.of(context).pushReplacement(AppRouer.KBottomBarView);
                       },
                       text: "Your Cart",
                     ),

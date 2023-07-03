@@ -1,15 +1,15 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
-import 'package:ecommece_app/features/login/presentation/view/login_view.dart';
-import 'package:ecommece_app/features/login/presentation/view/widgets/login_body.dart';
 import 'package:ecommece_app/features/regis/presentation/manager/cubit/register_cubit.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Text_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_title_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'custom_text_form_faild_widget.dart';
 
 class RegisBody extends StatefulWidget {
@@ -35,24 +35,23 @@ class _RegisBodyState extends State<RegisBody> {
         listener: (context, state) {
           if (state is RegisterSuccess) {
             if (state.regisModel.status) {
-              Get.snackbar(
-                "Message",
-                "",
-                backgroundColor: Colors.black,
-                messageText: Text(
-                  state.regisModel.message,
-                  style: const TextStyle(color: Colors.black),
+              showTopSnackBar(
+                Overlay.of(context),
+                CustomSnackBar.success(
+                  message: state.regisModel.message,
+                  textStyle: const TextStyle(color: Colors.white),
                 ),
               );
-              Get.to(const LoginView());
+
+               GoRouter.of(context).push(AppRouer.KLoginView);
             } else {
-              Get.snackbar("Message", "",
-                  backgroundColor: const Color(0xff808080),
-                  messageText: Text(
-                    state.regisModel.message,
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                  isDismissible: true);
+              showTopSnackBar(
+                Overlay.of(context),
+                CustomSnackBar.success(
+                  message: state.regisModel.message,
+                  textStyle: const TextStyle(color: Colors.white),
+                ),
+              );
             }
           }
         },
@@ -93,15 +92,15 @@ class _RegisBodyState extends State<RegisBody> {
                           height: 8,
                         ),
                         CustomTextFormFaild(
-                            textEditingController: textTwo,
-                            validator: (text) {
-                              return null;
-                            },
-                            obscureText: false,
-                            hintText: "Phone Number",
-                            prefixIcon: const Icon(Icons.local_phone_outlined),
-                            keyboardType: TextInputType.number,
-                            ),
+                          textEditingController: textTwo,
+                          validator: (text) {
+                            return null;
+                          },
+                          obscureText: false,
+                          hintText: "Phone Number",
+                          prefixIcon: const Icon(Icons.local_phone_outlined),
+                          keyboardType: TextInputType.number,
+                        ),
                         const SizedBox(
                           height: 8,
                         ),
@@ -111,7 +110,6 @@ class _RegisBodyState extends State<RegisBody> {
                               return null;
                             },
                             obscureText: false,
-                            
                             hintText: "Your Email",
                             prefixIcon: const Icon(Icons.email_outlined)),
                         const SizedBox(
@@ -121,8 +119,6 @@ class _RegisBodyState extends State<RegisBody> {
                           textEditingController: textFour,
                           validator: (text) {
                             return null;
-                          
-                            
                           },
                           obscureText: obscureTextTwo,
                           suffixIcon: IconButton(
@@ -152,7 +148,6 @@ class _RegisBodyState extends State<RegisBody> {
                                       textTwo: textTwo.text,
                                       textThere: textThere.text,
                                       textFour: textFour.text);
-                                      
                             },
                           ),
                           fallback: (context) => const Center(
@@ -165,11 +160,7 @@ class _RegisBodyState extends State<RegisBody> {
                         CustomText(
                           text: "have a account?",
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const LoginBody();
-                              },
-                            ));
+                            GoRouter.of(context).push(AppRouer.KLoginView);
                           },
                           textButton: "Sign In",
                         )

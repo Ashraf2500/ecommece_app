@@ -27,6 +27,7 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
   Future<void> updateCart(
       int id, context, int incrementValue, int quantity) async {
     try {
+          print("1");
       String token = await CacheHelber.getData(key: "token");
       emit(UpdateCartLoading());
       Dio dio = Dio(

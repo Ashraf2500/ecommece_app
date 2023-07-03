@@ -3,10 +3,12 @@ import 'package:ecommece_app/features/cart/presentation/view/widgets/cart_body.d
 import 'package:flutter/material.dart';
 
 class CartView extends StatelessWidget {
-  const CartView({Key? key}) : super(key: key);
-
+  const CartView({Key? key,  this.chech}) : super(key: key);
+  final bool? chech;
   @override
   Widget build(BuildContext context) {
-    return CartBody();
+    return  CartBody(
+      chech: chech!,
+    );
   }
 }

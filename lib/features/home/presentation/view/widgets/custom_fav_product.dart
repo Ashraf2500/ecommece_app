@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
 import 'package:ecommece_app/core/utils/shimmar/custom_grid_view_loading.dart';
@@ -6,9 +7,9 @@ import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid_view/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/product_details/product_details_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_smooth_Rating_widget.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 
 
@@ -59,11 +60,7 @@ class CustomFavProduct extends StatelessWidget {
         return InkWell(
           onTap: () {
             ProductDetailsCubit.get(context).getproductDetailsForFav(id: id);
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) {
-                return const ProductBody();
-              },
-            ));
+          GoRouter.of(context).push(AppRouer.KProductBody);
           },
           child: Container(
               width: 141,

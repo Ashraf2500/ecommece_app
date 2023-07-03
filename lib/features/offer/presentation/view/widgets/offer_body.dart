@@ -1,7 +1,6 @@
-import 'package:ecommece_app/features/home/presentation/view/home_view.dart';
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
+import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/constans.dart';
 import '../../../../home/presentation/view/widgets/custom_grid_view_products_widget.dart';
 import '../../../../home/presentation/view/widgets/custom_product_appbar_widget.dart';
@@ -22,7 +21,7 @@ class OfferBody extends StatelessWidget {
               ProductAppBar(
                 icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
-                  Get.to(() => const HomeView());
+                  GoRouter.of(context).push(AppRouer.KBottomBarView);
                 },
                 text: "Super Flash Sale",
                 iconTwo: const Icon(Icons.search,color: kDescriptionText,),

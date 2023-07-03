@@ -1,19 +1,19 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
 import 'package:ecommece_app/core/utils/shared/cache_helber.dart';
 import 'package:ecommece_app/features/login/presentation/manager/login/login_cubit.dart';
 import 'package:ecommece_app/features/login/presentation/view/widgets/custom_divider_widget.dart';
 import 'package:ecommece_app/features/login/presentation/view/widgets/custom_social_buttom.dart';
-import 'package:ecommece_app/features/main_Screens/presentation/view/bottom_bar_view.dart';
-import 'package:ecommece_app/features/regis/presentation/views/regis_view.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Text_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_text_form_faild_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -42,24 +42,21 @@ class _LoginBodyState extends State<LoginBody> {
                       if (state.loginModel.status) {
                         CacheHelber.saveData(
                             key: "token", value: state.loginModel.data!.token);
-                        Get.snackbar(
-                          "Message",
-                          "",
-                          backgroundColor: Colors.grey,
-                          messageText: Text(
-                            state.loginModel.message,
-                            style: const TextStyle(color: Colors.white),
+                        showTopSnackBar(
+                          Overlay.of(context),
+                          CustomSnackBar.success(
+                            message: state.loginModel.message,
+                            textStyle: const TextStyle(color: Colors.white),
                           ),
                         );
-                        Get.to(const BottomBarView());
+
+                        GoRouter.of(context).pushReplacement(AppRouer.KBottomBarView);
                       } else {
-                        Get.snackbar(
-                          "Message",
-                          "",
-                          backgroundColor: Colors.grey,
-                          messageText: Text(
-                            state.loginModel.message,
-                            style: const TextStyle(color: Colors.white),
+                        showTopSnackBar(
+                          Overlay.of(context),
+                          CustomSnackBar.success(
+                            message: state.loginModel.message,
+                            textStyle: const TextStyle(color: Colors.white),
                           ),
                         );
                       }
@@ -162,11 +159,7 @@ class _LoginBodyState extends State<LoginBody> {
                         CustomText(
                           text: "Don’t have a account?",
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const RegisView();
-                              },
-                            ));
+                           GoRouter.of(context).push(AppRouer.KRegisView);
                           },
                           textButton: "Register",
                         ),

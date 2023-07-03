@@ -17,10 +17,9 @@ var quantity = 0;
 var subTotal = 0.0;
 var total = 0.0;
 
-
 class CartBody extends StatefulWidget {
-  const CartBody({super.key});
-
+  const CartBody({super.key, required this.chech});
+  final bool chech;
   @override
   State<CartBody> createState() => _CartBodyState();
 }
@@ -30,7 +29,7 @@ class _CartBodyState extends State<CartBody> {
   void initState() {
     super.initState();
     context.read<GetCartCubit>().getDataForCart();
-
+    print(widget.chech);
     // تهيئة الحقل بقيمة افتراضية
   }
 
@@ -52,76 +51,84 @@ class _CartBodyState extends State<CartBody> {
                   var quantity = state.getCartModel.data.cartItems.length;
                   var subTotal = state.getCartModel.data.subTotal.toDouble();
                   var total = state.getCartModel.data.total.toDouble();
-               
 
                   return SingleChildScrollView(
                     child: Column(
                       children: [
-                        ProductAppBar(
-                          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          text: "Your Cart",
-                        ),
+                        widget.chech
+                            ? ProductAppBar(
+                                icon: const Icon(
+                                    Icons.arrow_back_ios_new_rounded),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                text: "Your Cart",
+                              )
+                            : const ProductAppBar(
+                                text: "Your Cart",
+                              ),
                         const SizedBox(height: 5),
                         const Divider(
                           thickness: 0.6,
                           color: kDescriptionText,
                         ),
                         const SizedBox(height: 10),
-                        quantity == 0 ?  Center(child: Column(
-                          children: [
-                            Lottie.asset("assets/animations/cart.json"),
-                            const Text("Your cart is empty",
-                            style: Style.textStyle20,
-                            ),
-                            const SizedBox(height: 5,)
-                          ],
-                        )): 
-                        SizedBox(
-                          height: 300,
-                     
-                          child: ListView.builder(
-                             
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: quantity,
-                            itemBuilder: (context, index) {
-                              var cartItem =
-                                  state.getCartModel.data.cartItems[index];
-                              var product = cartItem.product;
-                              var quantitys = cartItem.quantity;
-                              var price = product.price;
-                              var name = product.name;
-                              var image = product.image;
-                              var total = state.getCartModel.data.total;
-                              var inFavorites = cartItem.product.inFavorites;
-                              var discount = product.discount;
-                              var oldPrice = product.oldPrice;
-                              var dataId = cartItem.product.id;
-                              var cartId = cartItem.id;
-                                          
-                              return Padding(
-                                padding: const EdgeInsets.only( left: 16,right: 16,top: 16),
-                                child: CustomOneProductCart(
-                                  inFavorites: inFavorites,
-                                  quantitylenght: quantity,
-                                  idCart: cartId,
-                                  idproduct: dataId,
-                                  discount: discount,
-                                  oldPrice: oldPrice,
-                                  subTotal: subTotal,
-                                  image: image,
-                                  name: name,
-                                  price: price,
-                                  quantity: quantitys,
-                                  total: total,
+                        quantity == 0
+                            ? Center(
+                                child: Column(
+                                children: [
+                                  Lottie.asset("assets/animations/cart.json"),
+                                  const Text(
+                                    "Your cart is empty",
+                                    style: Style.textStyle20,
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  )
+                                ],
+                              ))
+                            : SizedBox(
+                                height: 300,
+                                child: ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: quantity,
+                                  itemBuilder: (context, index) {
+                                    var cartItem = state
+                                        .getCartModel.data.cartItems[index];
+                                    var product = cartItem.product;
+                                    var quantitys = cartItem.quantity;
+                                    var price = product.price;
+                                    var name = product.name;
+                                    var image = product.image;
+                                    var total = state.getCartModel.data.total;
+                                    var inFavorites =
+                                        cartItem.product.inFavorites;
+                                    var discount = product.discount;
+                                    var oldPrice = product.oldPrice;
+                                    var dataId = cartItem.product.id;
+                                    var cartId = cartItem.id;
+
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 16, right: 16, top: 16),
+                                      child: CustomOneProductCart(
+                                        inFavorites: inFavorites,
+                                        quantitylenght: quantity,
+                                        idCart: cartId,
+                                        idproduct: dataId,
+                                        discount: discount,
+                                        oldPrice: oldPrice,
+                                        subTotal: subTotal,
+                                        image: image,
+                                        name: name,
+                                        price: price,
+                                        quantity: quantitys,
+                                        total: total,
+                                      ),
+                                    );
+                                  },
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                        
+                              ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
@@ -275,8 +282,9 @@ class _CartBodyState extends State<CartBody> {
                       ],
                     ),
                   );
-                }return const CustomLoadingBody();
-            },
+                }
+                return const CustomLoadingBody();
+              },
             );
           },
         ),

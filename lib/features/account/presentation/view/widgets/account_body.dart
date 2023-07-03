@@ -1,10 +1,10 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/account/presentation/view/widgets/custom_card_bottom.dart';
-import 'package:ecommece_app/features/account/presentation/view/widgets/prodile_body.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class AccountBody extends StatelessWidget {
   const AccountBody({super.key});
@@ -42,7 +42,7 @@ class AccountBody extends StatelessWidget {
             children: [
               CustomButtonCard(
                 onPressed: () {
-                  Get.to(const ProfileBody());
+                 GoRouter.of(context).push(AppRouer.KProfileBody);
                 },
                 text: "Profile",
                 image: Images.user,

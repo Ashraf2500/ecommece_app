@@ -1,18 +1,17 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
-import 'package:ecommece_app/features/explore/presentation/view/explore_view.dart';
 import 'package:ecommece_app/features/home/presentation/manager/more_category/more_category_cubit.dart';
-import 'package:ecommece_app/features/home/presentation/view/home_view.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_product_appbar_widget.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_body.dart';
+import 'package:ecommece_app/features/main_Screens/presentation/manager/cubit/bottom_bar_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-
+import 'package:go_router/go_router.dart';
 import '../../manager/product_details_two/product_details_two_cubit.dart';
 
 class MoreCategotyBody extends StatelessWidget {
-  const MoreCategotyBody({super.key,});
+  const MoreCategotyBody({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +35,21 @@ class MoreCategotyBody extends StatelessWidget {
                         ProductAppBar(
                           icon: const Icon(Icons.arrow_back_ios_new_rounded),
                           onPressed: () {
-                            Get.to(() => const HomeView());
+                            GoRouter.of(context).pop();
                           },
                           text: "More Category",
                           iconTwo: const Icon(
                             Icons.search,
                             color: kDescriptionText,
                           ),
-                          onPressedTwo: (){
-                             Get.to(const ExploreView());
+                          onPressedTwo: () {
+                            print("ss");
+                           BottomBarCubit.get(context).navScreen(1);
+                           GoRouter.of(context).pushReplacement(AppRouer.KBottomBarView);
                           },
                         ),
                         SizedBox(
-                          height:MediaQuery.of(context).size.height,
+                          height: MediaQuery.of(context).size.height,
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
@@ -57,20 +58,28 @@ class MoreCategotyBody extends StatelessWidget {
                             itemBuilder: (context, index) {
                               String dataImage =
                                   state.moreCategoryModel[index].images[index];
-                                 
+
                               String dataName =
                                   state.moreCategoryModel[index].title;
-                                  
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 25),
-                                child: InkWell(
-                                  onTap: () {
-                                    ProductDetailsTwoCubit.get(context).getProductDetailsTwo(id: state.moreCategoryModel[index].id);
-                                    ProductDetailsTwoCubit.get(context).dataishers(true);
 
-                                     Navigator.push(context, MaterialPageRoute(builder: (context) => ProductBody(name: dataName),));
-                                  },
-                                  child: categoryListView(dataImage, dataName)),
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 25),
+                                child: InkWell(
+                                    onTap: () {
+                                      ProductDetailsTwoCubit.get(context)
+                                          .getProductDetailsTwo(
+                                              id: state
+                                                  .moreCategoryModel[index].id);
+                                      ProductDetailsTwoCubit.get(context)
+                                          .dataishers(true);
+
+                                      GoRouter.of(context).push(
+                                          AppRouer.KProductBody,
+                                          extra: dataName);
+                                    },
+                                    child:
+                                        categoryListView(dataImage, dataName)),
                               );
                             },
                           ),
@@ -106,9 +115,10 @@ class MoreCategotyBody extends StatelessWidget {
             ),
             SizedBox(
               width: 190,
-              child: Text(dataName,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+              child: Text(
+                dataName,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             const Spacer(),

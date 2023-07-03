@@ -1,12 +1,9 @@
 import 'package:ecommece_app/core/utils/constans.dart';
-import 'package:ecommece_app/features/explore/presentation/view/explore_view.dart';
 import 'package:ecommece_app/features/home/presentation/manager/product_details/product_details_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_one.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_two.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import '../../manager/product_details_two/product_details_two_cubit.dart';
 import 'custom_product_appbar_widget.dart';
 
@@ -53,7 +50,7 @@ class _ProductBodyState extends State<ProductBody> {
                     text: widget.name!,
                     iconOne: const Icon(Icons.search_rounded),
                     onPressedOne: () {
-                       Get.to(const ExploreView());
+                      //  Get.to(const ExploreView());
                     },
                     iconTwo: Image.asset("assets/images/More.png"),
                     onPressedTwo: () {

@@ -1,8 +1,8 @@
 
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/cart/manager/cart_cubit/cart_cubit.dart';
-import 'package:ecommece_app/features/cart/presentation/view/widgets/cart_body.dart';
 import 'package:ecommece_app/features/home/presentation/manager/product_details/product_details_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_description_widget.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_list_of_info_product.dart';
@@ -13,16 +13,15 @@ import 'package:ecommece_app/features/home/presentation/view/widgets/custom_revi
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_slide_widget.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_smooth_Rating_widget.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_title_product_widget.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/review_product_body.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
+
 
 class ProductDetailsOne extends StatelessWidget {
   const ProductDetailsOne({super.key});
-  
+  final check =true;
   @override
   Widget build(BuildContext context) {
    
@@ -157,11 +156,7 @@ class ProductDetailsOne extends StatelessWidget {
                       textOne: "Review Product",
                       textTwo: "See More",
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return ReviewProductBody();
-                          },
-                        ));
+                     GoRouter.of(context).push(AppRouer.KReviewProductBody);
                       },
                     ),
                     const SizedBox(
@@ -190,7 +185,7 @@ class ProductDetailsOne extends StatelessWidget {
                           text: "Add To Cart",
                           onPressed: () {
                             context.read<CartCubit>().postCart(dataId,context);
-                            Get.to(const CartBody());
+                          GoRouter.of(context).push(AppRouer.KCartView,extra: check);
                           },
                         ),
                       

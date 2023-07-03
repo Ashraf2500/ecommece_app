@@ -1,15 +1,17 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/home/presentation/manager/search/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../home/presentation/view/widgets/custom_search_appbar_widget.dart';
 import '../../../../regis/presentation/views/widgets/custom_text_form_faild_widget.dart';
 
 class ExploreBody extends StatelessWidget {
-  ExploreBody();
+  ExploreBody({super.key});
   final TextEditingController search = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey();
   @override
@@ -18,12 +20,12 @@ class ExploreBody extends StatelessWidget {
     final widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           width: widthScreen,
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Form(
                   key: _key,
                   child: CustomSearchAppBar(
@@ -38,7 +40,7 @@ class ExploreBody extends StatelessWidget {
                       textEditingController: search,
                       hintText: "Search Product",
                       obscureText: false,
-                      prefixIcon: Icon(Icons.search),
+                      prefixIcon: const Icon(Icons.search),
                       validator: (text) {
                         if (text!.isEmpty) {
                           return "enter TextTo search";
@@ -47,13 +49,15 @@ class ExploreBody extends StatelessWidget {
                       },
                     ),
                     iconOne: IconButton(
-                      icon: Icon(Icons.favorite_border_outlined),
+                      icon: const Icon(Icons.favorite_border_outlined),
                       color: kDescriptionText,
                       iconSize: 25,
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(context).push(AppRouer.KFavBody);
+                      },
                     ),
                     iconTwo: IconButton(
-                      icon: Icon(Icons.notifications_none_outlined),
+                      icon: const Icon(Icons.notifications_none_outlined),
                       iconSize: 25,
                       color: kDescriptionText,
                       onPressed: () {},
@@ -66,14 +70,14 @@ class ExploreBody extends StatelessWidget {
                     if (state is SearchSuccess) {
                       return ListView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         scrollDirection: Axis.vertical,
                         itemCount: state.searchModel.data.data.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),
-                            child: Container(
+                            child: SizedBox(
                               height: 120,
                               child: Row(
                                 children: [
@@ -90,7 +94,7 @@ class ExploreBody extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
                                   Expanded(
@@ -105,7 +109,7 @@ class ExploreBody extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                           style: Style.textStyle11,
                                         ),
-                                        Spacer(),
+                                        const Spacer(),
                                         Row(
                                           children: [
                                             Text(
@@ -133,7 +137,7 @@ class ExploreBody extends StatelessWidget {
                       return SizedBox(
                           width: widthScreen,
                           height: heightScreen,
-                          child: Center(child: CircularProgressIndicator()));
+                          child: const Center(child: CircularProgressIndicator()));
                     }
                     return SizedBox(
                         width: widthScreen,

@@ -1,10 +1,10 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid_view/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/product_details_two/product_details_two_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_info_one_product.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/product_details_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/shimmar/custom_grid_view_loading.dart';
 import '../../manager/product_details/product_details_cubit.dart';
@@ -15,7 +15,6 @@ class CustomGridViewProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
-
 
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
@@ -49,15 +48,20 @@ class CustomGridViewProducts extends StatelessWidget {
                 var data = state.homeModel!.data.products[index].image;
                 var dataName = state.homeModel!.data.products[index].name;
                 var dataPrice = state.homeModel!.data.products[index].price;
-                var dataOldPrice = state.homeModel!.data.products[index].oldPrice;
+                var dataOldPrice =
+                    state.homeModel!.data.products[index].oldPrice;
                 var dataOffer = state.homeModel!.data.products[index].discount;
                 int dataId = state.homeModel!.data.products[index].id;
                 return InkWell(
-                  onTap: (){
-                     ProductDetailsCubit.get(context).getproductDetailsForFav(id: dataId);
-                     ProductDetailsTwoCubit.get(context).dataishers(false);
-                 Get.to(ProductBody(name: dataName,));
-                  },
+                  onTap: () {
+                    ProductDetailsCubit.get(context)
+                        .getproductDetailsForFav(id: dataId);
+                    ProductDetailsTwoCubit.get(context).dataishers(false);
+
+                   // TODO: chech is
+                    GoRouter.of(context)
+                        .push(AppRouer.KProductBody, extra: dataName);
+                  }, 
                   child: CustomInfoOneProduct(
                     id: dataId,
                     image: data,
@@ -67,9 +71,7 @@ class CustomGridViewProducts extends StatelessWidget {
                     sale: dataOffer,
                     icon: const Icon(Icons.favorite_rounded, size: 20),
                     onPressed: () {
-                      context.read<HomeCubit>().sendFavorite(dataId,context);
-                                    
-
+                      context.read<HomeCubit>().sendFavorite(dataId, context);
                     },
                   ),
                 );

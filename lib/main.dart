@@ -1,3 +1,4 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/features/cart/data/repo/cart_repo_impl.dart';
 import 'package:ecommece_app/features/cart/manager/cart_cubit/cart_cubit.dart';
@@ -11,16 +12,13 @@ import 'package:ecommece_app/features/home/presentation/manager/product_details/
 import 'package:ecommece_app/features/home/presentation/manager/sale/sale_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/manager/search/search_cubit.dart';
 import 'package:ecommece_app/features/main_Screens/presentation/manager/cubit/bottom_bar_cubit.dart';
-import 'package:ecommece_app/features/splach/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'features/home/presentation/manager/fav/fav_cubit.dart';
 import 'features/home/presentation/manager/product_details_two/product_details_two_cubit.dart';
 
 void main() {
-
   runApp(const EcommerceApp());
 }
 
@@ -53,21 +51,20 @@ class EcommerceApp extends StatelessWidget {
           create: (context) =>
               ProductDetailsTwoCubit(HomeRepoImpl())..getProductDetailsTwo(),
         ),
-        BlocProvider(
-          create: (context) => CartCubit()
-        ),
+        BlocProvider(create: (context) => CartCubit()),
         BlocProvider(
           create: (context) => GetCartCubit(CartRepoImpl()),
-        ), BlocProvider(
+        ),
+        BlocProvider(
           create: (context) => UpdateCartCubit(),
         ),
       ],
-      child: GetMaterialApp(
+      child: MaterialApp.router(
+        routerConfig: AppRouer.router,
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
             scaffoldBackgroundColor: kBackGroundColor,
             textTheme: GoogleFonts.poppinsTextTheme()),
-        home: const SplashView(),
       ),
     );
   }

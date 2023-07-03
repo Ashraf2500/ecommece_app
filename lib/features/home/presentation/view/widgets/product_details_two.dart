@@ -1,3 +1,4 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/core/utils/style.dart';
 import 'package:ecommece_app/features/home/presentation/manager/product_details_two/product_details_two_cubit.dart';
@@ -10,13 +11,10 @@ import 'package:ecommece_app/features/home/presentation/view/widgets/custom_revi
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_slide_widget.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_smooth_Rating_widget.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_title_product_widget.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/review_product_body.dart';
-import 'package:ecommece_app/features/main_Screens/presentation/view/widgets/bottom_bar_body.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailsTwo extends StatelessWidget {
   const ProductDetailsTwo({super.key});
@@ -146,11 +144,7 @@ class ProductDetailsTwo extends StatelessWidget {
                       textOne: "Review Product",
                       textTwo: "See More",
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return ReviewProductBody();
-                          },
-                        ));
+                        GoRouter.of(context).push(AppRouer.KReviewProductBody);
                       },
                     ),
                     const SizedBox(
@@ -178,9 +172,9 @@ class ProductDetailsTwo extends StatelessWidget {
                     CustomButton(
                       text: "Add To Cart",
                       onPressed: () {
-                        Get.to(const BottomBarScreens(
-                          index: 2,
-                        ));
+                        // Get.to(const BottomBarScreens(
+                        //   index: 2,
+                        // ));
                       },
                     ),
                     const SizedBox(
@@ -192,11 +186,11 @@ class ProductDetailsTwo extends StatelessWidget {
             ],
           );
         }
-        return Column(
+        return const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-                child: Container(
+                child: CircularProgressIndicator(
               color: Colors.red,
             )),
           ],
