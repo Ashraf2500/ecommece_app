@@ -27,7 +27,7 @@ final double dataSale;
     return CachedNetworkImage(
       imageUrl: image!,
       placeholder: (context, url) {
-        return Customflashloading();
+        return const Customflashloading();
       },
       imageBuilder: (context, imageProvider) {
         return Container(
@@ -51,7 +51,9 @@ final double dataSale;
                       ),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    
+                  },
                 ),
                 const SizedBox(
                   height: 8,

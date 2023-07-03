@@ -1,15 +1,14 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/shimmar/custom_carosil_loading.dart';
 import 'package:ecommece_app/core/utils/style.dart';
-import 'package:ecommece_app/features/explore/presentation/view/explore_view.dart';
 import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid_view/home_cubit.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_list_of_category.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_list_of_info_product.dart';
 import 'package:ecommece_app/features/home/presentation/view/widgets/custom_recommended_products.dart';
-import 'package:ecommece_app/features/home/presentation/view/widgets/fav_body.dart';
-import 'package:ecommece_app/features/offer/presentation/view/offer_view.dart';
+import 'package:ecommece_app/features/main_Screens/presentation/manager/cubit/bottom_bar_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/constans.dart';
 import 'custom_grid_view_products_widget.dart';
 import 'custom_main_title_row_widget.dart';
@@ -40,7 +39,7 @@ class HomeBody extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: (){
-                        Get.to(const ExploreView());
+                       BottomBarCubit.get(context).navScreen(1);
                       },
                       child: Container(
                         height: 50,
@@ -73,7 +72,7 @@ class HomeBody extends StatelessWidget {
                       color: kDescriptionText,
                       iconSize: 25,
                       onPressed: () {
-                        Get.to(const FavBody());
+                      GoRouter.of(context).push(AppRouer.KFavBody);
                       },
                     ),
                     IconButton(
@@ -138,29 +137,13 @@ class HomeBody extends StatelessWidget {
                     textOne: "Flash Sale",
                     textTwo: "See More",
                     onPressed: () {
-                      Get.to(() => const OfferView());
+                     BottomBarCubit.get(context).navScreen(3);
                     },
                   ),
                 ),
-                CustomListOfInfoProduct(),
+                const CustomListOfInfoProduct(),
         
-                //---------Mega  Sale --------------------------------------------
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: CustomMainTitleRow(
-                    textOne: "Mega Sale",
-                    textTwo: "See More",
-                    onPressed: () {},
-                  ),
-                ),
-                // CustomListOfInfoProduct(
-                //   image: "assets/images/product2.png",
-                //   title: "FS - Nike Air React...",
-                //   newPrice: 299.43,
-                //   oldPrice: 534.33,
-                //   sale: 24,
-                // ),
+          
         
                 //---------Recommended Product -----------------------------------
                 const SizedBox(height: 30),
