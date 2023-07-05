@@ -1,18 +1,21 @@
+import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_checkout/flutter_paypal_checkout.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'package:go_router/go_router.dart';
+import 'package:snackbar/snackbar.dart';
 
 class CheckoutPage extends StatelessWidget {
-  const CheckoutPage(
-      {super.key,
-      required this.total,
-      required this.subtotal,
-      required this.discount});
+  const CheckoutPage({
+    super.key,
+    required this.total,
+    required this.subtotal,
+    required this.discount,
+  });
   final double total;
   final double subtotal;
   final double discount;
+
   @override
   Widget build(BuildContext context) {
     return CustomButton(
@@ -59,32 +62,17 @@ class CheckoutPage extends StatelessWidget {
             ],
             note: "Contact us for any questions on your order.",
             onSuccess: (Map params) async {
-              showTopSnackBar(
-                Overlay.of(context),
-                const CustomSnackBar.success(
-                  message: "operation accomplished successfully",
-                  textStyle: TextStyle(color: Colors.white),
-                ),
-              );
+              print("xxxxxxxxxxxxxxxxxxxxxxxxxxxyz");
+          GoRouter.of(context).pushReplacement(AppRouer.KPaymentSuccess);
             },
             onError: (error) {
-              showTopSnackBar(
-                Overlay.of(context),
-                CustomSnackBar.success(
-                  message: "$error",
-                  textStyle: const TextStyle(color: Colors.white),
-                ),
-              );
+               print("xxxxxxxxxxxxxxxxxxxxxxxxxxx");
+              snack(error.toString());
+
               Navigator.pop(context);
             },
             onCancel: () {
-              showTopSnackBar(
-                Overlay.of(context),
-                const CustomSnackBar.success(
-                  message: "The operation has been cancelled",
-                  textStyle: TextStyle(color: Colors.white),
-                ),
-              );
+              snack("The operation has been cancelled");
             },
           ),
         ));

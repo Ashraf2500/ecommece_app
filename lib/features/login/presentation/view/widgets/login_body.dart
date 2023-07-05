@@ -11,9 +11,8 @@ import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_te
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -42,23 +41,15 @@ class _LoginBodyState extends State<LoginBody> {
                       if (state.loginModel.status) {
                         CacheHelber.saveData(
                             key: "token", value: state.loginModel.data!.token);
-                        showTopSnackBar(
-                          Overlay.of(context),
-                          CustomSnackBar.success(
-                            message: state.loginModel.message,
-                            textStyle: const TextStyle(color: Colors.white),
-                          ),
-                        );
+                    Fluttertoast.showToast(msg: state.loginModel.message,textColor: Colors.white);
+                       
+                        
 
                         GoRouter.of(context).pushReplacement(AppRouer.KBottomBarView);
                       } else {
-                        showTopSnackBar(
-                          Overlay.of(context),
-                          CustomSnackBar.success(
-                            message: state.loginModel.message,
-                            textStyle: const TextStyle(color: Colors.white),
-                          ),
-                        );
+                        Fluttertoast.showToast(msg: state.loginModel.message,textColor: Colors.white);
+                         
+                        
                       }
                     }
                   },

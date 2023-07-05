@@ -17,6 +17,9 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
   double oldPrices = 0.0;
   double discounts = 0.0;
   int quantitys = 1;
+
+ 
+
   void updateDateToGetIndex(subTotal, oldPrice, discount, quantitylenght) {
     subTotals = subTotal;
     oldPrices = oldPrice;
@@ -27,7 +30,6 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
   Future<void> updateCart(
       int id, context, int incrementValue, int quantity) async {
     try {
-          print("1");
       String token = await CacheHelber.getData(key: "token");
       emit(UpdateCartLoading());
       Dio dio = Dio(

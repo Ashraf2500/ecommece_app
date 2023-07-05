@@ -189,6 +189,7 @@ class CustomLoadingBody extends StatelessWidget {
                         discount: UpdateCartCubit.get(context).discounts,
                         subtotal: subTotal,
                         total: total,
+                      
                       ),
                     ),
                     const SizedBox(height:6),

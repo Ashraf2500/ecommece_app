@@ -10,6 +10,7 @@ import 'package:ecommece_app/features/regis/presentation/views/regis_view.dart';
 import 'package:ecommece_app/features/splach/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/account/presentation/view/widgets/prodile_body.dart';
+import '../../features/cart/presentation/view/widgets/payment_success.dart';
 import '../../features/home/presentation/view/widgets/product_details_body.dart';
 import '../../features/home/presentation/view/widgets/review_product_body.dart';
 import '../../features/main_Screens/presentation/view/bottom_bar_view.dart';
@@ -29,6 +30,9 @@ abstract class AppRouer {
   static const String KFavBody = "/FavBody";
   static const String KMoreCategotyBody = "/MoreCategotyBody";
   static const String KReviewProductBody = "/ReviewProductBody";
+    static const String KPaymentSuccess = "/PaymentSuccess";
+
+
 
   static final router = GoRouter(
     routes: [
@@ -45,12 +49,13 @@ abstract class AppRouer {
         builder: (context, state) => const AccountView(),
       ),
       GoRoute(
-        path: KCartView,
-        builder: (context, state){
-          final Check = state.extra as bool;
-          return CartView(chech: Check,);
-        }  
-      ),
+          path: KCartView,
+          builder: (context, state) {
+            final Check = state.extra as bool;
+            return CartView(
+              chech: Check,
+            );
+          }),
       GoRoute(
         path: KExploreView,
         builder: (context, state) => const ExploreView(),
@@ -93,6 +98,10 @@ abstract class AppRouer {
       GoRoute(
         path: KReviewProductBody,
         builder: (context, state) => ReviewProductBody(),
+      ),
+      GoRoute(
+        path: KPaymentSuccess,
+        builder: (context, state) => const PaymentSuccess(),
       ),
     ],
   );

@@ -39,7 +39,7 @@ class _CustomSliderState extends State<CustomSlider> {
                 return Stack(
                   children: [
                     imageSlider(image),
-                    timeSaleSlider(),
+                    timeSaleSlider("Super Flash Sale","50% Off",true),
                   ],
                 );
               },
@@ -75,7 +75,8 @@ class _CustomSliderState extends State<CustomSlider> {
   }
 }
 
-timeSaleSlider() {
+timeSaleSlider(String text1, String text2,bool isHer) {
+
   return Padding(
     padding: const EdgeInsets.only(top: 20, left: 20),
     child: Column(
@@ -83,18 +84,19 @@ timeSaleSlider() {
       children: [
         //---title ----------
         Text(
-          "Super Flash Sale",
+          text1,
           style: Style.textStyle24.copyWith(color: kBackGroundColor),
         ),
         const SizedBox(
           height: 5,
         ),
         Text(
-          "50% Off",
+          text2,
           style: Style.textStyle24.copyWith(color: kBackGroundColor),
         ),
         const SizedBox(height: 15),
         //---time ----------
+isHer ?
         const Row(
           children: [
             CustomTimeSale(text: "08"),
@@ -103,7 +105,11 @@ timeSaleSlider() {
             // const SizedBox(width: 8),
             CustomTimeSale(text: "52"),
           ],
+        ):  Text("Special birthday Lafyuu",
+        style: Style.textStyle12.copyWith(
+          color: kBackGroundColor
         ),
+        )
       ],
     ),
   );

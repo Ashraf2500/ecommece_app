@@ -69,8 +69,7 @@ class _CartBodyState extends State<CartBody> {
                               ),
                         const SizedBox(height: 5),
                         const Divider(
-                          thickness: 0.6,
-                          color: kDescriptionText,
+                          thickness: 0.4,
                         ),
                         const SizedBox(height: 10),
                         quantity == 0
@@ -237,9 +236,9 @@ class _CartBodyState extends State<CartBody> {
                                   ],
                                 ),
                               ),
+                              const SizedBox(height: 5),
                               const Divider(
-                                color: kBorderColor,
-                                thickness: 1,
+                                thickness: 0.4,
                               ),
                               Container(
                                 margin: const EdgeInsets.all(16),
@@ -276,6 +275,7 @@ class _CartBodyState extends State<CartBody> {
                             discount: UpdateCartCubit.get(context).discounts,
                             subtotal: subTotal,
                             total: total,
+                         
                           ),
                         ),
                         const SizedBox(height: 16),

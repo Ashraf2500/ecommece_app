@@ -16,4 +16,5 @@ class Images {
   static const message = "assets/images/Message.png";
   static const gender = "assets/images/Gender.png";
   static const date = "assets/images/Date.png";
+  static const mahmoud ="assets/images/mahmoud.png";
 }

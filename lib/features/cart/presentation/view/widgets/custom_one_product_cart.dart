@@ -8,7 +8,6 @@ import 'package:ecommece_app/features/home/presentation/manager/banners_and_grid
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class CustomOneProductCart extends StatefulWidget {
   const CustomOneProductCart({
     Key? key,
@@ -24,7 +23,6 @@ class CustomOneProductCart extends StatefulWidget {
     required this.discount,
     required this.quantitylenght,
     required this.inFavorites,
-    
   }) : super(key: key);
 
   final int total;
@@ -35,11 +33,10 @@ class CustomOneProductCart extends StatefulWidget {
   final double subTotal;
   final double oldPrice;
   final double discount;
-final int quantitylenght;
+  final int quantitylenght;
   final int idproduct;
   final int idCart;
   final bool inFavorites;
-  
 
   @override
   State<CustomOneProductCart> createState() => _CustomOneProductCartState();
@@ -49,13 +46,12 @@ class _CustomOneProductCartState extends State<CustomOneProductCart> {
   @override
   void initState() {
     super.initState();
-    context.read<UpdateCartCubit>().updateDateToGetIndex(
-        widget.subTotal, widget.oldPrice, widget.discount,widget.quantitylenght);
+    context.read<UpdateCartCubit>().updateDateToGetIndex(widget.subTotal,
+        widget.oldPrice, widget.discount, widget.quantitylenght);
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: 120,
       width: 343,
@@ -90,16 +86,18 @@ class _CustomOneProductCartState extends State<CustomOneProductCart> {
                           fontSize: 12,
                         ),
                       ),
-                    ), 
+                    ),
                     IconButton(
                       onPressed: () {
-                        
-                       context.read<HomeCubit>().sendFavorite(widget.idproduct,context);
+                        context
+                            .read<HomeCubit>()
+                            .sendFavorite(widget.idproduct, context);
                       },
-                      icon:  Icon(Icons.favorite_rounded, size: 25,
-                    
-                      color: widget.inFavorites ? kRedColor : kDescriptionText
-                      ),
+                      icon: Icon(Icons.favorite_rounded,
+                          size: 25,
+                          color: widget.inFavorites
+                              ? kRedColor
+                              : kDescriptionText),
                     ),
                     IconButton(
                       onPressed: () {
@@ -180,4 +178,3 @@ class _CustomOneProductCartState extends State<CustomOneProductCart> {
     );
   }
 }
-

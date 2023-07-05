@@ -7,9 +7,8 @@ import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Te
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'custom_text_form_faild_widget.dart';
 
 class RegisBody extends StatefulWidget {
@@ -35,23 +34,13 @@ class _RegisBodyState extends State<RegisBody> {
         listener: (context, state) {
           if (state is RegisterSuccess) {
             if (state.regisModel.status) {
-              showTopSnackBar(
-                Overlay.of(context),
-                CustomSnackBar.success(
-                  message: state.regisModel.message,
-                  textStyle: const TextStyle(color: Colors.white),
-                ),
-              );
+              Fluttertoast.showToast(
+                  msg: state.regisModel.message, textColor: Colors.white);
 
-               GoRouter.of(context).push(AppRouer.KLoginView);
+              GoRouter.of(context).push(AppRouer.KLoginView);
             } else {
-              showTopSnackBar(
-                Overlay.of(context),
-                CustomSnackBar.success(
-                  message: state.regisModel.message,
-                  textStyle: const TextStyle(color: Colors.white),
-                ),
-              );
+              Fluttertoast.showToast(
+                  msg: state.regisModel.message, textColor: Colors.white);
             }
           }
         },
