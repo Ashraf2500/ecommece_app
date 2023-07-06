@@ -62,11 +62,9 @@ class CheckoutPage extends StatelessWidget {
             ],
             note: "Contact us for any questions on your order.",
             onSuccess: (Map params) async {
-              print("xxxxxxxxxxxxxxxxxxxxxxxxxxxyz");
-          GoRouter.of(context).pushReplacement(AppRouer.KPaymentSuccess);
+              GoRouter.of(context).pushReplacement(AppRouer.KPaymentSuccess);
             },
             onError: (error) {
-               print("xxxxxxxxxxxxxxxxxxxxxxxxxxx");
               snack(error.toString());
 
               Navigator.pop(context);

@@ -14,6 +14,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/constans.dart';
+
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
 
@@ -41,13 +43,17 @@ class _LoginBodyState extends State<LoginBody> {
                       if (state.loginModel.status) {
                         CacheHelber.saveData(
                             key: "token", value: state.loginModel.data!.token);
-                    Fluttertoast.showToast(msg: state.loginModel.message,textColor: Colors.white);
+                    Fluttertoast.showToast(msg: state.loginModel.message,textColor: Colors.white,
+                     backgroundColor: kGreenColor
+                    );
                        
                         
 
                         GoRouter.of(context).pushReplacement(AppRouer.KBottomBarView);
                       } else {
-                        Fluttertoast.showToast(msg: state.loginModel.message,textColor: Colors.white);
+                        Fluttertoast.showToast(msg: state.loginModel.message,textColor: Colors.white,
+                         backgroundColor: kRedColor
+                        );
                          
                         
                       }

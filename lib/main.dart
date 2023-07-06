@@ -1,5 +1,6 @@
 import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/constans.dart';
+import 'package:ecommece_app/core/utils/service_loctor.dart';
 import 'package:ecommece_app/features/cart/data/repo/cart_repo_impl.dart';
 import 'package:ecommece_app/features/cart/manager/cart_cubit/cart_cubit.dart';
 import 'package:ecommece_app/features/cart/manager/get_cart_cubit/get_cart_cubit.dart';
@@ -19,6 +20,8 @@ import 'features/home/presentation/manager/fav/fav_cubit.dart';
 import 'features/home/presentation/manager/product_details_two/product_details_two_cubit.dart';
 
 void main() {
+
+  setup();
   runApp(const EcommerceApp());
 }
 
@@ -30,26 +33,31 @@ class EcommerceApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => HomeCubit(HomeRepoImpl())..getHomeData()),
+            create: (context) =>
+                HomeCubit(getIt.get<HomeRepoImpl>())..getHomeData()),
         BlocProvider(
           create: (context) => BottomBarCubit(),
         ),
         BlocProvider(
-          create: (context) => CategoryCubit(HomeRepoImpl())..getCategory(),
+          create: (context) =>
+              CategoryCubit(getIt.get<HomeRepoImpl>())..getCategory(),
         ),
-        BlocProvider(create: (context) => SaleCubit(HomeRepoImpl())..getData()),
         BlocProvider(
-            create: (context) => MoreCategoryCubit(HomeRepoImpl())..getData()),
-        BlocProvider(create: (context) => FavCubit(HomeRepoImpl())),
+            create: (context) =>
+                SaleCubit(getIt.get<HomeRepoImpl>())..getData()),
+        BlocProvider(
+            create: (context) =>
+                MoreCategoryCubit(getIt.get<HomeRepoImpl>())..getData()),
+        BlocProvider(create: (context) => FavCubit(getIt.get<HomeRepoImpl>())),
         BlocProvider(
           create: (context) => SearchCubit(),
         ),
         BlocProvider(
-          create: (context) => ProductDetailsCubit(HomeRepoImpl()),
+          create: (context) => ProductDetailsCubit(getIt.get<HomeRepoImpl>()),
         ),
         BlocProvider(
-          create: (context) =>
-              ProductDetailsTwoCubit(HomeRepoImpl())..getProductDetailsTwo(),
+          create: (context) => ProductDetailsTwoCubit(getIt.get<HomeRepoImpl>())
+            ..getProductDetailsTwo(),
         ),
         BlocProvider(create: (context) => CartCubit()),
         BlocProvider(

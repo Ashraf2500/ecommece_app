@@ -52,8 +52,8 @@ class ProfileBody extends StatelessWidget {
                             children: [
                               Text(
                                 "Mahmoud Ahmed",
-                                style:
-                                    Style.textStyle14.copyWith(color: kTextkColor),
+                                style: Style.textStyle14
+                                    .copyWith(color: kTextkColor),
                               ),
                             ],
                           ),
@@ -92,15 +92,18 @@ class ProfileBody extends StatelessWidget {
                         image: Images.password,
                         textTwo: "******",
                       ),
-                      
                     ],
                   ),
                 ),
-                
               ),
               const Spacer(),
-              const Text("Version 1.0.0",style: Style.textStyle16,),
-              const SizedBox(height: 20,)
+              const Text(
+                "Version 1.0.0",
+                style: Style.textStyle16,
+              ),
+              const SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),

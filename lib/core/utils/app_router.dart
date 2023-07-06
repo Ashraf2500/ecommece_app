@@ -29,10 +29,8 @@ abstract class AppRouer {
   static const String KProductBody = "/ProductBody";
   static const String KFavBody = "/FavBody";
   static const String KMoreCategotyBody = "/MoreCategotyBody";
-  static const String KReviewProductBody = "/ReviewProductBody";
-    static const String KPaymentSuccess = "/PaymentSuccess";
-
-
+  static const String KReviewProductBody = "/KReviewProductBody";
+  static const String KPaymentSuccess = "/PaymentSuccess";
 
   static final router = GoRouter(
     routes: [

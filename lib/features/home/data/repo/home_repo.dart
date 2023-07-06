@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommece_app/core/utils/errors/failure.dart';
 import 'package:ecommece_app/features/home/data/model/category_model.dart';
 import 'package:ecommece_app/features/home/data/model/home_model.dart';
-import 'package:ecommece_app/features/home/data/model/list_of_category_model.dart';
 import 'package:ecommece_app/features/home/data/model/more_category_model.dart';
 import 'package:ecommece_app/features/home/data/model/product_details_two.dart';
 import 'package:ecommece_app/features/home/data/model/sale_model.dart';
@@ -22,6 +21,6 @@ abstract class HomeRepo {
   Future<Either<ServerFailure, ProductDetailsForFavoritesModel>>
       productDetailsForFavorite(int id);
   Future<Either<ServerFailure, FavModel>> getMyFavCategory();
-  Future<Either<ServerFailure, ListOfCategoryModel>> getListOfCategory(int id);
+
   Future<Either<ServerFailure, ProductDetailsTwoModel>> getMyProductDetailsTwo(int id);
 }

@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:ecommece_app/core/utils/app_router.dart';
 import 'package:ecommece_app/core/utils/assets.dart';
+import 'package:ecommece_app/core/utils/constans.dart';
 import 'package:ecommece_app/features/regis/presentation/manager/cubit/register_cubit.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Button_widget.dart';
 import 'package:ecommece_app/features/regis/presentation/views/widgets/custom_Text_widget.dart';
@@ -35,12 +36,16 @@ class _RegisBodyState extends State<RegisBody> {
           if (state is RegisterSuccess) {
             if (state.regisModel.status) {
               Fluttertoast.showToast(
-                  msg: state.regisModel.message, textColor: Colors.white);
+                  msg: state.regisModel.message, textColor: Colors.white,
+                  backgroundColor: kGreenColor
+                  );
 
               GoRouter.of(context).push(AppRouer.KLoginView);
             } else {
               Fluttertoast.showToast(
-                  msg: state.regisModel.message, textColor: Colors.white);
+                  msg: state.regisModel.message, textColor: Colors.white,
+                     backgroundColor: kRedColor
+                  );
             }
           }
         },

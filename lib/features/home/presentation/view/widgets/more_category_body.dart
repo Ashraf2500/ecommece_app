@@ -43,7 +43,7 @@ class MoreCategotyBody extends StatelessWidget {
                             color: kDescriptionText,
                           ),
                           onPressedTwo: () {
-                            print("ss");
+                   
                            BottomBarCubit.get(context).navScreen(1);
                            GoRouter.of(context).pushReplacement(AppRouer.KBottomBarView);
                           },

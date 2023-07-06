@@ -1,12 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
+
+import 'package:ecommece_app/core/utils/api/api_service.dart';
+import 'package:ecommece_app/core/utils/errors/failure.dart';
 import 'package:ecommece_app/core/utils/shared/cache_helber.dart';
 import 'package:ecommece_app/features/home/data/model/category_model.dart';
 import 'package:ecommece_app/features/home/data/model/fav_model.dart';
 import 'package:ecommece_app/features/home/data/model/home_model.dart';
-import 'package:ecommece_app/core/utils/errors/failure.dart';
-import 'package:dartz/dartz.dart';
-import 'package:ecommece_app/features/home/data/model/list_of_category_model.dart';
 import 'package:ecommece_app/features/home/data/model/more_category_model.dart';
 import 'package:ecommece_app/features/home/data/model/product_details_two.dart';
 import 'package:ecommece_app/features/home/data/model/sale_model.dart';
@@ -15,9 +17,13 @@ import 'package:ecommece_app/features/home/data/repo/home_repo.dart';
 import '../model/product_details_for_favorite.dart';
 
 class HomeRepoImpl implements HomeRepo {
+  DioHelper dioHelper;
+  HomeRepoImpl({
+    required this.dioHelper,
+  });
   @override
   Future<Either<ServerFailure, HomeModel>> bannersAndGrid() async {
-    String token = await CacheHelber.getData(key: "token");
+   String token = await CacheHelber.getData(key: "token");
 
     Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true, headers: {
       "lang": "en",
@@ -110,21 +116,8 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<ServerFailure, ProductDetailsForFavoritesModel>>
       productDetailsForFavorite(int id) async {
-    String token = await CacheHelber.getData(key: "token");
-    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true, headers: {
-      "lang": "en",
-      "Content-Type": "application/json",
-      "Authorization": token
-    }));
-    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-    Options myOptions =
-        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-    dio.interceptors.add(dioCacheManager.interceptor);
-
     try {
-      final response = await dio.get(
-          "https://student.valuxapps.com/api/products/$id",
-          options: myOptions);
+      final response = await dioHelper.get(endPoint: "products/$id");
 
       final moreCategoryModel =
           ProductDetailsForFavoritesModel.fromJson(response.data);
@@ -137,24 +130,10 @@ class HomeRepoImpl implements HomeRepo {
 
   @override
   Future<Either<ServerFailure, FavModel>> getMyFavCategory() async {
-    String token = await CacheHelber.getData(key: "token");
-
-    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true, headers: {
-      "lang": "en",
-      "Content-Type": "application/json",
-      "Authorization": token
-    }));
     FavModel favModel;
 
     try {
-      DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-      Options myOptions =
-          buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-      dio.interceptors.add(dioCacheManager.interceptor);
-
-      final response = await dio.get(
-          "https://student.valuxapps.com/api/favorites",
-          options: myOptions);
+      final response = await dioHelper.get(endPoint: "favorites");
 
       favModel = FavModel.fromJson(response.data);
 
@@ -165,32 +144,8 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<ServerFailure, ListOfCategoryModel>> getListOfCategory(
-      int id) async {
-    ListOfCategoryModel listOfCategoryModel;
-    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
-
-    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-
-    Options myOptions =
-        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-    dio.interceptors.add(dioCacheManager.interceptor);
-
-    try {
-      final response = await dio.get(
-          "https://student.valuxapps.com/api/favorites",
-          options: myOptions);
-      listOfCategoryModel = ListOfCategoryModel.fromJson(response.data);
-      return right(listOfCategoryModel);
-    } on DioError catch (e) {
-      return left(ServerFailure.fromDioError(e));
-    }
-  }
-
-  @override
   Future<Either<ServerFailure, ProductDetailsTwoModel>> getMyProductDetailsTwo(
       int id) async {
-        
     ProductDetailsTwoModel productDetailsTwoModel;
 
     Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
@@ -206,9 +161,8 @@ class HomeRepoImpl implements HomeRepo {
           options: myOptions);
 
       productDetailsTwoModel = ProductDetailsTwoModel.fromJson(response.data);
-      
+
       return right(productDetailsTwoModel);
-      
     } on DioError catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
