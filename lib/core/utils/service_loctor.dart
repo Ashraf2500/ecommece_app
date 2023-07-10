@@ -8,4 +8,7 @@ void setup() {
   getIt.registerSingleton<HomeRepoImpl>(
     HomeRepoImpl(dioHelper: DioHelper(Dio())),
   );
+   getIt.registerSingleton<DioHelper>(
+    DioHelper(Dio()),
+  );
 }

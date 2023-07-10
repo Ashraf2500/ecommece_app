@@ -16,6 +16,7 @@ import '../../features/home/presentation/view/widgets/review_product_body.dart';
 import '../../features/main_Screens/presentation/view/bottom_bar_view.dart';
 
 abstract class AppRouer {
+
   static const String KsplachView = "/";
   static const String KHomeView = "/HomeView";
   static const String KAccountView = "/AccountView";

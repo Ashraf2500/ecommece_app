@@ -1,6 +1,8 @@
 
 import 'package:ecommece_app/features/splach/presentation/views/widgets/splash_view_body.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
+
+
 
 
 class SplashView extends StatelessWidget {

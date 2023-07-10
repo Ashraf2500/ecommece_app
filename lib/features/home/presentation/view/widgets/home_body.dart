@@ -14,9 +14,23 @@ import 'custom_grid_view_products_widget.dart';
 import 'custom_main_title_row_widget.dart';
 import 'custom_slide_widget.dart';
 
-class HomeBody extends StatelessWidget {
-  HomeBody({Key? key}) : super(key: key);
- final ScrollController _scrollController = ScrollController();
+class HomeBody extends StatefulWidget {
+  const HomeBody({Key? key}) : super(key: key);
+
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  
+  @override
+  void initState() {
+    super.initState();
+    BottomBarCubit.get(context).sc.addListener(() {
+      print(BottomBarCubit.get(context).sc.offset);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double heightScreen = MediaQuery.of(context).size.height;
@@ -24,13 +38,14 @@ class HomeBody extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Scrollbar(
-            controller: _scrollController,
-            radius: const Radius.circular(8),
-            scrollbarOrientation: ScrollbarOrientation.right,
-            interactive: false,
-            thickness: 5,
-            thumbVisibility: true,
+          controller: BottomBarCubit.get(context).sc,
+          radius: const Radius.circular(8),
+          scrollbarOrientation: ScrollbarOrientation.right,
+          interactive: false,
+          thickness: 5,
+          thumbVisibility: true,
           child: SingleChildScrollView(
+            controller: BottomBarCubit.get(context).sc,
             child: Column(
               children: [
                 //---------Search AppBar -----------------------------------------
@@ -38,8 +53,8 @@ class HomeBody extends StatelessWidget {
                 Row(
                   children: [
                     GestureDetector(
-                      onTap: (){
-                       BottomBarCubit.get(context).navScreen(1);
+                      onTap: () {
+                        BottomBarCubit.get(context).navScreen(1);
                       },
                       child: Container(
                         height: 50,
@@ -48,7 +63,8 @@ class HomeBody extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: kBackGroundColor,
                           border: Border.all(color: kBorderColor),
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                         ),
                         child: const Row(
                           children: [
@@ -72,7 +88,7 @@ class HomeBody extends StatelessWidget {
                       color: kDescriptionText,
                       iconSize: 25,
                       onPressed: () {
-                      GoRouter.of(context).push(AppRouer.KFavBody);
+                        GoRouter.of(context).push(AppRouer.KFavBody);
                       },
                     ),
                     IconButton(
@@ -83,13 +99,13 @@ class HomeBody extends StatelessWidget {
                     ),
                   ],
                 ),
-        
+
                 //---------Divider -----------------------------------------------
                 const SizedBox(height: 15),
                 const Divider(
                   thickness: 0.5,
                 ),
-        
+
                 //---------Slider ------------------------------------------------
                 const SizedBox(height: 15),
                 BlocConsumer<HomeCubit, HomeState>(
@@ -113,22 +129,20 @@ class HomeBody extends StatelessWidget {
                       }
                       return const CustomCarosilLoading();
                     }),
-        
+
                 //---------Category ----------------------------------------------
                 const SizedBox(height: 10),
-        
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: CustomMainTitleRow(
                     textOne: "Category",
                     textTwo: "More Category",
-                    onPressed: () {
-                     
-                    },
+                    onPressed: () {},
                   ),
                 ),
                 const CustomListOfCategory(),
-        
+
                 //---------Flash Sale --------------------------------------------
                 const SizedBox(height: 10),
                 Padding(
@@ -137,18 +151,16 @@ class HomeBody extends StatelessWidget {
                     textOne: "Flash Sale",
                     textTwo: "See More",
                     onPressed: () {
-                     BottomBarCubit.get(context).navScreen(3);
+                      BottomBarCubit.get(context).navScreen(3);
                     },
                   ),
                 ),
                 const CustomListOfInfoProduct(),
-        
-          
-        
+
                 //---------Recommended Product -----------------------------------
                 const SizedBox(height: 30),
                 const CustomRecommendedProducts(),
-        
+
                 //---------Recommended Product Grid View--------------------------
                 const SizedBox(
                   height: 30,
@@ -158,7 +170,7 @@ class HomeBody extends StatelessWidget {
                   height: 14,
                 )
               ],
-        
+
               //CustomMainTitle();
             ),
           ),

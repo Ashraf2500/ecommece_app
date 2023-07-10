@@ -11,6 +11,7 @@ class BottomBarCubit extends Cubit<BottomBarState> {
   BottomBarCubit() : super(BottomBarInitial());
 
   static BottomBarCubit get(context) => BlocProvider.of(context);
+  ScrollController sc = ScrollController();
 
   List<Widget> screensOfNavigatorButton = [
     const HomeView(),
