@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
-import 'package:ecommece_app/core/utils/api/api_one_service.dart';
+import 'package:ecommece_app/core/utils/api_services/api_one_service.dart';
+import 'package:ecommece_app/core/utils/api_services/api_two_service.dart';
 import 'package:ecommece_app/core/utils/errors/failure.dart';
 import 'package:ecommece_app/features/home/data/model/category_model.dart';
 import 'package:ecommece_app/features/home/data/model/fav_model.dart';
@@ -10,13 +11,14 @@ import 'package:ecommece_app/features/home/data/model/more_category_model.dart';
 import 'package:ecommece_app/features/home/data/model/product_details_two.dart';
 import 'package:ecommece_app/features/home/data/model/sale_model.dart';
 import 'package:ecommece_app/features/home/data/repo/home_repo.dart';
-
 import '../model/product_details_for_favorite.dart';
 
 class HomeRepoImpl implements HomeRepo {
   DioHelperOne dioHelper;
+  DioHelperTwo dioHelperTwo;
   HomeRepoImpl({
     required this.dioHelper,
+    required this.dioHelperTwo,
   });
   @override
   Future<Either<ServerFailure, HomeModel>> bannersAndGrid() async {
@@ -66,27 +68,21 @@ class HomeRepoImpl implements HomeRepo {
 
       return right(data);
     } on DioError catch (e) {
-     return  left(ServerFailure.fromDioError(e));
+      return left(ServerFailure.fromDioError(e));
     }
   }
 
   @override
   Future<Either<ServerFailure, List<ProductModel>>> moreCategory(
       category) async {
-    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
-    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-    Options myOptions =
-        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-    dio.interceptors.add(dioCacheManager.interceptor);
     try {
-      final response = await dio.get(
-          "https://dummyjson.com/products/category/$category",
-          options: myOptions);
-      final List<dynamic> moreCategoryDynamic = response.data["products"];
+      final response =
+          await dioHelperTwo.get(endPoint: "products/category/$category");
+
+      final List<dynamic> moreCategoryDynamic = response["products"];
 
       final List<ProductModel> moreCategory =
           moreCategoryDynamic.map((e) => ProductModel.fromJson(e)).toList();
-
       return right(moreCategory);
     } on DioError catch (e) {
       return left(ServerFailure.fromDioError(e));
@@ -126,22 +122,12 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<ServerFailure, ProductDetailsTwoModel>> getMyProductDetailsTwo(
       int id) async {
-    ProductDetailsTwoModel productDetailsTwoModel;
-
-    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
-
-    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-
-    Options myOptions =
-        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-    dio.interceptors.add(dioCacheManager.interceptor);
-
     try {
-      final response = await dio.get("https://dummyjson.com/products/$id",
-          options: myOptions);
+      ProductDetailsTwoModel productDetailsTwoModel;
 
-      productDetailsTwoModel = ProductDetailsTwoModel.fromJson(response.data);
+      final response = await dioHelperTwo.get(endPoint: "products/$id");
 
+      productDetailsTwoModel = ProductDetailsTwoModel.fromJson(response);
       return right(productDetailsTwoModel);
     } on DioError catch (e) {
       return left(ServerFailure.fromDioError(e));
