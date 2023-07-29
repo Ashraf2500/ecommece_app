@@ -41,7 +41,7 @@ class CartCubit extends Cubit<CartState> {
       emit(CartCubitSuccess());
     } on DioError catch (e) {
      
-      ServerFailure.fromResponse(e.response!.statusCode, e.response);
+      ServerFailure.fromDioError(e);
     }
   }
 }

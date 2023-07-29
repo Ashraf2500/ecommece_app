@@ -14,22 +14,8 @@ import 'custom_grid_view_products_widget.dart';
 import 'custom_main_title_row_widget.dart';
 import 'custom_slide_widget.dart';
 
-class HomeBody extends StatefulWidget {
+class HomeBody extends StatelessWidget {
   const HomeBody({Key? key}) : super(key: key);
-
-  @override
-  State<HomeBody> createState() => _HomeBodyState();
-}
-
-class _HomeBodyState extends State<HomeBody> {
-  
-  @override
-  void initState() {
-    super.initState();
-    BottomBarCubit.get(context).sc.addListener(() {
-      print(BottomBarCubit.get(context).sc.offset);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,15 +1,4 @@
-class MoreCategoryModel {
-  List<ProductModel> products;
 
-  MoreCategoryModel({
-    required this.products,
-  });
-
-  factory MoreCategoryModel.fromJson(Map<String, dynamic> json) => MoreCategoryModel(
-        products: List<ProductModel>.from(
-            json["products"].map((x) => ProductModel.fromJson(x))),
-      );
-}
 
 class ProductModel {
   int id;

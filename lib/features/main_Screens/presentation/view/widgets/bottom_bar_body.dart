@@ -21,7 +21,7 @@ class BottomBarScreens extends StatelessWidget {
             currentIndex:  BottomBarCubit.get(context).currentIndex,
             onTap: (int index) {
               BottomBarCubit.get(context).navScreen(index);
-              BottomBarCubit.get(context).sc.animateTo(0, duration:const Duration(seconds: 1), curve: Curves.easeIn);
+              BottomBarCubit.get(context).sc.animateTo(0, duration:const Duration(milliseconds: 700), curve: Curves.easeIn);
             },
             items: const [
               BottomNavigationBarItem(

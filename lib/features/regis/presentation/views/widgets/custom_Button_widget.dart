@@ -3,13 +3,13 @@ import 'package:ecommece_app/core/utils/style.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({
+  const CustomButton({
     super.key,
     required this.onPressed,
     required this.text, 
   });
   final VoidCallback onPressed;
-  final String text;
+  final String text ;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

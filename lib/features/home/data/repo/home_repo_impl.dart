@@ -1,11 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
-
-import 'package:ecommece_app/core/utils/api/api_service.dart';
+import 'package:ecommece_app/core/utils/api/api_one_service.dart';
 import 'package:ecommece_app/core/utils/errors/failure.dart';
-import 'package:ecommece_app/core/utils/shared/cache_helber.dart';
 import 'package:ecommece_app/features/home/data/model/category_model.dart';
 import 'package:ecommece_app/features/home/data/model/fav_model.dart';
 import 'package:ecommece_app/features/home/data/model/home_model.dart';
@@ -17,31 +14,18 @@ import 'package:ecommece_app/features/home/data/repo/home_repo.dart';
 import '../model/product_details_for_favorite.dart';
 
 class HomeRepoImpl implements HomeRepo {
-  DioHelper dioHelper;
+  DioHelperOne dioHelper;
   HomeRepoImpl({
     required this.dioHelper,
   });
   @override
   Future<Either<ServerFailure, HomeModel>> bannersAndGrid() async {
-   String token = await CacheHelber.getData(key: "token");
-
-    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true, headers: {
-      "lang": "en",
-      "Content-Type": "application/json",
-      "Authorization": token
-    }));
     HomeModel homeModel;
 
     try {
-      DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-      Options myOptions =
-          buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-      dio.interceptors.add(dioCacheManager.interceptor);
+      final response = await dioHelper.get(endPoint: "home");
 
-      final response = await dio.get("https://student.valuxapps.com/api/home",
-          options: myOptions);
-
-      homeModel = HomeModel.fromJson(response.data);
+      homeModel = HomeModel.fromJson(response);
 
       return right(homeModel);
     } on DioError catch (e) {
@@ -73,22 +57,16 @@ class HomeRepoImpl implements HomeRepo {
 
   @override
   Future<Either<ServerFailure, List<SaleModel>>> sale() async {
-    Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
-    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-    Options myOptions =
-        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-    dio.interceptors.add(dioCacheManager.interceptor);
     try {
-      final respone = await dio.get("https://fakestoreapi.com/products",
-          options: myOptions);
+      final response = await dioHelper.get(endPoint: "products");
 
-      List<dynamic> responeData = respone.data;
+      List<dynamic> responeData = response["data"];
       List<SaleModel> data =
           responeData.map((e) => SaleModel.fromJson(e)).toList();
 
       return right(data);
     } on DioError catch (e) {
-      return left(ServerFailure.fromDioError(e));
+     return  left(ServerFailure.fromDioError(e));
     }
   }
 
@@ -104,10 +82,12 @@ class HomeRepoImpl implements HomeRepo {
       final response = await dio.get(
           "https://dummyjson.com/products/category/$category",
           options: myOptions);
+      final List<dynamic> moreCategoryDynamic = response.data["products"];
 
-      final moreCategoryModel = MoreCategoryModel.fromJson(response.data);
+      final List<ProductModel> moreCategory =
+          moreCategoryDynamic.map((e) => ProductModel.fromJson(e)).toList();
 
-      return right(moreCategoryModel.products);
+      return right(moreCategory);
     } on DioError catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
@@ -120,7 +100,7 @@ class HomeRepoImpl implements HomeRepo {
       final response = await dioHelper.get(endPoint: "products/$id");
 
       final moreCategoryModel =
-          ProductDetailsForFavoritesModel.fromJson(response.data);
+          ProductDetailsForFavoritesModel.fromJson(response);
 
       return right(moreCategoryModel);
     } on DioError catch (e) {
@@ -135,7 +115,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final response = await dioHelper.get(endPoint: "favorites");
 
-      favModel = FavModel.fromJson(response.data);
+      favModel = FavModel.fromJson(response);
 
       return right(favModel);
     } on DioError catch (e) {
