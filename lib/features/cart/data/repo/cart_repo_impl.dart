@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:ecommece_app/features/cart/data/model/get_cart_model.dart';
 import 'package:ecommece_app/core/utils/errors/failure.dart';
 import 'package:dartz/dartz.dart';
@@ -18,16 +17,12 @@ class CartRepoImpl implements CartRepo {
         "Content-Type": "application/json",
         "Authorization": token
       }));
-      DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-      Options myOptions =
-          buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-      dio.interceptors.add(dioCacheManager.interceptor);
-
+  
       final response = await dio.get("https://student.valuxapps.com/api/carts",
-          options: myOptions);
+        );
       final data = GetCartModel.fromJson(response.data);
       return right(data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
   }

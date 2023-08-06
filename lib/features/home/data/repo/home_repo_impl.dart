@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:ecommece_app/core/utils/api_services/api_one_service.dart';
 import 'package:ecommece_app/core/utils/api_services/api_two_service.dart';
 import 'package:ecommece_app/core/utils/errors/failure.dart';
@@ -30,7 +29,7 @@ class HomeRepoImpl implements HomeRepo {
       homeModel = HomeModel.fromJson(response);
 
       return right(homeModel);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
   }
@@ -38,21 +37,18 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<ServerFailure, List<CategoryModel>>> category() async {
     Dio dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
-    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-    Options myOptions =
-        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-    dio.interceptors.add(dioCacheManager.interceptor);
+   
     try {
       final response = await dio.get(
           "https://mocki.io/v1/e5775744-06ba-4306-b6f6-93055de3c2d5",
-          options: myOptions);
+          );
 
       List<dynamic> respnseData = response.data;
       List<CategoryModel> data =
           respnseData.map((e) => CategoryModel.fromJson(e)).toList();
 
       return right(data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
   }
@@ -67,7 +63,7 @@ class HomeRepoImpl implements HomeRepo {
           responeData.map((e) => SaleModel.fromJson(e)).toList();
 
       return right(data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
   }
@@ -84,7 +80,7 @@ class HomeRepoImpl implements HomeRepo {
       final List<ProductModel> moreCategory =
           moreCategoryDynamic.map((e) => ProductModel.fromJson(e)).toList();
       return right(moreCategory);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
   }
@@ -99,7 +95,7 @@ class HomeRepoImpl implements HomeRepo {
           ProductDetailsForFavoritesModel.fromJson(response);
 
       return right(moreCategoryModel);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
   }
@@ -114,7 +110,7 @@ class HomeRepoImpl implements HomeRepo {
       favModel = FavModel.fromJson(response);
 
       return right(favModel);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
   }
@@ -129,7 +125,7 @@ class HomeRepoImpl implements HomeRepo {
 
       productDetailsTwoModel = ProductDetailsTwoModel.fromJson(response);
       return right(productDetailsTwoModel);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     }
   }

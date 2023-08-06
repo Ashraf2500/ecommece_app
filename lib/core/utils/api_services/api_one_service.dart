@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:ecommece_app/core/utils/shared/cache_helber.dart';
 
 class DioHelperOne {
@@ -18,13 +17,9 @@ class DioHelperOne {
       "Authorization": token
     }));
 
-    // this code For Cache Data for 7 Days
-    DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-    Options myOptions =
-        buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-    _dio.interceptors.add(dioCacheManager.interceptor);
+
    
-    var respone = await _dio.get("$_baseUrl$endPoint", options: myOptions);
+    var respone = await _dio.get("$_baseUrl$endPoint",);
     return respone.data;
   }
 }

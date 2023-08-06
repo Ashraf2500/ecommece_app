@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:ecommece_app/core/utils/errors/failure.dart';
 import 'package:ecommece_app/core/utils/shared/cache_helber.dart';
 import 'package:ecommece_app/features/cart/data/model/post_cart_model.dart';
@@ -22,12 +21,9 @@ class CartCubit extends Cubit<CartState> {
     }));
     emit(CartCubitLoading());
     try {
-      DioCacheManager dioCacheManager = DioCacheManager(CacheConfig());
-      Options myOptions =
-          buildCacheOptions(const Duration(days: 7), forceRefresh: true);
-      dio.interceptors.add(dioCacheManager.interceptor);
+    
       final response = await dio.post("https://student.valuxapps.com/api/carts",
-          options: myOptions, data: {"product_id": id});
+         data: {"product_id": id});
          
    
       final data = PostCartModel.fromJson(response.data);
@@ -39,7 +35,7 @@ class CartCubit extends Cubit<CartState> {
         GetCartCubit.get(context).getDataForCart();
       }
       emit(CartCubitSuccess());
-    } on DioError catch (e) {
+    } on DioException catch (e) {
      
       ServerFailure.fromDioError(e);
     }

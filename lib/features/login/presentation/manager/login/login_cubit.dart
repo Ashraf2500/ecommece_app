@@ -32,8 +32,8 @@ class LoginCubit extends Cubit<LoginState> {
       loginModel = LoginModel.fromJson(response.data);
       
       emit(LoginSuccess(loginModel: loginModel));
-    } on DioError catch (e) {
-      print(e.response);
+    } on DioException catch (e) {
+    
       emit(LoginFailure(errorMessage: e.toString()));
     }
   }

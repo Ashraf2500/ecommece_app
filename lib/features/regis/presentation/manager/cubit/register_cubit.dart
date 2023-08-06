@@ -30,7 +30,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       );
       regisModel = RegisModel.fromJson(response.data);
       emit(RegisterSuccess(regisModel: regisModel));
-    } on Exception catch (e) {
+    } on DioException catch (e) {
       emit(RegisterFailure(errorMessage: e.toString()));
     }
   }
