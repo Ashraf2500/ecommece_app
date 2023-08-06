@@ -33,13 +33,13 @@ class _CustomSliderState extends State<CustomSlider> {
           itemCount: widget.dataLenght,
           itemBuilder: (context, index, realIndex) {
             String image = widget.data[index];
-
+    
             return Builder(
               builder: (BuildContext context) {
                 return Stack(
                   children: [
                     imageSlider(image),
-                    timeSaleSlider("Super Flash Sale","50% Off",true),
+                    timeSaleSlider("Super Flash Sale", "50% Off", true),
                   ],
                 );
               },
@@ -75,10 +75,9 @@ class _CustomSliderState extends State<CustomSlider> {
   }
 }
 
-timeSaleSlider(String text1, String text2,bool isHer) {
-
+timeSaleSlider(String text1, String text2, bool isHer) {
   return Padding(
-    padding: const EdgeInsets.only(top: 20, left: 20),
+    padding: const EdgeInsets.only(top: 17, left: 20,),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -96,20 +95,20 @@ timeSaleSlider(String text1, String text2,bool isHer) {
         ),
         const SizedBox(height: 15),
         //---time ----------
-isHer ?
-        const Row(
-          children: [
-            CustomTimeSale(text: "08"),
-            //const SizedBox(width: 8),
-            CustomTimeSale(text: "34"),
-            // const SizedBox(width: 8),
-            CustomTimeSale(text: "52"),
-          ],
-        ):  Text("Special birthday Lafyuu",
-        style: Style.textStyle12.copyWith(
-          color: kBackGroundColor
-        ),
-        )
+        isHer
+            ? const Row(
+                children: [
+                  CustomTimeSale(text: "08"),
+                  //const SizedBox(width: 8),
+                  CustomTimeSale(text: "34"),
+                  // const SizedBox(width: 8),
+                  CustomTimeSale(text: "52"),
+                ],
+              )
+            : Text(
+                "Special birthday Lafyuu",
+                style: Style.textStyle12.copyWith(color: kBackGroundColor),
+              )
       ],
     ),
   );

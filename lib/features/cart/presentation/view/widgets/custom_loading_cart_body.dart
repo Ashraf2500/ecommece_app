@@ -186,8 +186,7 @@ class CustomLoadingBody extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: CheckoutPage(
-                        discount: UpdateCartCubit.get(context).discounts,
-                        subtotal: subTotal,
+                       
                         total: total,
                       
                       ),
