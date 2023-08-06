@@ -272,8 +272,7 @@ class _CartBodyState extends State<CartBody> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: CheckoutPage(
-                            discount: UpdateCartCubit.get(context).discounts,
-                            subtotal: subTotal,
+                          
                             total: total,
                          
                           ),

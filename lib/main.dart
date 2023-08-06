@@ -15,12 +15,14 @@ import 'package:ecommece_app/features/home/presentation/manager/search/search_cu
 import 'package:ecommece_app/features/main_Screens/presentation/manager/cubit/bottom_bar_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'core/utils/stripe_payment/payment_managers.dart';
 import 'features/home/presentation/manager/fav/fav_cubit.dart';
 import 'features/home/presentation/manager/product_details_two/product_details_two_cubit.dart';
 
 void main() {
-
+  Stripe.publishableKey = PaymentManager.publishablekey;
   setup();
   runApp(const EcommerceApp());
 }
